@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   AlertTriangle,
   ArrowDownLeft,
@@ -56,14 +57,39 @@ function BookCover({ book, small = false }: { book: typeof books[number]; small?
   return <div className={cn('relative shrink-0 overflow-hidden rounded-sm shadow-[0_8px_18px_-10px_rgba(0,0,0,.6)]', small ? 'h-12 w-9' : 'h-32 w-24')}><img src={book.cover} alt={`Cover of ${book.title}`} className="h-full w-full object-cover" /><div className={cn('absolute inset-0 mix-blend-multiply opacity-35', book.tone)} /><span className="absolute bottom-2 left-2 right-2 text-[9px] font-semibold leading-tight text-white drop-shadow-md">{book.title}</span></div>
 }
 
+const dashboardRoutes: Record<string, string> = {
+  Overview: '/dashboard',
+  'Command Center': '/dashboard',
+  Loans: '/circulation/loans',
+  Returns: '/circulation/returns',
+  Renewals: '/circulation/renewals',
+  Holds: '/circulation/holds',
+  Transfers: '/circulation/transfers',
+  Catalog: '/catalog',
+  'Bibliographic Records': '/catalog',
+  Items: '/catalog/inventory',
+  Authorities: '/catalog/authorities',
+  Collections: '/catalog/collections',
+  Inventory: '/catalog/inventory',
+  Members: '/members',
+  Staff: '/admin/users',
+  'Membership Categories': '/settings/member-categories',
+  Analytics: '/analytics',
+  Recommendations: '/analytics',
+  'AI Assistant': '/analytics',
+}
+
 function Sidebar({ collapsed, onCollapse }: { collapsed: boolean; onCollapse: () => void }) {
+  const router = useRouter()
+  const pathname = usePathname()
+
   return <aside className={cn('hidden shrink-0 border-r border-border bg-sidebar transition-[width] duration-300 lg:flex lg:flex-col', collapsed ? 'w-[76px]' : 'w-[248px]')}>
     <div className="flex h-[72px] items-center gap-3 border-b border-border px-5">
       <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground"><Library className="size-5" /></div>
       {!collapsed && <div className="min-w-0"><p className="truncate text-[15px] font-semibold tracking-tight">BiblioNexus</p><p className="truncate text-[10px] uppercase tracking-[.16em] text-muted-foreground">Library intelligence</p></div>}
     </div>
     <nav className="flex-1 overflow-y-auto px-3 py-5">
-      {navGroups.map((group) => <div className="mb-5" key={group.label}><p className={cn('mb-2 px-3 text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground', collapsed && 'text-center text-[8px]')}>{collapsed ? group.label.slice(0, 1) : group.label}</p><div className="flex flex-col gap-1">{group.items.map(([label, Icon, badge]) => <button key={label as string} title={collapsed ? label as string : undefined} className={cn('group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-[13px] text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground', label === 'Command Center' && 'bg-sidebar-accent font-medium text-sidebar-accent-foreground')}><Icon className="size-[17px] shrink-0" />{!collapsed && <><span className="truncate">{label as string}</span>{badge && <span className="ml-auto rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-950 dark:text-amber-300">{badge as string}</span>}</>}</button>)}</div></div>)}
+      {navGroups.map((group) => <div className="mb-5" key={group.label}><p className={cn('mb-2 px-3 text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground', collapsed && 'text-center text-[8px]')}>{collapsed ? group.label.slice(0, 1) : group.label}</p><div className="flex flex-col gap-1">{group.items.map(([label, Icon, badge]) => { const itemLabel = label as string; const href = dashboardRoutes[itemLabel] ?? '/dashboard'; const active = pathname === href || (href !== '/dashboard' && pathname.startsWith(`${href}/`)); return <button key={itemLabel} type="button" title={collapsed ? itemLabel : undefined} onClick={() => router.push(href)} className={cn('group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-[13px] text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground', active && 'bg-sidebar-accent font-medium text-sidebar-accent-foreground')}><Icon className="size-[17px] shrink-0" />{!collapsed && <><span className="truncate">{itemLabel}</span>{badge && <span className="ml-auto rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-950 dark:text-amber-300">{badge as string}</span>}</>}</button> })}</div></div>)}
     </nav>
     <div className="border-t border-border p-3"><button onClick={onCollapse} className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>{collapsed ? <PanelLeftOpen className="size-[17px]" /> : <><PanelLeftClose className="size-[17px]" /><span className="text-xs">Collapse menu</span></>}</button></div>
   </aside>
