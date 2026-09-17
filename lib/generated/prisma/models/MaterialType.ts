@@ -377,10 +377,6 @@ export type MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput = {
   deleteMany?: Prisma.MaterialTypeScalarWhereInput | Prisma.MaterialTypeScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type MaterialTypeCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.MaterialTypeCreateWithoutItemsInput, Prisma.MaterialTypeUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.MaterialTypeCreateOrConnectWithoutItemsInput

@@ -96,6 +96,8 @@ export const ModelName = {
   SerialIssue: 'SerialIssue',
   Translation: 'Translation',
   Session: 'Session',
+  Account: 'Account',
+  Verification: 'Verification',
   ItemStatusHistory: 'ItemStatusHistory',
   LoanRenewal: 'LoanRenewal',
   MemberAccountTransaction: 'MemberAccountTransaction',
@@ -176,9 +178,12 @@ export const UserScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
   email: 'email',
+  emailVerified: 'emailVerified',
   name: 'name',
+  image: 'image',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -640,10 +645,43 @@ export const SessionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   token: 'token',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const AccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accountId: 'accountId',
+  providerId: 'providerId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  idToken: 'idToken',
+  accessTokenExpiresAt: 'accessTokenExpiresAt',
+  refreshTokenExpiresAt: 'refreshTokenExpiresAt',
+  scope: 'scope',
+  password: 'password'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const VerificationScalarFieldEnum = {
+  id: 'id',
+  identifier: 'identifier',
+  value: 'value',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
 export const ItemStatusHistoryScalarFieldEnum = {
