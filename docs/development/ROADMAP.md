@@ -1,8 +1,11 @@
 # BiblioNexus - Interface Development Roadmap
 
-**Status**: Foundation Phase (Cycles 1-2 complete - Auth + RBAC)  
-**Target**: Complete functional admin and circulation interfaces  
+**Status**: Reconciled roadmap; implementation remains partial  
+**Target**: Enterprise-ready multi-tenant ILS with verified UI, services, persistence, authorization, audit and tests  
+**Canonical progress**: Not calculated; no percentage is published without complete evidence  
 **Last Updated**: 2026-09-17
+
+> This roadmap is a delivery plan, not proof of implementation. Each item must be classified REAL, PARTIAL, DEMO, MOCK, or MISSING using the matrix in `DEVELOPMENT.md`. Do not mark a capability COMPLETE until the Definition of Done is satisfied.
 
 ---
 
