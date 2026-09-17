@@ -49,7 +49,7 @@ Principios arquitectónicos:
 
 ### Avance ejecutivo
 
-**Progreso global estimado: 24%**
+**Progreso global estimado: 26%**
 
 - Fundación técnica: **78%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check, headers de seguridad y workspace modular de navegación incorporados.
 - Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
@@ -100,6 +100,8 @@ Entregables:
 **Criterio de salida:** un entorno limpio puede levantar, sembrar datos y renderizar todas las rutas sin estados falsos ni errores de consola.
 
 **Implementado en esta iteración:** `prisma/seed.ts` crea de forma idempotente un tenant demo, una biblioteca, dos sucursales, colección, autores, editor, registros bibliográficos, holdings, ejemplares y miembro demo. Ejecutar mediante `pnpm db:seed` cuando exista una base PostgreSQL accesible.
+
+**Avance adicional:** el schema incorpora historial de estados de ejemplares, eventos de renovación, libro mayor de movimientos monetarios e idempotencia por tenant para comandos transaccionales. `pnpm db:check` valida y regenera Prisma correctamente. Estos modelos quedan en `NEEDS_REVIEW` hasta aplicar migración PostgreSQL y conectar servicios, permisos, auditoría y pruebas; no se consideran `DONE` por existir únicamente en el schema.
 
 ### Iteración 1 — Identidad, tenants y autorización
 

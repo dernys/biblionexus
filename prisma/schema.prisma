@@ -24,6 +24,34 @@ enum ItemStatus {
   MISSING
   DAMAGED
   PROCESSING
+  IN_REPAIR
+  WITHDRAWN
+  REFERENCE_ONLY
+}
+
+enum ItemStatusChangeReason {
+  CHECKOUT
+  RETURN
+  HOLD
+  TRANSFER
+  INVENTORY
+  DAMAGE
+  REPAIR
+  LOSS
+  WITHDRAWAL
+  MANUAL
+}
+
+enum LoanRenewalResult {
+  APPROVED
+  DENIED
+}
+
+enum TransactionType {
+  CHARGE
+  PAYMENT
+  WAIVER
+  ADJUSTMENT
 }
 
 enum LoanStatus {
@@ -62,6 +90,7 @@ model Tenant {
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
   auditLogs AuditLog[]
+  idempotencyKeys IdempotencyKey[]
 }
 
 model LibraryNetwork {
@@ -129,6 +158,8 @@ model User {
   roles     UserRole[]
   auditLogs AuditLog[]
   sessions  Session[]
+  statusChanges ItemStatusHistory[]
+  loanRenewals LoanRenewal[]
   createdAt DateTime   @default(now())
 
   @@unique([tenantId, email])
@@ -186,6 +217,7 @@ model Member {
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
   fines              Fine[]
+  accountTransactions MemberAccountTransaction[]
   eventRegistrations EventRegistration[]
 
   @@unique([libraryId, memberNumber])
@@ -301,9 +333,10 @@ model Item {
   loans        Loan[]
   createdAt    DateTime    @default(now())
   holds        Hold[]
-
+  statusHistory ItemStatusHistory[]
+  
   @@index([branchId, status])
-}
+  }
 
 model Loan {
   id         String     @id @default(cuid())
@@ -318,7 +351,9 @@ model Loan {
   item       Item       @relation(fields: [itemId], references: [id])
   branch     Branch     @relation(fields: [branchId], references: [id])
   renewals   Int        @default(0)
-
+  renewalEvents LoanRenewal[]
+  statusChanges ItemStatusHistory[]
+  
   @@index([memberId, status])
   @@index([itemId, status])
 }
@@ -508,4 +543,64 @@ model Session {
   token     String   @unique
   expiresAt DateTime
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ItemStatusHistory {
+  id         String                 @id @default(cuid())
+  itemId     String
+  fromStatus ItemStatus?
+  toStatus   ItemStatus
+  reason     ItemStatusChangeReason
+  note       String?
+  actorId    String?
+  loanId     String?
+  createdAt  DateTime               @default(now())
+  item       Item                  @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  actor      User?                 @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  loan       Loan?                 @relation(fields: [loanId], references: [id], onDelete: SetNull)
+
+  @@index([itemId, createdAt])
+}
+
+model LoanRenewal {
+  id           String            @id @default(cuid())
+  loanId       String
+  actorId      String?
+  requestedAt  DateTime          @default(now())
+  previousDue  DateTime
+  newDue       DateTime?
+  result       LoanRenewalResult
+  reason       String?
+  loan         Loan              @relation(fields: [loanId], references: [id], onDelete: Cascade)
+  actor        User?             @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([loanId, requestedAt])
+}
+
+model MemberAccountTransaction {
+  id          String        @id @default(cuid())
+  memberId    String
+  type        TransactionType
+  amount      Decimal
+  reference   String?
+  description String?
+  createdAt   DateTime      @default(now())
+  member      Member        @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@index([memberId, createdAt])
+}
+
+model IdempotencyKey {
+  id           String   @id @default(cuid())
+  tenantId     String
+  key          String
+  operation    String
+  requestHash  String
+  responseJson Json?
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, key])
+  @@index([tenantId, operation])
 }
