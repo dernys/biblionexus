@@ -21,9 +21,9 @@ Principios arquitectónicos:
 
 ### Avance ejecutivo
 
-**Progreso global estimado: 21%**
+**Progreso global estimado: 24%**
 
-- Fundación técnica: **75%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check y headers de seguridad incorporados.
+- Fundación técnica: **78%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check, headers de seguridad y workspace modular de navegación incorporados.
 - Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
 - Catálogo y autoridades: **25%** — modelos bibliográficos y repositorio de consulta disponibles; importación, edición MARC y workflows pendientes.
 - Circulación transaccional: **15%** — pantallas premium disponibles; comandos persistidos, idempotencia, transacciones y auditoría pendientes.
@@ -51,6 +51,8 @@ Principios arquitectónicos:
 - Circulación es principalmente una experiencia de workspace; faltan comandos transaccionales persistidos.
 - Sin contrato API formal, validación centralizada, observabilidad, jobs, notificaciones ni sincronización offline real.
 - Faltan módulos completos de adquisiciones, seriales, digital, inventario avanzado, reportes e integraciones.
+- Auditoría del sidebar: `/acquisitions`, `/serials`, `/digital`, `/catalog/inventory`, `/reports`, `/analytics`, `/integrations`, `/audit` y `/settings` tenían una plantilla genérica o profundidad funcional insuficiente; quedan incorporados como workspaces premium de primera fase, con métricas, tabs, filtros, exportación, sincronización y estados operativos.
+- Pendiente para cerrar estos módulos: conectar acciones a servicios Prisma, validación server-side, permisos por módulo, auditoría persistida, notificaciones y pruebas E2E.
 
 ## 3. Iteraciones de entrega
 
