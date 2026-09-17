@@ -19,6 +19,22 @@ Principios arquitectónicos:
 
 ## 2. Estado actual y brechas
 
+### Avance ejecutivo
+
+**Progreso global estimado: 18%**
+
+- Fundación técnica: **60%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial y seed reproducible incorporados.
+- Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
+- Catálogo y autoridades: **25%** — modelos bibliográficos y repositorio de consulta disponibles; importación, edición MARC y workflows pendientes.
+- Circulación transaccional: **15%** — pantallas premium disponibles; comandos persistidos, idempotencia, transacciones y auditoría pendientes.
+- OPAC y descubrimiento: **20%** — rutas y búsqueda base disponibles; disponibilidad real y cuenta de lector pendientes.
+- Operación/observabilidad: **5%** — sin CI, jobs, logging estructurado ni pruebas automatizadas completas.
+
+**Iteración activa:** Iteración 0 — Fundación técnica y control de alcance.
+**Último hito:** seed reproducible para tenant demo, biblioteca, sucursales, catálogo, ejemplares y miembro.
+**Siguiente hito:** aplicar migración/seed en Neon y conectar la primera lectura real de catálogo/circulación a las pantallas.
+
+
 ### Ya existe
 
 - Shell administrativo premium con sidebar, command palette, tema, navegación responsive y contexto de sucursal.
@@ -52,6 +68,8 @@ Entregables:
 - Añadir CI: lint, typecheck, build, tests unitarios y smoke tests de rutas.
 
 **Criterio de salida:** un entorno limpio puede levantar, sembrar datos y renderizar todas las rutas sin estados falsos ni errores de consola.
+
+**Implementado en esta iteración:** `prisma/seed.ts` crea de forma idempotente un tenant demo, una biblioteca, dos sucursales, colección, autores, editor, registros bibliográficos, holdings, ejemplares y miembro demo. Ejecutar mediante `pnpm db:seed` cuando exista una base PostgreSQL accesible.
 
 ### Iteración 1 — Identidad, tenants y autorización
 
