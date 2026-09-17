@@ -17,8 +17,8 @@ export async function getAuthorizationContext(): Promise<AuthorizationContext | 
 
   const roles = assignments.map((assignment) => assignment.role.name)
   const permissions = assignments.flatMap((assignment) => assignment.role.permissions.map(({ permission }) => permission.key))
-  const libraryIds = new Set(assignments.flatMap(({ libraryId }) => libraryId ? [libraryId] : []))
-  const branchIds = new Set(assignments.flatMap(({ branchId }) => branchId ? [branchId] : []))
+  const libraryIds = [...new Set(assignments.flatMap(({ libraryId }) => libraryId ? [libraryId] : []))]
+  const branchIds = [...new Set(assignments.flatMap(({ branchId }) => branchId ? [branchId] : []))]
 
   return {
     userId: session.user.id,

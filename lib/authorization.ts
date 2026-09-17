@@ -1,4 +1,6 @@
 
+import { headers } from 'next/headers'
+
 export const PLATFORM_ROLES = ['PLATFORM_ADMIN', 'TENANT_ADMIN'] as const
 export const LIBRARY_ROLES = ['LIBRARY_ADMIN', 'LIBRARIAN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER'] as const
 
