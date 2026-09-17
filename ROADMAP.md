@@ -1,5 +1,33 @@
 # BiblioNexus — Roadmap Maestro de Desarrollo
 
+> **Documento canónico:** este archivo (`ROADMAP.md`) integra el roadmap maestro previo con la especificación funcional ILS y el schema Prisma de referencia. `roadmap.md` existe únicamente como alias de compatibilidad y no debe contener una hoja de ruta independiente.
+>
+> **Regla de gobierno:** toda nueva iteración debe leer este documento antes de implementar, registrar decisiones aquí después de cada bloque significativo y no marcar una capacidad como `COMPLETE` hasta cumplir la definición de terminado.
+
+## 0. Reconciliación arquitectónica y auditoría del schema
+
+### Decisiones consolidadas
+
+- Se conserva la separación **BibliographicRecord → Item → Loan** como eje del dominio.
+- Se conserva el alcance multi-tenant **Tenant → Library → Branch** y se exige scope server-side en cada consulta administrativa.
+- Se adopta el schema Prisma existente como base del proyecto; el schema adjunto se usa como referencia funcional, no como reemplazo literal.
+- Se priorizan transacciones de dominio para circulación, multas, reservas, inventario y auditoría; la UI no escribirá Prisma directamente.
+- MARC21 se mantiene extensible mediante `MarcRecord`, `MarcField` y `MarcSubfield`, con una capa posterior de normalización hacia `BibliographicRecord`.
+- Better Auth queda bloqueado hasta disponer de `BETTER_AUTH_SECRET`; no se implementará una autenticación simulada.
+
+### Hallazgos del schema vigente
+
+- **Cubierto:** tenants, bibliotecas, sucursales, RBAC base, miembros, autoridades de autor/editorial, registros bibliográficos, ediciones, identificadores, holdings, ejemplares, préstamos, reservas, multas, auditoría, recursos digitales, seriadas, notificaciones, eventos, traducciones y sesiones.
+- **Debe endurecerse antes de producción:** unicidad contextual de roles/permisos, índices de scope por tenant/library/branch, historial de estado de ejemplares, idempotency keys para comandos de circulación, eventos de transferencia, asientos de cuenta de miembro y entidades de importación/lookup.
+- **Regla de integridad:** impedir dos préstamos activos para el mismo ejemplar mediante validación de servicio y, cuando sea compatible con Prisma/PostgreSQL, índice único parcial en migración SQL.
+- **Regla de trazabilidad:** devolución, renovación, pago, condonación, importación, exportación y cambios de configuración deben producir `AuditLog` y eventos de dominio.
+- **Regla de privacidad:** los datos de autenticación, credenciales de lookup y PII no se exponen en OPAC, logs ni respuestas no autorizadas.
+
+### Estado de reconciliación
+
+- Estado: **COMPLETE** para la consolidación documental; **NEEDS_REVIEW** para endurecimiento de schema y migraciones.
+- Próxima tarea de datos: validar el schema contra PostgreSQL/Neon, corregir relaciones e índices, y crear migraciones reversibles antes de conectar comandos persistidos.
+
 ## 1. Norte estratégico
 
 BiblioNexus debe evolucionar de un prototipo visual a un Integrated Library System (ILS) multi-tenant, multi-biblioteca y multi-sucursal, con dos superficies claramente separadas:
