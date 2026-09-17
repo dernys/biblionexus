@@ -21,9 +21,9 @@ Principios arquitectónicos:
 
 ### Avance ejecutivo
 
-**Progreso global estimado: 18%**
+**Progreso global estimado: 21%**
 
-- Fundación técnica: **60%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial y seed reproducible incorporados.
+- Fundación técnica: **75%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check y headers de seguridad incorporados.
 - Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
 - Catálogo y autoridades: **25%** — modelos bibliográficos y repositorio de consulta disponibles; importación, edición MARC y workflows pendientes.
 - Circulación transaccional: **15%** — pantallas premium disponibles; comandos persistidos, idempotencia, transacciones y auditoría pendientes.
@@ -31,8 +31,8 @@ Principios arquitectónicos:
 - Operación/observabilidad: **5%** — sin CI, jobs, logging estructurado ni pruebas automatizadas completas.
 
 **Iteración activa:** Iteración 0 — Fundación técnica y control de alcance.
-**Último hito:** seed reproducible para tenant demo, biblioteca, sucursales, catálogo, ejemplares y miembro.
-**Siguiente hito:** aplicar migración/seed en Neon y conectar la primera lectura real de catálogo/circulación a las pantallas.
+**Último hito:** seed reproducible, capa de plataforma compartida, scripts de validación y headers de seguridad.
+**Siguiente hito:** validar la base contra Neon y conectar lecturas reales de catálogo/circulación; después iniciar Iteración 1 cuando exista `BETTER_AUTH_SECRET`.
 
 
 ### Ya existe
