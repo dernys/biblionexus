@@ -173,15 +173,19 @@ model User {
   tenantId  String
   tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   email     String
+  emailVerified Boolean @default(false)
   name      String
+  image     String?
   status    UserStatus @default(ACTIVE)
   roles     UserRole[]
   auditLogs AuditLog[]
   sessions  Session[]
+  accounts Account[]
   statusChanges ItemStatusHistory[]
   loanRenewals LoanRenewal[]
   createdAt DateTime   @default(now())
-
+  updatedAt DateTime   @updatedAt
+  
   @@unique([tenantId, email])
 }
 
@@ -655,7 +659,37 @@ model Session {
   userId    String
   token     String   @unique
   expiresAt DateTime
+  ipAddress String?
+  userAgent String?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  }
+
+model Account {
+  id String @id @default(cuid())
+  userId String
+  accountId String
+  providerId String
+  accessToken String?
+  refreshToken String?
+  idToken String?
+  accessTokenExpiresAt DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope String?
+  password String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([providerId, accountId])
+  @@index([userId])
+}
+
+model Verification {
+  id String @id @default(cuid())
+  identifier String
+  value String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([identifier, value])
+  @@index([identifier])
 }
 
 model ItemStatusHistory {
@@ -716,4 +750,4 @@ model IdempotencyKey {
 
   @@unique([tenantId, key])
   @@index([tenantId, operation])
-}
+  }

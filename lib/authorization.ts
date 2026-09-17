@@ -1,4 +1,3 @@
-import { headers } from 'next/headers'
 
 export const PLATFORM_ROLES = ['PLATFORM_ADMIN', 'TENANT_ADMIN'] as const
 export const LIBRARY_ROLES = ['LIBRARY_ADMIN', 'LIBRARIAN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER'] as const
@@ -25,10 +24,11 @@ export class AuthorizationError extends Error {
 }
 
 export async function requireSession(): Promise<AuthorizationContext> {
-  if (!process.env.BETTER_AUTH_SECRET) {
-    throw new AuthorizationError('Authentication is not configured')
-  }
-  throw new AuthorizationError('Authentication adapter is not configured')
+  if (!process.env.BETTER_AUTH_SECRET) throw new AuthorizationError('Authentication is not configured')
+  const { getAuthorizationContext } = await import('@/lib/authorization-context')
+  const context = await getAuthorizationContext()
+  if (!context) throw new AuthorizationError('Unauthorized')
+  return context
 }
 
 export function requirePermission(context: AuthorizationContext, permission: string) {
