@@ -44,9 +44,10 @@ export type BibliographicRecordMinAggregateOutputType = {
   description: string | null
   year: number | null
   language: string | null
-  classification: string | null
+  legacyClassification: string | null
   status: $Enums.RecordStatus | null
   coverUrl: string | null
+  classificationId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,9 +62,10 @@ export type BibliographicRecordMaxAggregateOutputType = {
   description: string | null
   year: number | null
   language: string | null
-  classification: string | null
+  legacyClassification: string | null
   status: $Enums.RecordStatus | null
   coverUrl: string | null
+  classificationId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,10 +80,11 @@ export type BibliographicRecordCountAggregateOutputType = {
   description: number
   year: number
   language: number
-  classification: number
+  legacyClassification: number
   status: number
   coverUrl: number
   subjects: number
+  classificationId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -106,9 +109,10 @@ export type BibliographicRecordMinAggregateInputType = {
   description?: true
   year?: true
   language?: true
-  classification?: true
+  legacyClassification?: true
   status?: true
   coverUrl?: true
+  classificationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -123,9 +127,10 @@ export type BibliographicRecordMaxAggregateInputType = {
   description?: true
   year?: true
   language?: true
-  classification?: true
+  legacyClassification?: true
   status?: true
   coverUrl?: true
+  classificationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -140,10 +145,11 @@ export type BibliographicRecordCountAggregateInputType = {
   description?: true
   year?: true
   language?: true
-  classification?: true
+  legacyClassification?: true
   status?: true
   coverUrl?: true
   subjects?: true
+  classificationId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -245,10 +251,11 @@ export type BibliographicRecordGroupByOutputType = {
   description: string | null
   year: number | null
   language: string
-  classification: string | null
+  legacyClassification: string | null
   status: $Enums.RecordStatus
   coverUrl: string | null
   subjects: string[]
+  classificationId: string | null
   createdAt: Date
   updatedAt: Date
   _count: BibliographicRecordCountAggregateOutputType | null
@@ -286,10 +293,11 @@ export type BibliographicRecordWhereInput = {
   description?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   year?: Prisma.IntNullableFilter<"BibliographicRecord"> | number | null
   language?: Prisma.StringFilter<"BibliographicRecord"> | string
-  classification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
+  legacyClassification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   status?: Prisma.EnumRecordStatusFilter<"BibliographicRecord"> | $Enums.RecordStatus
   coverUrl?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   subjects?: Prisma.StringNullableListFilter<"BibliographicRecord">
+  classificationId?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
   library?: Prisma.XOR<Prisma.LibraryScalarRelationFilter, Prisma.LibraryWhereInput>
@@ -299,6 +307,8 @@ export type BibliographicRecordWhereInput = {
   editions?: Prisma.EditionListRelationFilter
   holdings?: Prisma.HoldingListRelationFilter
   identifiers?: Prisma.IdentifierListRelationFilter
+  subjectLinks?: Prisma.BibliographicSubjectListRelationFilter
+  classification?: Prisma.XOR<Prisma.ClassificationNullableScalarRelationFilter, Prisma.ClassificationWhereInput> | null
   holds?: Prisma.HoldListRelationFilter
   marcRecord?: Prisma.XOR<Prisma.MarcRecordNullableScalarRelationFilter, Prisma.MarcRecordWhereInput> | null
 }
@@ -313,10 +323,11 @@ export type BibliographicRecordOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   year?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
-  classification?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyClassification?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   subjects?: Prisma.SortOrder
+  classificationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   library?: Prisma.LibraryOrderByWithRelationInput
@@ -326,6 +337,8 @@ export type BibliographicRecordOrderByWithRelationInput = {
   editions?: Prisma.EditionOrderByRelationAggregateInput
   holdings?: Prisma.HoldingOrderByRelationAggregateInput
   identifiers?: Prisma.IdentifierOrderByRelationAggregateInput
+  subjectLinks?: Prisma.BibliographicSubjectOrderByRelationAggregateInput
+  classification?: Prisma.ClassificationOrderByWithRelationInput
   holds?: Prisma.HoldOrderByRelationAggregateInput
   marcRecord?: Prisma.MarcRecordOrderByWithRelationInput
 }
@@ -343,10 +356,11 @@ export type BibliographicRecordWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   year?: Prisma.IntNullableFilter<"BibliographicRecord"> | number | null
   language?: Prisma.StringFilter<"BibliographicRecord"> | string
-  classification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
+  legacyClassification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   status?: Prisma.EnumRecordStatusFilter<"BibliographicRecord"> | $Enums.RecordStatus
   coverUrl?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   subjects?: Prisma.StringNullableListFilter<"BibliographicRecord">
+  classificationId?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
   library?: Prisma.XOR<Prisma.LibraryScalarRelationFilter, Prisma.LibraryWhereInput>
@@ -356,6 +370,8 @@ export type BibliographicRecordWhereUniqueInput = Prisma.AtLeast<{
   editions?: Prisma.EditionListRelationFilter
   holdings?: Prisma.HoldingListRelationFilter
   identifiers?: Prisma.IdentifierListRelationFilter
+  subjectLinks?: Prisma.BibliographicSubjectListRelationFilter
+  classification?: Prisma.XOR<Prisma.ClassificationNullableScalarRelationFilter, Prisma.ClassificationWhereInput> | null
   holds?: Prisma.HoldListRelationFilter
   marcRecord?: Prisma.XOR<Prisma.MarcRecordNullableScalarRelationFilter, Prisma.MarcRecordWhereInput> | null
 }, "id">
@@ -370,10 +386,11 @@ export type BibliographicRecordOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   year?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
-  classification?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyClassification?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   subjects?: Prisma.SortOrder
+  classificationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BibliographicRecordCountOrderByAggregateInput
@@ -396,10 +413,11 @@ export type BibliographicRecordScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"BibliographicRecord"> | string | null
   year?: Prisma.IntNullableWithAggregatesFilter<"BibliographicRecord"> | number | null
   language?: Prisma.StringWithAggregatesFilter<"BibliographicRecord"> | string
-  classification?: Prisma.StringNullableWithAggregatesFilter<"BibliographicRecord"> | string | null
+  legacyClassification?: Prisma.StringNullableWithAggregatesFilter<"BibliographicRecord"> | string | null
   status?: Prisma.EnumRecordStatusWithAggregatesFilter<"BibliographicRecord"> | $Enums.RecordStatus
   coverUrl?: Prisma.StringNullableWithAggregatesFilter<"BibliographicRecord"> | string | null
   subjects?: Prisma.StringNullableListFilter<"BibliographicRecord">
+  classificationId?: Prisma.StringNullableWithAggregatesFilter<"BibliographicRecord"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BibliographicRecord"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BibliographicRecord"> | Date | string
 }
@@ -411,7 +429,7 @@ export type BibliographicRecordCreateInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -424,6 +442,8 @@ export type BibliographicRecordCreateInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -438,16 +458,18 @@ export type BibliographicRecordUncheckedCreateInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -459,7 +481,7 @@ export type BibliographicRecordUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -472,6 +494,8 @@ export type BibliographicRecordUpdateInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -486,16 +510,18 @@ export type BibliographicRecordUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -510,10 +536,11 @@ export type BibliographicRecordCreateManyInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -525,7 +552,7 @@ export type BibliographicRecordUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -543,10 +570,11 @@ export type BibliographicRecordUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -559,6 +587,11 @@ export type BibliographicRecordListRelationFilter = {
 
 export type BibliographicRecordOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type BibliographicRecordScalarRelationFilter = {
+  is?: Prisma.BibliographicRecordWhereInput
+  isNot?: Prisma.BibliographicRecordWhereInput
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -579,10 +612,11 @@ export type BibliographicRecordCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   year?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  classification?: Prisma.SortOrder
+  legacyClassification?: Prisma.SortOrder
   status?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   subjects?: Prisma.SortOrder
+  classificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -601,9 +635,10 @@ export type BibliographicRecordMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   year?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  classification?: Prisma.SortOrder
+  legacyClassification?: Prisma.SortOrder
   status?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
+  classificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -618,20 +653,16 @@ export type BibliographicRecordMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   year?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  classification?: Prisma.SortOrder
+  legacyClassification?: Prisma.SortOrder
   status?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
+  classificationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type BibliographicRecordSumOrderByAggregateInput = {
   year?: Prisma.SortOrder
-}
-
-export type BibliographicRecordScalarRelationFilter = {
-  is?: Prisma.BibliographicRecordWhereInput
-  isNot?: Prisma.BibliographicRecordWhereInput
 }
 
 export type BibliographicRecordNullableScalarRelationFilter = {
@@ -720,6 +751,62 @@ export type BibliographicRecordUncheckedUpdateManyWithoutCollectionNestedInput =
   connect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
   update?: Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutCollectionInput | Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutCollectionInput[]
   updateMany?: Prisma.BibliographicRecordUpdateManyWithWhereWithoutCollectionInput | Prisma.BibliographicRecordUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.BibliographicRecordScalarWhereInput | Prisma.BibliographicRecordScalarWhereInput[]
+}
+
+export type BibliographicRecordCreateNestedOneWithoutSubjectLinksInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedCreateWithoutSubjectLinksInput>
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutSubjectLinksInput
+  connect?: Prisma.BibliographicRecordWhereUniqueInput
+}
+
+export type BibliographicRecordUpdateOneRequiredWithoutSubjectLinksNestedInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedCreateWithoutSubjectLinksInput>
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutSubjectLinksInput
+  upsert?: Prisma.BibliographicRecordUpsertWithoutSubjectLinksInput
+  connect?: Prisma.BibliographicRecordWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BibliographicRecordUpdateToOneWithWhereWithoutSubjectLinksInput, Prisma.BibliographicRecordUpdateWithoutSubjectLinksInput>, Prisma.BibliographicRecordUncheckedUpdateWithoutSubjectLinksInput>
+}
+
+export type BibliographicRecordCreateNestedManyWithoutClassificationInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput> | Prisma.BibliographicRecordCreateWithoutClassificationInput[] | Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput[]
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput | Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput[]
+  createMany?: Prisma.BibliographicRecordCreateManyClassificationInputEnvelope
+  connect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+}
+
+export type BibliographicRecordUncheckedCreateNestedManyWithoutClassificationInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput> | Prisma.BibliographicRecordCreateWithoutClassificationInput[] | Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput[]
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput | Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput[]
+  createMany?: Prisma.BibliographicRecordCreateManyClassificationInputEnvelope
+  connect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+}
+
+export type BibliographicRecordUpdateManyWithoutClassificationNestedInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput> | Prisma.BibliographicRecordCreateWithoutClassificationInput[] | Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput[]
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput | Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput[]
+  upsert?: Prisma.BibliographicRecordUpsertWithWhereUniqueWithoutClassificationInput | Prisma.BibliographicRecordUpsertWithWhereUniqueWithoutClassificationInput[]
+  createMany?: Prisma.BibliographicRecordCreateManyClassificationInputEnvelope
+  set?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  disconnect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  delete?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  connect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  update?: Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutClassificationInput | Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutClassificationInput[]
+  updateMany?: Prisma.BibliographicRecordUpdateManyWithWhereWithoutClassificationInput | Prisma.BibliographicRecordUpdateManyWithWhereWithoutClassificationInput[]
+  deleteMany?: Prisma.BibliographicRecordScalarWhereInput | Prisma.BibliographicRecordScalarWhereInput[]
+}
+
+export type BibliographicRecordUncheckedUpdateManyWithoutClassificationNestedInput = {
+  create?: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput> | Prisma.BibliographicRecordCreateWithoutClassificationInput[] | Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput[]
+  connectOrCreate?: Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput | Prisma.BibliographicRecordCreateOrConnectWithoutClassificationInput[]
+  upsert?: Prisma.BibliographicRecordUpsertWithWhereUniqueWithoutClassificationInput | Prisma.BibliographicRecordUpsertWithWhereUniqueWithoutClassificationInput[]
+  createMany?: Prisma.BibliographicRecordCreateManyClassificationInputEnvelope
+  set?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  disconnect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  delete?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  connect?: Prisma.BibliographicRecordWhereUniqueInput | Prisma.BibliographicRecordWhereUniqueInput[]
+  update?: Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutClassificationInput | Prisma.BibliographicRecordUpdateWithWhereUniqueWithoutClassificationInput[]
+  updateMany?: Prisma.BibliographicRecordUpdateManyWithWhereWithoutClassificationInput | Prisma.BibliographicRecordUpdateManyWithWhereWithoutClassificationInput[]
   deleteMany?: Prisma.BibliographicRecordScalarWhereInput | Prisma.BibliographicRecordScalarWhereInput[]
 }
 
@@ -879,7 +966,7 @@ export type BibliographicRecordCreateWithoutLibraryInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -891,6 +978,8 @@ export type BibliographicRecordCreateWithoutLibraryInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -904,16 +993,18 @@ export type BibliographicRecordUncheckedCreateWithoutLibraryInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -957,10 +1048,11 @@ export type BibliographicRecordScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   year?: Prisma.IntNullableFilter<"BibliographicRecord"> | number | null
   language?: Prisma.StringFilter<"BibliographicRecord"> | string
-  classification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
+  legacyClassification?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   status?: Prisma.EnumRecordStatusFilter<"BibliographicRecord"> | $Enums.RecordStatus
   coverUrl?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   subjects?: Prisma.StringNullableListFilter<"BibliographicRecord">
+  classificationId?: Prisma.StringNullableFilter<"BibliographicRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BibliographicRecord"> | Date | string
 }
@@ -972,7 +1064,7 @@ export type BibliographicRecordCreateWithoutCollectionInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -984,6 +1076,8 @@ export type BibliographicRecordCreateWithoutCollectionInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -997,16 +1091,18 @@ export type BibliographicRecordUncheckedCreateWithoutCollectionInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1037,6 +1133,198 @@ export type BibliographicRecordUpdateManyWithWhereWithoutCollectionInput = {
   data: Prisma.XOR<Prisma.BibliographicRecordUpdateManyMutationInput, Prisma.BibliographicRecordUncheckedUpdateManyWithoutCollectionInput>
 }
 
+export type BibliographicRecordCreateWithoutSubjectLinksInput = {
+  id?: string
+  title: string
+  subtitle?: string | null
+  description?: string | null
+  year?: number | null
+  language?: string
+  legacyClassification?: string | null
+  status?: $Enums.RecordStatus
+  coverUrl?: string | null
+  subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  library: Prisma.LibraryCreateNestedOneWithoutRecordsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRecordsInput
+  publisher?: Prisma.PublisherCreateNestedOneWithoutRecordsInput
+  authors?: Prisma.BibliographicAuthorCreateNestedManyWithoutRecordInput
+  editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
+  holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
+  identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
+  holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
+  marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
+}
+
+export type BibliographicRecordUncheckedCreateWithoutSubjectLinksInput = {
+  id?: string
+  libraryId: string
+  collectionId?: string | null
+  publisherId?: string | null
+  title: string
+  subtitle?: string | null
+  description?: string | null
+  year?: number | null
+  language?: string
+  legacyClassification?: string | null
+  status?: $Enums.RecordStatus
+  coverUrl?: string | null
+  subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
+  editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
+  holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
+  identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
+  marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
+}
+
+export type BibliographicRecordCreateOrConnectWithoutSubjectLinksInput = {
+  where: Prisma.BibliographicRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedCreateWithoutSubjectLinksInput>
+}
+
+export type BibliographicRecordUpsertWithoutSubjectLinksInput = {
+  update: Prisma.XOR<Prisma.BibliographicRecordUpdateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedUpdateWithoutSubjectLinksInput>
+  create: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedCreateWithoutSubjectLinksInput>
+  where?: Prisma.BibliographicRecordWhereInput
+}
+
+export type BibliographicRecordUpdateToOneWithWhereWithoutSubjectLinksInput = {
+  where?: Prisma.BibliographicRecordWhereInput
+  data: Prisma.XOR<Prisma.BibliographicRecordUpdateWithoutSubjectLinksInput, Prisma.BibliographicRecordUncheckedUpdateWithoutSubjectLinksInput>
+}
+
+export type BibliographicRecordUpdateWithoutSubjectLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  library?: Prisma.LibraryUpdateOneRequiredWithoutRecordsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRecordsNestedInput
+  publisher?: Prisma.PublisherUpdateOneWithoutRecordsNestedInput
+  authors?: Prisma.BibliographicAuthorUpdateManyWithoutRecordNestedInput
+  editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
+  holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
+  identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
+  holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
+  marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
+}
+
+export type BibliographicRecordUncheckedUpdateWithoutSubjectLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
+  editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
+  holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
+  identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
+  marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
+}
+
+export type BibliographicRecordCreateWithoutClassificationInput = {
+  id?: string
+  title: string
+  subtitle?: string | null
+  description?: string | null
+  year?: number | null
+  language?: string
+  legacyClassification?: string | null
+  status?: $Enums.RecordStatus
+  coverUrl?: string | null
+  subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  library: Prisma.LibraryCreateNestedOneWithoutRecordsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutRecordsInput
+  publisher?: Prisma.PublisherCreateNestedOneWithoutRecordsInput
+  authors?: Prisma.BibliographicAuthorCreateNestedManyWithoutRecordInput
+  editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
+  holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
+  identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
+  marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
+}
+
+export type BibliographicRecordUncheckedCreateWithoutClassificationInput = {
+  id?: string
+  libraryId: string
+  collectionId?: string | null
+  publisherId?: string | null
+  title: string
+  subtitle?: string | null
+  description?: string | null
+  year?: number | null
+  language?: string
+  legacyClassification?: string | null
+  status?: $Enums.RecordStatus
+  coverUrl?: string | null
+  subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
+  editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
+  holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
+  identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
+  holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
+  marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
+}
+
+export type BibliographicRecordCreateOrConnectWithoutClassificationInput = {
+  where: Prisma.BibliographicRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput>
+}
+
+export type BibliographicRecordCreateManyClassificationInputEnvelope = {
+  data: Prisma.BibliographicRecordCreateManyClassificationInput | Prisma.BibliographicRecordCreateManyClassificationInput[]
+  skipDuplicates?: boolean
+}
+
+export type BibliographicRecordUpsertWithWhereUniqueWithoutClassificationInput = {
+  where: Prisma.BibliographicRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.BibliographicRecordUpdateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedUpdateWithoutClassificationInput>
+  create: Prisma.XOR<Prisma.BibliographicRecordCreateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedCreateWithoutClassificationInput>
+}
+
+export type BibliographicRecordUpdateWithWhereUniqueWithoutClassificationInput = {
+  where: Prisma.BibliographicRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.BibliographicRecordUpdateWithoutClassificationInput, Prisma.BibliographicRecordUncheckedUpdateWithoutClassificationInput>
+}
+
+export type BibliographicRecordUpdateManyWithWhereWithoutClassificationInput = {
+  where: Prisma.BibliographicRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.BibliographicRecordUpdateManyMutationInput, Prisma.BibliographicRecordUncheckedUpdateManyWithoutClassificationInput>
+}
+
 export type BibliographicRecordCreateWithoutPublisherInput = {
   id?: string
   title: string
@@ -1044,7 +1332,7 @@ export type BibliographicRecordCreateWithoutPublisherInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1056,6 +1344,8 @@ export type BibliographicRecordCreateWithoutPublisherInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -1069,16 +1359,18 @@ export type BibliographicRecordUncheckedCreateWithoutPublisherInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1116,7 +1408,7 @@ export type BibliographicRecordCreateWithoutAuthorsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1128,6 +1420,8 @@ export type BibliographicRecordCreateWithoutAuthorsInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -1142,15 +1436,17 @@ export type BibliographicRecordUncheckedCreateWithoutAuthorsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1178,7 +1474,7 @@ export type BibliographicRecordUpdateWithoutAuthorsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1190,6 +1486,8 @@ export type BibliographicRecordUpdateWithoutAuthorsInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1204,15 +1502,17 @@ export type BibliographicRecordUncheckedUpdateWithoutAuthorsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1224,7 +1524,7 @@ export type BibliographicRecordCreateWithoutEditionsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1236,6 +1536,8 @@ export type BibliographicRecordCreateWithoutEditionsInput = {
   authors?: Prisma.BibliographicAuthorCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -1250,15 +1552,17 @@ export type BibliographicRecordUncheckedCreateWithoutEditionsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1286,7 +1590,7 @@ export type BibliographicRecordUpdateWithoutEditionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1298,6 +1602,8 @@ export type BibliographicRecordUpdateWithoutEditionsInput = {
   authors?: Prisma.BibliographicAuthorUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1312,15 +1618,17 @@ export type BibliographicRecordUncheckedUpdateWithoutEditionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1332,7 +1640,7 @@ export type BibliographicRecordCreateWithoutIdentifiersInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1344,6 +1652,8 @@ export type BibliographicRecordCreateWithoutIdentifiersInput = {
   authors?: Prisma.BibliographicAuthorCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -1358,15 +1668,17 @@ export type BibliographicRecordUncheckedCreateWithoutIdentifiersInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1394,7 +1706,7 @@ export type BibliographicRecordUpdateWithoutIdentifiersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1406,6 +1718,8 @@ export type BibliographicRecordUpdateWithoutIdentifiersInput = {
   authors?: Prisma.BibliographicAuthorUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1420,15 +1734,17 @@ export type BibliographicRecordUncheckedUpdateWithoutIdentifiersInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1440,7 +1756,7 @@ export type BibliographicRecordCreateWithoutHoldingsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1452,6 +1768,8 @@ export type BibliographicRecordCreateWithoutHoldingsInput = {
   authors?: Prisma.BibliographicAuthorCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
@@ -1466,15 +1784,17 @@ export type BibliographicRecordUncheckedCreateWithoutHoldingsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
@@ -1502,7 +1822,7 @@ export type BibliographicRecordUpdateWithoutHoldingsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1514,6 +1834,8 @@ export type BibliographicRecordUpdateWithoutHoldingsInput = {
   authors?: Prisma.BibliographicAuthorUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1528,15 +1850,17 @@ export type BibliographicRecordUncheckedUpdateWithoutHoldingsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1548,7 +1872,7 @@ export type BibliographicRecordCreateWithoutHoldsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1561,6 +1885,8 @@ export type BibliographicRecordCreateWithoutHoldsInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   marcRecord?: Prisma.MarcRecordCreateNestedOneWithoutRecordInput
 }
 
@@ -1574,16 +1900,18 @@ export type BibliographicRecordUncheckedCreateWithoutHoldsInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   marcRecord?: Prisma.MarcRecordUncheckedCreateNestedOneWithoutRecordInput
 }
 
@@ -1610,7 +1938,7 @@ export type BibliographicRecordUpdateWithoutHoldsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1623,6 +1951,8 @@ export type BibliographicRecordUpdateWithoutHoldsInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
 
@@ -1636,16 +1966,18 @@ export type BibliographicRecordUncheckedUpdateWithoutHoldsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
 
@@ -1656,7 +1988,7 @@ export type BibliographicRecordCreateWithoutMarcRecordInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
@@ -1669,6 +2001,8 @@ export type BibliographicRecordCreateWithoutMarcRecordInput = {
   editions?: Prisma.EditionCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectCreateNestedManyWithoutRecordInput
+  classification?: Prisma.ClassificationCreateNestedOneWithoutRecordsInput
   holds?: Prisma.HoldCreateNestedManyWithoutRecordInput
 }
 
@@ -1682,16 +2016,18 @@ export type BibliographicRecordUncheckedCreateWithoutMarcRecordInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   authors?: Prisma.BibliographicAuthorUncheckedCreateNestedManyWithoutRecordInput
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutRecordInput
   holdings?: Prisma.HoldingUncheckedCreateNestedManyWithoutRecordInput
   identifiers?: Prisma.IdentifierUncheckedCreateNestedManyWithoutRecordInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedCreateNestedManyWithoutRecordInput
   holds?: Prisma.HoldUncheckedCreateNestedManyWithoutRecordInput
 }
 
@@ -1718,7 +2054,7 @@ export type BibliographicRecordUpdateWithoutMarcRecordInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1731,6 +2067,8 @@ export type BibliographicRecordUpdateWithoutMarcRecordInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
 }
 
@@ -1744,16 +2082,18 @@ export type BibliographicRecordUncheckedUpdateWithoutMarcRecordInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
 }
 
@@ -1766,10 +2106,11 @@ export type BibliographicRecordCreateManyLibraryInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1781,7 +2122,7 @@ export type BibliographicRecordUpdateWithoutLibraryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1793,6 +2134,8 @@ export type BibliographicRecordUpdateWithoutLibraryInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1806,16 +2149,18 @@ export type BibliographicRecordUncheckedUpdateWithoutLibraryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1829,10 +2174,11 @@ export type BibliographicRecordUncheckedUpdateManyWithoutLibraryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1846,10 +2192,11 @@ export type BibliographicRecordCreateManyCollectionInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1861,7 +2208,7 @@ export type BibliographicRecordUpdateWithoutCollectionInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1873,6 +2220,8 @@ export type BibliographicRecordUpdateWithoutCollectionInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1886,16 +2235,18 @@ export type BibliographicRecordUncheckedUpdateWithoutCollectionInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1909,7 +2260,94 @@ export type BibliographicRecordUncheckedUpdateManyWithoutCollectionInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type BibliographicRecordCreateManyClassificationInput = {
+  id?: string
+  libraryId: string
+  collectionId?: string | null
+  publisherId?: string | null
+  title: string
+  subtitle?: string | null
+  description?: string | null
+  year?: number | null
+  language?: string
+  legacyClassification?: string | null
+  status?: $Enums.RecordStatus
+  coverUrl?: string | null
+  subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type BibliographicRecordUpdateWithoutClassificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  library?: Prisma.LibraryUpdateOneRequiredWithoutRecordsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutRecordsNestedInput
+  publisher?: Prisma.PublisherUpdateOneWithoutRecordsNestedInput
+  authors?: Prisma.BibliographicAuthorUpdateManyWithoutRecordNestedInput
+  editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
+  holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
+  identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
+  marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
+}
+
+export type BibliographicRecordUncheckedUpdateWithoutClassificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
+  editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
+  holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
+  identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
+  holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
+  marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
+}
+
+export type BibliographicRecordUncheckedUpdateManyWithoutClassificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1926,10 +2364,11 @@ export type BibliographicRecordCreateManyPublisherInput = {
   description?: string | null
   year?: number | null
   language?: string
-  classification?: string | null
+  legacyClassification?: string | null
   status?: $Enums.RecordStatus
   coverUrl?: string | null
   subjects?: Prisma.BibliographicRecordCreatesubjectsInput | string[]
+  classificationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1941,7 +2380,7 @@ export type BibliographicRecordUpdateWithoutPublisherInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
@@ -1953,6 +2392,8 @@ export type BibliographicRecordUpdateWithoutPublisherInput = {
   editions?: Prisma.EditionUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUpdateManyWithoutRecordNestedInput
+  classification?: Prisma.ClassificationUpdateOneWithoutRecordsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUpdateOneWithoutRecordNestedInput
 }
@@ -1966,16 +2407,18 @@ export type BibliographicRecordUncheckedUpdateWithoutPublisherInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authors?: Prisma.BibliographicAuthorUncheckedUpdateManyWithoutRecordNestedInput
   editions?: Prisma.EditionUncheckedUpdateManyWithoutRecordNestedInput
   holdings?: Prisma.HoldingUncheckedUpdateManyWithoutRecordNestedInput
   identifiers?: Prisma.IdentifierUncheckedUpdateManyWithoutRecordNestedInput
+  subjectLinks?: Prisma.BibliographicSubjectUncheckedUpdateManyWithoutRecordNestedInput
   holds?: Prisma.HoldUncheckedUpdateManyWithoutRecordNestedInput
   marcRecord?: Prisma.MarcRecordUncheckedUpdateOneWithoutRecordNestedInput
 }
@@ -1989,10 +2432,11 @@ export type BibliographicRecordUncheckedUpdateManyWithoutPublisherInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  classification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyClassification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subjects?: Prisma.BibliographicRecordUpdatesubjectsInput | string[]
+  classificationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2007,6 +2451,7 @@ export type BibliographicRecordCountOutputType = {
   editions: number
   holdings: number
   identifiers: number
+  subjectLinks: number
   holds: number
 }
 
@@ -2015,6 +2460,7 @@ export type BibliographicRecordCountOutputTypeSelect<ExtArgs extends runtime.Typ
   editions?: boolean | BibliographicRecordCountOutputTypeCountEditionsArgs
   holdings?: boolean | BibliographicRecordCountOutputTypeCountHoldingsArgs
   identifiers?: boolean | BibliographicRecordCountOutputTypeCountIdentifiersArgs
+  subjectLinks?: boolean | BibliographicRecordCountOutputTypeCountSubjectLinksArgs
   holds?: boolean | BibliographicRecordCountOutputTypeCountHoldsArgs
 }
 
@@ -2059,6 +2505,13 @@ export type BibliographicRecordCountOutputTypeCountIdentifiersArgs<ExtArgs exten
 /**
  * BibliographicRecordCountOutputType without action
  */
+export type BibliographicRecordCountOutputTypeCountSubjectLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BibliographicSubjectWhereInput
+}
+
+/**
+ * BibliographicRecordCountOutputType without action
+ */
 export type BibliographicRecordCountOutputTypeCountHoldsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.HoldWhereInput
 }
@@ -2074,10 +2527,11 @@ export type BibliographicRecordSelect<ExtArgs extends runtime.Types.Extensions.I
   description?: boolean
   year?: boolean
   language?: boolean
-  classification?: boolean
+  legacyClassification?: boolean
   status?: boolean
   coverUrl?: boolean
   subjects?: boolean
+  classificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
@@ -2087,6 +2541,8 @@ export type BibliographicRecordSelect<ExtArgs extends runtime.Types.Extensions.I
   editions?: boolean | Prisma.BibliographicRecord$editionsArgs<ExtArgs>
   holdings?: boolean | Prisma.BibliographicRecord$holdingsArgs<ExtArgs>
   identifiers?: boolean | Prisma.BibliographicRecord$identifiersArgs<ExtArgs>
+  subjectLinks?: boolean | Prisma.BibliographicRecord$subjectLinksArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
   holds?: boolean | Prisma.BibliographicRecord$holdsArgs<ExtArgs>
   marcRecord?: boolean | Prisma.BibliographicRecord$marcRecordArgs<ExtArgs>
   _count?: boolean | Prisma.BibliographicRecordCountOutputTypeDefaultArgs<ExtArgs>
@@ -2102,15 +2558,17 @@ export type BibliographicRecordSelectCreateManyAndReturn<ExtArgs extends runtime
   description?: boolean
   year?: boolean
   language?: boolean
-  classification?: boolean
+  legacyClassification?: boolean
   status?: boolean
   coverUrl?: boolean
   subjects?: boolean
+  classificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.BibliographicRecord$collectionArgs<ExtArgs>
   publisher?: boolean | Prisma.BibliographicRecord$publisherArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
 }, ExtArgs["result"]["bibliographicRecord"]>
 
 export type BibliographicRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2123,15 +2581,17 @@ export type BibliographicRecordSelectUpdateManyAndReturn<ExtArgs extends runtime
   description?: boolean
   year?: boolean
   language?: boolean
-  classification?: boolean
+  legacyClassification?: boolean
   status?: boolean
   coverUrl?: boolean
   subjects?: boolean
+  classificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.BibliographicRecord$collectionArgs<ExtArgs>
   publisher?: boolean | Prisma.BibliographicRecord$publisherArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
 }, ExtArgs["result"]["bibliographicRecord"]>
 
 export type BibliographicRecordSelectScalar = {
@@ -2144,15 +2604,16 @@ export type BibliographicRecordSelectScalar = {
   description?: boolean
   year?: boolean
   language?: boolean
-  classification?: boolean
+  legacyClassification?: boolean
   status?: boolean
   coverUrl?: boolean
   subjects?: boolean
+  classificationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BibliographicRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "libraryId" | "collectionId" | "publisherId" | "title" | "subtitle" | "description" | "year" | "language" | "classification" | "status" | "coverUrl" | "subjects" | "createdAt" | "updatedAt", ExtArgs["result"]["bibliographicRecord"]>
+export type BibliographicRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "libraryId" | "collectionId" | "publisherId" | "title" | "subtitle" | "description" | "year" | "language" | "legacyClassification" | "status" | "coverUrl" | "subjects" | "classificationId" | "createdAt" | "updatedAt", ExtArgs["result"]["bibliographicRecord"]>
 export type BibliographicRecordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.BibliographicRecord$collectionArgs<ExtArgs>
@@ -2161,6 +2622,8 @@ export type BibliographicRecordInclude<ExtArgs extends runtime.Types.Extensions.
   editions?: boolean | Prisma.BibliographicRecord$editionsArgs<ExtArgs>
   holdings?: boolean | Prisma.BibliographicRecord$holdingsArgs<ExtArgs>
   identifiers?: boolean | Prisma.BibliographicRecord$identifiersArgs<ExtArgs>
+  subjectLinks?: boolean | Prisma.BibliographicRecord$subjectLinksArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
   holds?: boolean | Prisma.BibliographicRecord$holdsArgs<ExtArgs>
   marcRecord?: boolean | Prisma.BibliographicRecord$marcRecordArgs<ExtArgs>
   _count?: boolean | Prisma.BibliographicRecordCountOutputTypeDefaultArgs<ExtArgs>
@@ -2169,11 +2632,13 @@ export type BibliographicRecordIncludeCreateManyAndReturn<ExtArgs extends runtim
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.BibliographicRecord$collectionArgs<ExtArgs>
   publisher?: boolean | Prisma.BibliographicRecord$publisherArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
 }
 export type BibliographicRecordIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.BibliographicRecord$collectionArgs<ExtArgs>
   publisher?: boolean | Prisma.BibliographicRecord$publisherArgs<ExtArgs>
+  classification?: boolean | Prisma.BibliographicRecord$classificationArgs<ExtArgs>
 }
 
 export type $BibliographicRecordPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2186,6 +2651,8 @@ export type $BibliographicRecordPayload<ExtArgs extends runtime.Types.Extensions
     editions: Prisma.$EditionPayload<ExtArgs>[]
     holdings: Prisma.$HoldingPayload<ExtArgs>[]
     identifiers: Prisma.$IdentifierPayload<ExtArgs>[]
+    subjectLinks: Prisma.$BibliographicSubjectPayload<ExtArgs>[]
+    classification: Prisma.$ClassificationPayload<ExtArgs> | null
     holds: Prisma.$HoldPayload<ExtArgs>[]
     marcRecord: Prisma.$MarcRecordPayload<ExtArgs> | null
   }
@@ -2199,10 +2666,11 @@ export type $BibliographicRecordPayload<ExtArgs extends runtime.Types.Extensions
     description: string | null
     year: number | null
     language: string
-    classification: string | null
+    legacyClassification: string | null
     status: $Enums.RecordStatus
     coverUrl: string | null
     subjects: string[]
+    classificationId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["bibliographicRecord"]>
@@ -2606,6 +3074,8 @@ export interface Prisma__BibliographicRecordClient<T, Null = never, ExtArgs exte
   editions<T extends Prisma.BibliographicRecord$editionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$editionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   holdings<T extends Prisma.BibliographicRecord$holdingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$holdingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HoldingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   identifiers<T extends Prisma.BibliographicRecord$identifiersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$identifiersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IdentifierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subjectLinks<T extends Prisma.BibliographicRecord$subjectLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$subjectLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BibliographicSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classification<T extends Prisma.BibliographicRecord$classificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$classificationArgs<ExtArgs>>): Prisma.Prisma__ClassificationClient<runtime.Types.Result.GetResult<Prisma.$ClassificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   holds<T extends Prisma.BibliographicRecord$holdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$holdsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HoldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   marcRecord<T extends Prisma.BibliographicRecord$marcRecordArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BibliographicRecord$marcRecordArgs<ExtArgs>>): Prisma.Prisma__MarcRecordClient<runtime.Types.Result.GetResult<Prisma.$MarcRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
@@ -2646,10 +3116,11 @@ export interface BibliographicRecordFieldRefs {
   readonly description: Prisma.FieldRef<"BibliographicRecord", 'String'>
   readonly year: Prisma.FieldRef<"BibliographicRecord", 'Int'>
   readonly language: Prisma.FieldRef<"BibliographicRecord", 'String'>
-  readonly classification: Prisma.FieldRef<"BibliographicRecord", 'String'>
+  readonly legacyClassification: Prisma.FieldRef<"BibliographicRecord", 'String'>
   readonly status: Prisma.FieldRef<"BibliographicRecord", 'RecordStatus'>
   readonly coverUrl: Prisma.FieldRef<"BibliographicRecord", 'String'>
   readonly subjects: Prisma.FieldRef<"BibliographicRecord", 'String[]'>
+  readonly classificationId: Prisma.FieldRef<"BibliographicRecord", 'String'>
   readonly createdAt: Prisma.FieldRef<"BibliographicRecord", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BibliographicRecord", 'DateTime'>
 }
@@ -3184,6 +3655,49 @@ export type BibliographicRecord$identifiersArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.IdentifierScalarFieldEnum | Prisma.IdentifierScalarFieldEnum[]
+}
+
+/**
+ * BibliographicRecord.subjectLinks
+ */
+export type BibliographicRecord$subjectLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BibliographicSubject
+   */
+  select?: Prisma.BibliographicSubjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BibliographicSubject
+   */
+  omit?: Prisma.BibliographicSubjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BibliographicSubjectInclude<ExtArgs> | null
+  where?: Prisma.BibliographicSubjectWhereInput
+  orderBy?: Prisma.BibliographicSubjectOrderByWithRelationInput | Prisma.BibliographicSubjectOrderByWithRelationInput[]
+  cursor?: Prisma.BibliographicSubjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BibliographicSubjectScalarFieldEnum | Prisma.BibliographicSubjectScalarFieldEnum[]
+}
+
+/**
+ * BibliographicRecord.classification
+ */
+export type BibliographicRecord$classificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Classification
+   */
+  select?: Prisma.ClassificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Classification
+   */
+  omit?: Prisma.ClassificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassificationInclude<ExtArgs> | null
+  where?: Prisma.ClassificationWhereInput
 }
 
 /**

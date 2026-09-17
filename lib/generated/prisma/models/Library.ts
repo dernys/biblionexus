@@ -198,8 +198,15 @@ export type LibraryWhereInput = {
   records?: Prisma.BibliographicRecordListRelationFilter
   digitalResources?: Prisma.DigitalResourceListRelationFilter
   librarySettings?: Prisma.LibrarySettingListRelationFilter
+  circulationPolicies?: Prisma.CirculationPolicyListRelationFilter
+  memberCategories?: Prisma.MemberCategoryListRelationFilter
+  materialTypes?: Prisma.MaterialTypeListRelationFilter
+  classifications?: Prisma.ClassificationListRelationFilter
+  shelfLocations?: Prisma.ShelfLocationListRelationFilter
+  subjects?: Prisma.SubjectListRelationFilter
   libraryEvents?: Prisma.LibraryEventListRelationFilter
   serialTitles?: Prisma.SerialTitleListRelationFilter
+  userRoles?: Prisma.UserRoleListRelationFilter
 }
 
 export type LibraryOrderByWithRelationInput = {
@@ -217,8 +224,15 @@ export type LibraryOrderByWithRelationInput = {
   records?: Prisma.BibliographicRecordOrderByRelationAggregateInput
   digitalResources?: Prisma.DigitalResourceOrderByRelationAggregateInput
   librarySettings?: Prisma.LibrarySettingOrderByRelationAggregateInput
+  circulationPolicies?: Prisma.CirculationPolicyOrderByRelationAggregateInput
+  memberCategories?: Prisma.MemberCategoryOrderByRelationAggregateInput
+  materialTypes?: Prisma.MaterialTypeOrderByRelationAggregateInput
+  classifications?: Prisma.ClassificationOrderByRelationAggregateInput
+  shelfLocations?: Prisma.ShelfLocationOrderByRelationAggregateInput
+  subjects?: Prisma.SubjectOrderByRelationAggregateInput
   libraryEvents?: Prisma.LibraryEventOrderByRelationAggregateInput
   serialTitles?: Prisma.SerialTitleOrderByRelationAggregateInput
+  userRoles?: Prisma.UserRoleOrderByRelationAggregateInput
 }
 
 export type LibraryWhereUniqueInput = Prisma.AtLeast<{
@@ -240,8 +254,15 @@ export type LibraryWhereUniqueInput = Prisma.AtLeast<{
   records?: Prisma.BibliographicRecordListRelationFilter
   digitalResources?: Prisma.DigitalResourceListRelationFilter
   librarySettings?: Prisma.LibrarySettingListRelationFilter
+  circulationPolicies?: Prisma.CirculationPolicyListRelationFilter
+  memberCategories?: Prisma.MemberCategoryListRelationFilter
+  materialTypes?: Prisma.MaterialTypeListRelationFilter
+  classifications?: Prisma.ClassificationListRelationFilter
+  shelfLocations?: Prisma.ShelfLocationListRelationFilter
+  subjects?: Prisma.SubjectListRelationFilter
   libraryEvents?: Prisma.LibraryEventListRelationFilter
   serialTitles?: Prisma.SerialTitleListRelationFilter
+  userRoles?: Prisma.UserRoleListRelationFilter
 }, "id" | "tenantId_slug">
 
 export type LibraryOrderByWithAggregationInput = {
@@ -281,8 +302,15 @@ export type LibraryCreateInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateInput = {
@@ -298,8 +326,15 @@ export type LibraryUncheckedCreateInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUpdateInput = {
@@ -315,8 +350,15 @@ export type LibraryUpdateInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateInput = {
@@ -332,8 +374,15 @@ export type LibraryUncheckedUpdateInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateManyInput = {
@@ -406,6 +455,11 @@ export type LibraryMinOrderByAggregateInput = {
 export type LibraryScalarRelationFilter = {
   is?: Prisma.LibraryWhereInput
   isNot?: Prisma.LibraryWhereInput
+}
+
+export type LibraryNullableScalarRelationFilter = {
+  is?: Prisma.LibraryWhereInput | null
+  isNot?: Prisma.LibraryWhereInput | null
 }
 
 export type LibraryCreateNestedManyWithoutTenantInput = {
@@ -524,6 +578,106 @@ export type LibraryUpdateOneRequiredWithoutCollectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutCollectionsInput, Prisma.LibraryUpdateWithoutCollectionsInput>, Prisma.LibraryUncheckedUpdateWithoutCollectionsInput>
 }
 
+export type LibraryCreateNestedOneWithoutUserRolesInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutUserRolesInput, Prisma.LibraryUncheckedCreateWithoutUserRolesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutUserRolesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneWithoutUserRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutUserRolesInput, Prisma.LibraryUncheckedCreateWithoutUserRolesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutUserRolesInput
+  upsert?: Prisma.LibraryUpsertWithoutUserRolesInput
+  disconnect?: Prisma.LibraryWhereInput | boolean
+  delete?: Prisma.LibraryWhereInput | boolean
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutUserRolesInput, Prisma.LibraryUpdateWithoutUserRolesInput>, Prisma.LibraryUncheckedUpdateWithoutUserRolesInput>
+}
+
+export type LibraryCreateNestedOneWithoutMemberCategoriesInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedCreateWithoutMemberCategoriesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutMemberCategoriesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutMemberCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedCreateWithoutMemberCategoriesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutMemberCategoriesInput
+  upsert?: Prisma.LibraryUpsertWithoutMemberCategoriesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutMemberCategoriesInput, Prisma.LibraryUpdateWithoutMemberCategoriesInput>, Prisma.LibraryUncheckedUpdateWithoutMemberCategoriesInput>
+}
+
+export type LibraryCreateNestedOneWithoutMaterialTypesInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutMaterialTypesInput, Prisma.LibraryUncheckedCreateWithoutMaterialTypesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutMaterialTypesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutMaterialTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutMaterialTypesInput, Prisma.LibraryUncheckedCreateWithoutMaterialTypesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutMaterialTypesInput
+  upsert?: Prisma.LibraryUpsertWithoutMaterialTypesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutMaterialTypesInput, Prisma.LibraryUpdateWithoutMaterialTypesInput>, Prisma.LibraryUncheckedUpdateWithoutMaterialTypesInput>
+}
+
+export type LibraryCreateNestedOneWithoutSubjectsInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutSubjectsInput, Prisma.LibraryUncheckedCreateWithoutSubjectsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutSubjectsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutSubjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutSubjectsInput, Prisma.LibraryUncheckedCreateWithoutSubjectsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutSubjectsInput
+  upsert?: Prisma.LibraryUpsertWithoutSubjectsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutSubjectsInput, Prisma.LibraryUpdateWithoutSubjectsInput>, Prisma.LibraryUncheckedUpdateWithoutSubjectsInput>
+}
+
+export type LibraryCreateNestedOneWithoutClassificationsInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutClassificationsInput, Prisma.LibraryUncheckedCreateWithoutClassificationsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutClassificationsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutClassificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutClassificationsInput, Prisma.LibraryUncheckedCreateWithoutClassificationsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutClassificationsInput
+  upsert?: Prisma.LibraryUpsertWithoutClassificationsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutClassificationsInput, Prisma.LibraryUpdateWithoutClassificationsInput>, Prisma.LibraryUncheckedUpdateWithoutClassificationsInput>
+}
+
+export type LibraryCreateNestedOneWithoutShelfLocationsInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutShelfLocationsInput, Prisma.LibraryUncheckedCreateWithoutShelfLocationsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutShelfLocationsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutShelfLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutShelfLocationsInput, Prisma.LibraryUncheckedCreateWithoutShelfLocationsInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutShelfLocationsInput
+  upsert?: Prisma.LibraryUpsertWithoutShelfLocationsInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutShelfLocationsInput, Prisma.LibraryUpdateWithoutShelfLocationsInput>, Prisma.LibraryUncheckedUpdateWithoutShelfLocationsInput>
+}
+
+export type LibraryCreateNestedOneWithoutCirculationPoliciesInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedCreateWithoutCirculationPoliciesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutCirculationPoliciesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+}
+
+export type LibraryUpdateOneRequiredWithoutCirculationPoliciesNestedInput = {
+  create?: Prisma.XOR<Prisma.LibraryCreateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedCreateWithoutCirculationPoliciesInput>
+  connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutCirculationPoliciesInput
+  upsert?: Prisma.LibraryUpsertWithoutCirculationPoliciesInput
+  connect?: Prisma.LibraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LibraryUpdateToOneWithWhereWithoutCirculationPoliciesInput, Prisma.LibraryUpdateWithoutCirculationPoliciesInput>, Prisma.LibraryUncheckedUpdateWithoutCirculationPoliciesInput>
+}
+
 export type LibraryCreateNestedOneWithoutMembersInput = {
   create?: Prisma.XOR<Prisma.LibraryCreateWithoutMembersInput, Prisma.LibraryUncheckedCreateWithoutMembersInput>
   connectOrCreate?: Prisma.LibraryCreateOrConnectWithoutMembersInput
@@ -620,8 +774,15 @@ export type LibraryCreateWithoutTenantInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutTenantInput = {
@@ -636,8 +797,15 @@ export type LibraryUncheckedCreateWithoutTenantInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutTenantInput = {
@@ -690,8 +858,15 @@ export type LibraryCreateWithoutNetworkInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutNetworkInput = {
@@ -706,8 +881,15 @@ export type LibraryUncheckedCreateWithoutNetworkInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutNetworkInput = {
@@ -748,8 +930,15 @@ export type LibraryCreateWithoutBranchesInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutBranchesInput = {
@@ -764,8 +953,15 @@ export type LibraryUncheckedCreateWithoutBranchesInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutBranchesInput = {
@@ -796,8 +992,15 @@ export type LibraryUpdateWithoutBranchesInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutBranchesInput = {
@@ -812,8 +1015,15 @@ export type LibraryUncheckedUpdateWithoutBranchesInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutCollectionsInput = {
@@ -828,8 +1038,15 @@ export type LibraryCreateWithoutCollectionsInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutCollectionsInput = {
@@ -844,8 +1061,15 @@ export type LibraryUncheckedCreateWithoutCollectionsInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutCollectionsInput = {
@@ -876,8 +1100,15 @@ export type LibraryUpdateWithoutCollectionsInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutCollectionsInput = {
@@ -892,8 +1123,771 @@ export type LibraryUncheckedUpdateWithoutCollectionsInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutUserRolesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutUserRolesInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutUserRolesInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutUserRolesInput, Prisma.LibraryUncheckedCreateWithoutUserRolesInput>
+}
+
+export type LibraryUpsertWithoutUserRolesInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutUserRolesInput, Prisma.LibraryUncheckedUpdateWithoutUserRolesInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutUserRolesInput, Prisma.LibraryUncheckedCreateWithoutUserRolesInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutUserRolesInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutUserRolesInput, Prisma.LibraryUncheckedUpdateWithoutUserRolesInput>
+}
+
+export type LibraryUpdateWithoutUserRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutUserRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutMemberCategoriesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutMemberCategoriesInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutMemberCategoriesInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedCreateWithoutMemberCategoriesInput>
+}
+
+export type LibraryUpsertWithoutMemberCategoriesInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedUpdateWithoutMemberCategoriesInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedCreateWithoutMemberCategoriesInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutMemberCategoriesInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutMemberCategoriesInput, Prisma.LibraryUncheckedUpdateWithoutMemberCategoriesInput>
+}
+
+export type LibraryUpdateWithoutMemberCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutMemberCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutMaterialTypesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutMaterialTypesInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutMaterialTypesInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutMaterialTypesInput, Prisma.LibraryUncheckedCreateWithoutMaterialTypesInput>
+}
+
+export type LibraryUpsertWithoutMaterialTypesInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutMaterialTypesInput, Prisma.LibraryUncheckedUpdateWithoutMaterialTypesInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutMaterialTypesInput, Prisma.LibraryUncheckedCreateWithoutMaterialTypesInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutMaterialTypesInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutMaterialTypesInput, Prisma.LibraryUncheckedUpdateWithoutMaterialTypesInput>
+}
+
+export type LibraryUpdateWithoutMaterialTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutMaterialTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutSubjectsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutSubjectsInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutSubjectsInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutSubjectsInput, Prisma.LibraryUncheckedCreateWithoutSubjectsInput>
+}
+
+export type LibraryUpsertWithoutSubjectsInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutSubjectsInput, Prisma.LibraryUncheckedUpdateWithoutSubjectsInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutSubjectsInput, Prisma.LibraryUncheckedCreateWithoutSubjectsInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutSubjectsInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutSubjectsInput, Prisma.LibraryUncheckedUpdateWithoutSubjectsInput>
+}
+
+export type LibraryUpdateWithoutSubjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutSubjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutClassificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutClassificationsInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutClassificationsInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutClassificationsInput, Prisma.LibraryUncheckedCreateWithoutClassificationsInput>
+}
+
+export type LibraryUpsertWithoutClassificationsInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutClassificationsInput, Prisma.LibraryUncheckedUpdateWithoutClassificationsInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutClassificationsInput, Prisma.LibraryUncheckedCreateWithoutClassificationsInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutClassificationsInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutClassificationsInput, Prisma.LibraryUncheckedUpdateWithoutClassificationsInput>
+}
+
+export type LibraryUpdateWithoutClassificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutClassificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutShelfLocationsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutShelfLocationsInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutShelfLocationsInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutShelfLocationsInput, Prisma.LibraryUncheckedCreateWithoutShelfLocationsInput>
+}
+
+export type LibraryUpsertWithoutShelfLocationsInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutShelfLocationsInput, Prisma.LibraryUncheckedUpdateWithoutShelfLocationsInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutShelfLocationsInput, Prisma.LibraryUncheckedCreateWithoutShelfLocationsInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutShelfLocationsInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutShelfLocationsInput, Prisma.LibraryUncheckedUpdateWithoutShelfLocationsInput>
+}
+
+export type LibraryUpdateWithoutShelfLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutShelfLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryCreateWithoutCirculationPoliciesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLibrariesInput
+  network?: Prisma.LibraryNetworkCreateNestedOneWithoutLibrariesInput
+  branches?: Prisma.BranchCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryUncheckedCreateWithoutCirculationPoliciesInput = {
+  id?: string
+  tenantId: string
+  networkId?: string | null
+  name: string
+  slug: string
+  createdAt?: Date | string
+  branches?: Prisma.BranchUncheckedCreateNestedManyWithoutLibraryInput
+  collections?: Prisma.CollectionUncheckedCreateNestedManyWithoutLibraryInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
+  records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
+  digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
+  libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
+}
+
+export type LibraryCreateOrConnectWithoutCirculationPoliciesInput = {
+  where: Prisma.LibraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedCreateWithoutCirculationPoliciesInput>
+}
+
+export type LibraryUpsertWithoutCirculationPoliciesInput = {
+  update: Prisma.XOR<Prisma.LibraryUpdateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedUpdateWithoutCirculationPoliciesInput>
+  create: Prisma.XOR<Prisma.LibraryCreateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedCreateWithoutCirculationPoliciesInput>
+  where?: Prisma.LibraryWhereInput
+}
+
+export type LibraryUpdateToOneWithWhereWithoutCirculationPoliciesInput = {
+  where?: Prisma.LibraryWhereInput
+  data: Prisma.XOR<Prisma.LibraryUpdateWithoutCirculationPoliciesInput, Prisma.LibraryUncheckedUpdateWithoutCirculationPoliciesInput>
+}
+
+export type LibraryUpdateWithoutCirculationPoliciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLibrariesNestedInput
+  network?: Prisma.LibraryNetworkUpdateOneWithoutLibrariesNestedInput
+  branches?: Prisma.BranchUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
+}
+
+export type LibraryUncheckedUpdateWithoutCirculationPoliciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  networkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branches?: Prisma.BranchUncheckedUpdateManyWithoutLibraryNestedInput
+  collections?: Prisma.CollectionUncheckedUpdateManyWithoutLibraryNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
+  records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
+  digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
+  libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutMembersInput = {
@@ -908,8 +1902,15 @@ export type LibraryCreateWithoutMembersInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutMembersInput = {
@@ -924,8 +1925,15 @@ export type LibraryUncheckedCreateWithoutMembersInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutMembersInput = {
@@ -956,8 +1964,15 @@ export type LibraryUpdateWithoutMembersInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutMembersInput = {
@@ -972,8 +1987,15 @@ export type LibraryUncheckedUpdateWithoutMembersInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutRecordsInput = {
@@ -988,8 +2010,15 @@ export type LibraryCreateWithoutRecordsInput = {
   members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutRecordsInput = {
@@ -1004,8 +2033,15 @@ export type LibraryUncheckedCreateWithoutRecordsInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutRecordsInput = {
@@ -1036,8 +2072,15 @@ export type LibraryUpdateWithoutRecordsInput = {
   members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutRecordsInput = {
@@ -1052,8 +2095,15 @@ export type LibraryUncheckedUpdateWithoutRecordsInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutDigitalResourcesInput = {
@@ -1068,8 +2118,15 @@ export type LibraryCreateWithoutDigitalResourcesInput = {
   members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutDigitalResourcesInput = {
@@ -1084,8 +2141,15 @@ export type LibraryUncheckedCreateWithoutDigitalResourcesInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutDigitalResourcesInput = {
@@ -1116,8 +2180,15 @@ export type LibraryUpdateWithoutDigitalResourcesInput = {
   members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutDigitalResourcesInput = {
@@ -1132,8 +2203,15 @@ export type LibraryUncheckedUpdateWithoutDigitalResourcesInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutLibrarySettingsInput = {
@@ -1148,8 +2226,15 @@ export type LibraryCreateWithoutLibrarySettingsInput = {
   members?: Prisma.MemberCreateNestedManyWithoutLibraryInput
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutLibrarySettingsInput = {
@@ -1164,8 +2249,15 @@ export type LibraryUncheckedCreateWithoutLibrarySettingsInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutLibraryInput
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutLibrarySettingsInput = {
@@ -1196,8 +2288,15 @@ export type LibraryUpdateWithoutLibrarySettingsInput = {
   members?: Prisma.MemberUpdateManyWithoutLibraryNestedInput
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutLibrarySettingsInput = {
@@ -1212,8 +2311,15 @@ export type LibraryUncheckedUpdateWithoutLibrarySettingsInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutLibraryNestedInput
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutLibraryEventsInput = {
@@ -1229,7 +2335,14 @@ export type LibraryCreateWithoutLibraryEventsInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutLibraryEventsInput = {
@@ -1245,7 +2358,14 @@ export type LibraryUncheckedCreateWithoutLibraryEventsInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   serialTitles?: Prisma.SerialTitleUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutLibraryEventsInput = {
@@ -1277,7 +2397,14 @@ export type LibraryUpdateWithoutLibraryEventsInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutLibraryEventsInput = {
@@ -1293,7 +2420,14 @@ export type LibraryUncheckedUpdateWithoutLibraryEventsInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateWithoutSerialTitlesInput = {
@@ -1309,7 +2443,14 @@ export type LibraryCreateWithoutSerialTitlesInput = {
   records?: Prisma.BibliographicRecordCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryUncheckedCreateWithoutSerialTitlesInput = {
@@ -1325,7 +2466,14 @@ export type LibraryUncheckedCreateWithoutSerialTitlesInput = {
   records?: Prisma.BibliographicRecordUncheckedCreateNestedManyWithoutLibraryInput
   digitalResources?: Prisma.DigitalResourceUncheckedCreateNestedManyWithoutLibraryInput
   librarySettings?: Prisma.LibrarySettingUncheckedCreateNestedManyWithoutLibraryInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedCreateNestedManyWithoutLibraryInput
+  memberCategories?: Prisma.MemberCategoryUncheckedCreateNestedManyWithoutLibraryInput
+  materialTypes?: Prisma.MaterialTypeUncheckedCreateNestedManyWithoutLibraryInput
+  classifications?: Prisma.ClassificationUncheckedCreateNestedManyWithoutLibraryInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutLibraryInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutLibraryInput
   libraryEvents?: Prisma.LibraryEventUncheckedCreateNestedManyWithoutLibraryInput
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutLibraryInput
 }
 
 export type LibraryCreateOrConnectWithoutSerialTitlesInput = {
@@ -1357,7 +2505,14 @@ export type LibraryUpdateWithoutSerialTitlesInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutSerialTitlesInput = {
@@ -1373,7 +2528,14 @@ export type LibraryUncheckedUpdateWithoutSerialTitlesInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryCreateManyTenantInput = {
@@ -1396,8 +2558,15 @@ export type LibraryUpdateWithoutTenantInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutTenantInput = {
@@ -1412,8 +2581,15 @@ export type LibraryUncheckedUpdateWithoutTenantInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateManyWithoutTenantInput = {
@@ -1444,8 +2620,15 @@ export type LibraryUpdateWithoutNetworkInput = {
   records?: Prisma.BibliographicRecordUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateWithoutNetworkInput = {
@@ -1460,8 +2643,15 @@ export type LibraryUncheckedUpdateWithoutNetworkInput = {
   records?: Prisma.BibliographicRecordUncheckedUpdateManyWithoutLibraryNestedInput
   digitalResources?: Prisma.DigitalResourceUncheckedUpdateManyWithoutLibraryNestedInput
   librarySettings?: Prisma.LibrarySettingUncheckedUpdateManyWithoutLibraryNestedInput
+  circulationPolicies?: Prisma.CirculationPolicyUncheckedUpdateManyWithoutLibraryNestedInput
+  memberCategories?: Prisma.MemberCategoryUncheckedUpdateManyWithoutLibraryNestedInput
+  materialTypes?: Prisma.MaterialTypeUncheckedUpdateManyWithoutLibraryNestedInput
+  classifications?: Prisma.ClassificationUncheckedUpdateManyWithoutLibraryNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutLibraryNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutLibraryNestedInput
   libraryEvents?: Prisma.LibraryEventUncheckedUpdateManyWithoutLibraryNestedInput
   serialTitles?: Prisma.SerialTitleUncheckedUpdateManyWithoutLibraryNestedInput
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutLibraryNestedInput
 }
 
 export type LibraryUncheckedUpdateManyWithoutNetworkInput = {
@@ -1484,8 +2674,15 @@ export type LibraryCountOutputType = {
   records: number
   digitalResources: number
   librarySettings: number
+  circulationPolicies: number
+  memberCategories: number
+  materialTypes: number
+  classifications: number
+  shelfLocations: number
+  subjects: number
   libraryEvents: number
   serialTitles: number
+  userRoles: number
 }
 
 export type LibraryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1495,8 +2692,15 @@ export type LibraryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   records?: boolean | LibraryCountOutputTypeCountRecordsArgs
   digitalResources?: boolean | LibraryCountOutputTypeCountDigitalResourcesArgs
   librarySettings?: boolean | LibraryCountOutputTypeCountLibrarySettingsArgs
+  circulationPolicies?: boolean | LibraryCountOutputTypeCountCirculationPoliciesArgs
+  memberCategories?: boolean | LibraryCountOutputTypeCountMemberCategoriesArgs
+  materialTypes?: boolean | LibraryCountOutputTypeCountMaterialTypesArgs
+  classifications?: boolean | LibraryCountOutputTypeCountClassificationsArgs
+  shelfLocations?: boolean | LibraryCountOutputTypeCountShelfLocationsArgs
+  subjects?: boolean | LibraryCountOutputTypeCountSubjectsArgs
   libraryEvents?: boolean | LibraryCountOutputTypeCountLibraryEventsArgs
   serialTitles?: boolean | LibraryCountOutputTypeCountSerialTitlesArgs
+  userRoles?: boolean | LibraryCountOutputTypeCountUserRolesArgs
 }
 
 /**
@@ -1554,6 +2758,48 @@ export type LibraryCountOutputTypeCountLibrarySettingsArgs<ExtArgs extends runti
 /**
  * LibraryCountOutputType without action
  */
+export type LibraryCountOutputTypeCountCirculationPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CirculationPolicyWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountMemberCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberCategoryWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountMaterialTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MaterialTypeWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountClassificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClassificationWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountShelfLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShelfLocationWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountSubjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubjectWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
 export type LibraryCountOutputTypeCountLibraryEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.LibraryEventWhereInput
 }
@@ -1563,6 +2809,13 @@ export type LibraryCountOutputTypeCountLibraryEventsArgs<ExtArgs extends runtime
  */
 export type LibraryCountOutputTypeCountSerialTitlesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SerialTitleWhereInput
+}
+
+/**
+ * LibraryCountOutputType without action
+ */
+export type LibraryCountOutputTypeCountUserRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserRoleWhereInput
 }
 
 
@@ -1581,8 +2834,15 @@ export type LibrarySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   records?: boolean | Prisma.Library$recordsArgs<ExtArgs>
   digitalResources?: boolean | Prisma.Library$digitalResourcesArgs<ExtArgs>
   librarySettings?: boolean | Prisma.Library$librarySettingsArgs<ExtArgs>
+  circulationPolicies?: boolean | Prisma.Library$circulationPoliciesArgs<ExtArgs>
+  memberCategories?: boolean | Prisma.Library$memberCategoriesArgs<ExtArgs>
+  materialTypes?: boolean | Prisma.Library$materialTypesArgs<ExtArgs>
+  classifications?: boolean | Prisma.Library$classificationsArgs<ExtArgs>
+  shelfLocations?: boolean | Prisma.Library$shelfLocationsArgs<ExtArgs>
+  subjects?: boolean | Prisma.Library$subjectsArgs<ExtArgs>
   libraryEvents?: boolean | Prisma.Library$libraryEventsArgs<ExtArgs>
   serialTitles?: boolean | Prisma.Library$serialTitlesArgs<ExtArgs>
+  userRoles?: boolean | Prisma.Library$userRolesArgs<ExtArgs>
   _count?: boolean | Prisma.LibraryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["library"]>
 
@@ -1627,8 +2887,15 @@ export type LibraryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   records?: boolean | Prisma.Library$recordsArgs<ExtArgs>
   digitalResources?: boolean | Prisma.Library$digitalResourcesArgs<ExtArgs>
   librarySettings?: boolean | Prisma.Library$librarySettingsArgs<ExtArgs>
+  circulationPolicies?: boolean | Prisma.Library$circulationPoliciesArgs<ExtArgs>
+  memberCategories?: boolean | Prisma.Library$memberCategoriesArgs<ExtArgs>
+  materialTypes?: boolean | Prisma.Library$materialTypesArgs<ExtArgs>
+  classifications?: boolean | Prisma.Library$classificationsArgs<ExtArgs>
+  shelfLocations?: boolean | Prisma.Library$shelfLocationsArgs<ExtArgs>
+  subjects?: boolean | Prisma.Library$subjectsArgs<ExtArgs>
   libraryEvents?: boolean | Prisma.Library$libraryEventsArgs<ExtArgs>
   serialTitles?: boolean | Prisma.Library$serialTitlesArgs<ExtArgs>
+  userRoles?: boolean | Prisma.Library$userRolesArgs<ExtArgs>
   _count?: boolean | Prisma.LibraryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LibraryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1651,8 +2918,15 @@ export type $LibraryPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     records: Prisma.$BibliographicRecordPayload<ExtArgs>[]
     digitalResources: Prisma.$DigitalResourcePayload<ExtArgs>[]
     librarySettings: Prisma.$LibrarySettingPayload<ExtArgs>[]
+    circulationPolicies: Prisma.$CirculationPolicyPayload<ExtArgs>[]
+    memberCategories: Prisma.$MemberCategoryPayload<ExtArgs>[]
+    materialTypes: Prisma.$MaterialTypePayload<ExtArgs>[]
+    classifications: Prisma.$ClassificationPayload<ExtArgs>[]
+    shelfLocations: Prisma.$ShelfLocationPayload<ExtArgs>[]
+    subjects: Prisma.$SubjectPayload<ExtArgs>[]
     libraryEvents: Prisma.$LibraryEventPayload<ExtArgs>[]
     serialTitles: Prisma.$SerialTitlePayload<ExtArgs>[]
+    userRoles: Prisma.$UserRolePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2063,8 +3337,15 @@ export interface Prisma__LibraryClient<T, Null = never, ExtArgs extends runtime.
   records<T extends Prisma.Library$recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BibliographicRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   digitalResources<T extends Prisma.Library$digitalResourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$digitalResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DigitalResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   librarySettings<T extends Prisma.Library$librarySettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$librarySettingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibrarySettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  circulationPolicies<T extends Prisma.Library$circulationPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$circulationPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CirculationPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  memberCategories<T extends Prisma.Library$memberCategoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$memberCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  materialTypes<T extends Prisma.Library$materialTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$materialTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  classifications<T extends Prisma.Library$classificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$classificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shelfLocations<T extends Prisma.Library$shelfLocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$shelfLocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShelfLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subjects<T extends Prisma.Library$subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   libraryEvents<T extends Prisma.Library$libraryEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$libraryEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   serialTitles<T extends Prisma.Library$serialTitlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$serialTitlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SerialTitlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  userRoles<T extends Prisma.Library$userRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Library$userRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2664,6 +3945,150 @@ export type Library$librarySettingsArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * Library.circulationPolicies
+ */
+export type Library$circulationPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CirculationPolicy
+   */
+  select?: Prisma.CirculationPolicySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CirculationPolicy
+   */
+  omit?: Prisma.CirculationPolicyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CirculationPolicyInclude<ExtArgs> | null
+  where?: Prisma.CirculationPolicyWhereInput
+  orderBy?: Prisma.CirculationPolicyOrderByWithRelationInput | Prisma.CirculationPolicyOrderByWithRelationInput[]
+  cursor?: Prisma.CirculationPolicyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CirculationPolicyScalarFieldEnum | Prisma.CirculationPolicyScalarFieldEnum[]
+}
+
+/**
+ * Library.memberCategories
+ */
+export type Library$memberCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberCategory
+   */
+  select?: Prisma.MemberCategorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberCategory
+   */
+  omit?: Prisma.MemberCategoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberCategoryInclude<ExtArgs> | null
+  where?: Prisma.MemberCategoryWhereInput
+  orderBy?: Prisma.MemberCategoryOrderByWithRelationInput | Prisma.MemberCategoryOrderByWithRelationInput[]
+  cursor?: Prisma.MemberCategoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberCategoryScalarFieldEnum | Prisma.MemberCategoryScalarFieldEnum[]
+}
+
+/**
+ * Library.materialTypes
+ */
+export type Library$materialTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MaterialType
+   */
+  select?: Prisma.MaterialTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MaterialType
+   */
+  omit?: Prisma.MaterialTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialTypeInclude<ExtArgs> | null
+  where?: Prisma.MaterialTypeWhereInput
+  orderBy?: Prisma.MaterialTypeOrderByWithRelationInput | Prisma.MaterialTypeOrderByWithRelationInput[]
+  cursor?: Prisma.MaterialTypeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MaterialTypeScalarFieldEnum | Prisma.MaterialTypeScalarFieldEnum[]
+}
+
+/**
+ * Library.classifications
+ */
+export type Library$classificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Classification
+   */
+  select?: Prisma.ClassificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Classification
+   */
+  omit?: Prisma.ClassificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClassificationInclude<ExtArgs> | null
+  where?: Prisma.ClassificationWhereInput
+  orderBy?: Prisma.ClassificationOrderByWithRelationInput | Prisma.ClassificationOrderByWithRelationInput[]
+  cursor?: Prisma.ClassificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClassificationScalarFieldEnum | Prisma.ClassificationScalarFieldEnum[]
+}
+
+/**
+ * Library.shelfLocations
+ */
+export type Library$shelfLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShelfLocation
+   */
+  select?: Prisma.ShelfLocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShelfLocation
+   */
+  omit?: Prisma.ShelfLocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShelfLocationInclude<ExtArgs> | null
+  where?: Prisma.ShelfLocationWhereInput
+  orderBy?: Prisma.ShelfLocationOrderByWithRelationInput | Prisma.ShelfLocationOrderByWithRelationInput[]
+  cursor?: Prisma.ShelfLocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShelfLocationScalarFieldEnum | Prisma.ShelfLocationScalarFieldEnum[]
+}
+
+/**
+ * Library.subjects
+ */
+export type Library$subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subject
+   */
+  select?: Prisma.SubjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subject
+   */
+  omit?: Prisma.SubjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubjectInclude<ExtArgs> | null
+  where?: Prisma.SubjectWhereInput
+  orderBy?: Prisma.SubjectOrderByWithRelationInput | Prisma.SubjectOrderByWithRelationInput[]
+  cursor?: Prisma.SubjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubjectScalarFieldEnum | Prisma.SubjectScalarFieldEnum[]
+}
+
+/**
  * Library.libraryEvents
  */
 export type Library$libraryEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2709,6 +4134,30 @@ export type Library$serialTitlesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.SerialTitleScalarFieldEnum | Prisma.SerialTitleScalarFieldEnum[]
+}
+
+/**
+ * Library.userRoles
+ */
+export type Library$userRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserRole
+   */
+  select?: Prisma.UserRoleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserRole
+   */
+  omit?: Prisma.UserRoleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserRoleInclude<ExtArgs> | null
+  where?: Prisma.UserRoleWhereInput
+  orderBy?: Prisma.UserRoleOrderByWithRelationInput | Prisma.UserRoleOrderByWithRelationInput[]
+  cursor?: Prisma.UserRoleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
 }
 
 /**

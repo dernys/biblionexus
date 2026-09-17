@@ -186,6 +186,8 @@ export type BranchWhereInput = {
   items?: Prisma.ItemListRelationFilter
   members?: Prisma.MemberListRelationFilter
   loans?: Prisma.LoanListRelationFilter
+  shelfLocations?: Prisma.ShelfLocationListRelationFilter
+  roleAssignments?: Prisma.UserRoleListRelationFilter
 }
 
 export type BranchOrderByWithRelationInput = {
@@ -198,6 +200,8 @@ export type BranchOrderByWithRelationInput = {
   items?: Prisma.ItemOrderByRelationAggregateInput
   members?: Prisma.MemberOrderByRelationAggregateInput
   loans?: Prisma.LoanOrderByRelationAggregateInput
+  shelfLocations?: Prisma.ShelfLocationOrderByRelationAggregateInput
+  roleAssignments?: Prisma.UserRoleOrderByRelationAggregateInput
 }
 
 export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +218,8 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<{
   items?: Prisma.ItemListRelationFilter
   members?: Prisma.MemberListRelationFilter
   loans?: Prisma.LoanListRelationFilter
+  shelfLocations?: Prisma.ShelfLocationListRelationFilter
+  roleAssignments?: Prisma.UserRoleListRelationFilter
 }, "id" | "libraryId_code">
 
 export type BranchOrderByWithAggregationInput = {
@@ -247,6 +253,8 @@ export type BranchCreateInput = {
   items?: Prisma.ItemCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateInput = {
@@ -258,6 +266,8 @@ export type BranchUncheckedCreateInput = {
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUpdateInput = {
@@ -269,6 +279,8 @@ export type BranchUpdateInput = {
   items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateInput = {
@@ -280,6 +292,8 @@ export type BranchUncheckedUpdateInput = {
   items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateManyInput = {
@@ -396,6 +410,36 @@ export type BranchUncheckedUpdateManyWithoutLibraryNestedInput = {
   deleteMany?: Prisma.BranchScalarWhereInput | Prisma.BranchScalarWhereInput[]
 }
 
+export type BranchCreateNestedOneWithoutRoleAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedCreateWithoutRoleAssignmentsInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutRoleAssignmentsInput
+  connect?: Prisma.BranchWhereUniqueInput
+}
+
+export type BranchUpdateOneWithoutRoleAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedCreateWithoutRoleAssignmentsInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutRoleAssignmentsInput
+  upsert?: Prisma.BranchUpsertWithoutRoleAssignmentsInput
+  disconnect?: Prisma.BranchWhereInput | boolean
+  delete?: Prisma.BranchWhereInput | boolean
+  connect?: Prisma.BranchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutRoleAssignmentsInput, Prisma.BranchUpdateWithoutRoleAssignmentsInput>, Prisma.BranchUncheckedUpdateWithoutRoleAssignmentsInput>
+}
+
+export type BranchCreateNestedOneWithoutShelfLocationsInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutShelfLocationsInput, Prisma.BranchUncheckedCreateWithoutShelfLocationsInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutShelfLocationsInput
+  connect?: Prisma.BranchWhereUniqueInput
+}
+
+export type BranchUpdateOneRequiredWithoutShelfLocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutShelfLocationsInput, Prisma.BranchUncheckedCreateWithoutShelfLocationsInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutShelfLocationsInput
+  upsert?: Prisma.BranchUpsertWithoutShelfLocationsInput
+  connect?: Prisma.BranchWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutShelfLocationsInput, Prisma.BranchUpdateWithoutShelfLocationsInput>, Prisma.BranchUncheckedUpdateWithoutShelfLocationsInput>
+}
+
 export type BranchCreateNestedOneWithoutMembersInput = {
   create?: Prisma.XOR<Prisma.BranchCreateWithoutMembersInput, Prisma.BranchUncheckedCreateWithoutMembersInput>
   connectOrCreate?: Prisma.BranchCreateOrConnectWithoutMembersInput
@@ -448,6 +492,8 @@ export type BranchCreateWithoutLibraryInput = {
   items?: Prisma.ItemCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutLibraryInput = {
@@ -458,6 +504,8 @@ export type BranchUncheckedCreateWithoutLibraryInput = {
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutLibraryInput = {
@@ -497,6 +545,134 @@ export type BranchScalarWhereInput = {
   address?: Prisma.StringNullableFilter<"Branch"> | string | null
 }
 
+export type BranchCreateWithoutRoleAssignmentsInput = {
+  id?: string
+  name: string
+  code: string
+  address?: string | null
+  library: Prisma.LibraryCreateNestedOneWithoutBranchesInput
+  items?: Prisma.ItemCreateNestedManyWithoutBranchInput
+  members?: Prisma.MemberCreateNestedManyWithoutBranchInput
+  loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+}
+
+export type BranchUncheckedCreateWithoutRoleAssignmentsInput = {
+  id?: string
+  libraryId: string
+  name: string
+  code: string
+  address?: string | null
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+}
+
+export type BranchCreateOrConnectWithoutRoleAssignmentsInput = {
+  where: Prisma.BranchWhereUniqueInput
+  create: Prisma.XOR<Prisma.BranchCreateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedCreateWithoutRoleAssignmentsInput>
+}
+
+export type BranchUpsertWithoutRoleAssignmentsInput = {
+  update: Prisma.XOR<Prisma.BranchUpdateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedUpdateWithoutRoleAssignmentsInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedCreateWithoutRoleAssignmentsInput>
+  where?: Prisma.BranchWhereInput
+}
+
+export type BranchUpdateToOneWithWhereWithoutRoleAssignmentsInput = {
+  where?: Prisma.BranchWhereInput
+  data: Prisma.XOR<Prisma.BranchUpdateWithoutRoleAssignmentsInput, Prisma.BranchUncheckedUpdateWithoutRoleAssignmentsInput>
+}
+
+export type BranchUpdateWithoutRoleAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  library?: Prisma.LibraryUpdateOneRequiredWithoutBranchesNestedInput
+  items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
+  members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+}
+
+export type BranchUncheckedUpdateWithoutRoleAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+}
+
+export type BranchCreateWithoutShelfLocationsInput = {
+  id?: string
+  name: string
+  code: string
+  address?: string | null
+  library: Prisma.LibraryCreateNestedOneWithoutBranchesInput
+  items?: Prisma.ItemCreateNestedManyWithoutBranchInput
+  members?: Prisma.MemberCreateNestedManyWithoutBranchInput
+  loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
+}
+
+export type BranchUncheckedCreateWithoutShelfLocationsInput = {
+  id?: string
+  libraryId: string
+  name: string
+  code: string
+  address?: string | null
+  items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
+}
+
+export type BranchCreateOrConnectWithoutShelfLocationsInput = {
+  where: Prisma.BranchWhereUniqueInput
+  create: Prisma.XOR<Prisma.BranchCreateWithoutShelfLocationsInput, Prisma.BranchUncheckedCreateWithoutShelfLocationsInput>
+}
+
+export type BranchUpsertWithoutShelfLocationsInput = {
+  update: Prisma.XOR<Prisma.BranchUpdateWithoutShelfLocationsInput, Prisma.BranchUncheckedUpdateWithoutShelfLocationsInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutShelfLocationsInput, Prisma.BranchUncheckedCreateWithoutShelfLocationsInput>
+  where?: Prisma.BranchWhereInput
+}
+
+export type BranchUpdateToOneWithWhereWithoutShelfLocationsInput = {
+  where?: Prisma.BranchWhereInput
+  data: Prisma.XOR<Prisma.BranchUpdateWithoutShelfLocationsInput, Prisma.BranchUncheckedUpdateWithoutShelfLocationsInput>
+}
+
+export type BranchUpdateWithoutShelfLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  library?: Prisma.LibraryUpdateOneRequiredWithoutBranchesNestedInput
+  items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
+  members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
+}
+
+export type BranchUncheckedUpdateWithoutShelfLocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
+}
+
 export type BranchCreateWithoutMembersInput = {
   id?: string
   name: string
@@ -505,6 +681,8 @@ export type BranchCreateWithoutMembersInput = {
   library: Prisma.LibraryCreateNestedOneWithoutBranchesInput
   items?: Prisma.ItemCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutMembersInput = {
@@ -515,6 +693,8 @@ export type BranchUncheckedCreateWithoutMembersInput = {
   address?: string | null
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutMembersInput = {
@@ -541,6 +721,8 @@ export type BranchUpdateWithoutMembersInput = {
   library?: Prisma.LibraryUpdateOneRequiredWithoutBranchesNestedInput
   items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutMembersInput = {
@@ -551,6 +733,8 @@ export type BranchUncheckedUpdateWithoutMembersInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateWithoutItemsInput = {
@@ -561,6 +745,8 @@ export type BranchCreateWithoutItemsInput = {
   library: Prisma.LibraryCreateNestedOneWithoutBranchesInput
   members?: Prisma.MemberCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutItemsInput = {
@@ -571,6 +757,8 @@ export type BranchUncheckedCreateWithoutItemsInput = {
   address?: string | null
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
   loans?: Prisma.LoanUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutItemsInput = {
@@ -597,6 +785,8 @@ export type BranchUpdateWithoutItemsInput = {
   library?: Prisma.LibraryUpdateOneRequiredWithoutBranchesNestedInput
   members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutItemsInput = {
@@ -607,6 +797,8 @@ export type BranchUncheckedUpdateWithoutItemsInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateWithoutLoansInput = {
@@ -617,6 +809,8 @@ export type BranchCreateWithoutLoansInput = {
   library: Prisma.LibraryCreateNestedOneWithoutBranchesInput
   items?: Prisma.ItemCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutLoansInput = {
@@ -627,6 +821,8 @@ export type BranchUncheckedCreateWithoutLoansInput = {
   address?: string | null
   items?: Prisma.ItemUncheckedCreateNestedManyWithoutBranchInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutBranchInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedCreateNestedManyWithoutBranchInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutLoansInput = {
@@ -653,6 +849,8 @@ export type BranchUpdateWithoutLoansInput = {
   library?: Prisma.LibraryUpdateOneRequiredWithoutBranchesNestedInput
   items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutLoansInput = {
@@ -663,6 +861,8 @@ export type BranchUncheckedUpdateWithoutLoansInput = {
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateManyLibraryInput = {
@@ -680,6 +880,8 @@ export type BranchUpdateWithoutLibraryInput = {
   items?: Prisma.ItemUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutLibraryInput = {
@@ -690,6 +892,8 @@ export type BranchUncheckedUpdateWithoutLibraryInput = {
   items?: Prisma.ItemUncheckedUpdateManyWithoutBranchNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutBranchNestedInput
   loans?: Prisma.LoanUncheckedUpdateManyWithoutBranchNestedInput
+  shelfLocations?: Prisma.ShelfLocationUncheckedUpdateManyWithoutBranchNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateManyWithoutLibraryInput = {
@@ -708,12 +912,16 @@ export type BranchCountOutputType = {
   items: number
   members: number
   loans: number
+  shelfLocations: number
+  roleAssignments: number
 }
 
 export type BranchCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | BranchCountOutputTypeCountItemsArgs
   members?: boolean | BranchCountOutputTypeCountMembersArgs
   loans?: boolean | BranchCountOutputTypeCountLoansArgs
+  shelfLocations?: boolean | BranchCountOutputTypeCountShelfLocationsArgs
+  roleAssignments?: boolean | BranchCountOutputTypeCountRoleAssignmentsArgs
 }
 
 /**
@@ -747,6 +955,20 @@ export type BranchCountOutputTypeCountLoansArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.LoanWhereInput
 }
 
+/**
+ * BranchCountOutputType without action
+ */
+export type BranchCountOutputTypeCountShelfLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShelfLocationWhereInput
+}
+
+/**
+ * BranchCountOutputType without action
+ */
+export type BranchCountOutputTypeCountRoleAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserRoleWhereInput
+}
+
 
 export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -758,6 +980,8 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   items?: boolean | Prisma.Branch$itemsArgs<ExtArgs>
   members?: boolean | Prisma.Branch$membersArgs<ExtArgs>
   loans?: boolean | Prisma.Branch$loansArgs<ExtArgs>
+  shelfLocations?: boolean | Prisma.Branch$shelfLocationsArgs<ExtArgs>
+  roleAssignments?: boolean | Prisma.Branch$roleAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
@@ -793,6 +1017,8 @@ export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   items?: boolean | Prisma.Branch$itemsArgs<ExtArgs>
   members?: boolean | Prisma.Branch$membersArgs<ExtArgs>
   loans?: boolean | Prisma.Branch$loansArgs<ExtArgs>
+  shelfLocations?: boolean | Prisma.Branch$shelfLocationsArgs<ExtArgs>
+  roleAssignments?: boolean | Prisma.Branch$roleAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BranchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -809,6 +1035,8 @@ export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     items: Prisma.$ItemPayload<ExtArgs>[]
     members: Prisma.$MemberPayload<ExtArgs>[]
     loans: Prisma.$LoanPayload<ExtArgs>[]
+    shelfLocations: Prisma.$ShelfLocationPayload<ExtArgs>[]
+    roleAssignments: Prisma.$UserRolePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1214,6 +1442,8 @@ export interface Prisma__BranchClient<T, Null = never, ExtArgs extends runtime.T
   items<T extends Prisma.Branch$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.Branch$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loans<T extends Prisma.Branch$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shelfLocations<T extends Prisma.Branch$shelfLocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$shelfLocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShelfLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  roleAssignments<T extends Prisma.Branch$roleAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$roleAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1718,6 +1948,54 @@ export type Branch$loansArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.LoanScalarFieldEnum | Prisma.LoanScalarFieldEnum[]
+}
+
+/**
+ * Branch.shelfLocations
+ */
+export type Branch$shelfLocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShelfLocation
+   */
+  select?: Prisma.ShelfLocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShelfLocation
+   */
+  omit?: Prisma.ShelfLocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShelfLocationInclude<ExtArgs> | null
+  where?: Prisma.ShelfLocationWhereInput
+  orderBy?: Prisma.ShelfLocationOrderByWithRelationInput | Prisma.ShelfLocationOrderByWithRelationInput[]
+  cursor?: Prisma.ShelfLocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShelfLocationScalarFieldEnum | Prisma.ShelfLocationScalarFieldEnum[]
+}
+
+/**
+ * Branch.roleAssignments
+ */
+export type Branch$roleAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserRole
+   */
+  select?: Prisma.UserRoleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserRole
+   */
+  omit?: Prisma.UserRoleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserRoleInclude<ExtArgs> | null
+  where?: Prisma.UserRoleWhereInput
+  orderBy?: Prisma.UserRoleOrderByWithRelationInput | Prisma.UserRoleOrderByWithRelationInput[]
+  cursor?: Prisma.UserRoleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
 }
 
 /**

@@ -40,9 +40,11 @@ export type ItemMinAggregateOutputType = {
   editionId: string | null
   branchId: string | null
   collectionId: string | null
+  shelfLocationId: string | null
   barcode: string | null
   status: $Enums.ItemStatus | null
-  materialType: string | null
+  materialTypeId: string | null
+  legacyMaterialType: string | null
   condition: string | null
   price: runtime.Decimal | null
   createdAt: Date | null
@@ -54,9 +56,11 @@ export type ItemMaxAggregateOutputType = {
   editionId: string | null
   branchId: string | null
   collectionId: string | null
+  shelfLocationId: string | null
   barcode: string | null
   status: $Enums.ItemStatus | null
-  materialType: string | null
+  materialTypeId: string | null
+  legacyMaterialType: string | null
   condition: string | null
   price: runtime.Decimal | null
   createdAt: Date | null
@@ -68,9 +72,11 @@ export type ItemCountAggregateOutputType = {
   editionId: number
   branchId: number
   collectionId: number
+  shelfLocationId: number
   barcode: number
   status: number
-  materialType: number
+  materialTypeId: number
+  legacyMaterialType: number
   condition: number
   price: number
   createdAt: number
@@ -92,9 +98,11 @@ export type ItemMinAggregateInputType = {
   editionId?: true
   branchId?: true
   collectionId?: true
+  shelfLocationId?: true
   barcode?: true
   status?: true
-  materialType?: true
+  materialTypeId?: true
+  legacyMaterialType?: true
   condition?: true
   price?: true
   createdAt?: true
@@ -106,9 +114,11 @@ export type ItemMaxAggregateInputType = {
   editionId?: true
   branchId?: true
   collectionId?: true
+  shelfLocationId?: true
   barcode?: true
   status?: true
-  materialType?: true
+  materialTypeId?: true
+  legacyMaterialType?: true
   condition?: true
   price?: true
   createdAt?: true
@@ -120,9 +130,11 @@ export type ItemCountAggregateInputType = {
   editionId?: true
   branchId?: true
   collectionId?: true
+  shelfLocationId?: true
   barcode?: true
   status?: true
-  materialType?: true
+  materialTypeId?: true
+  legacyMaterialType?: true
   condition?: true
   price?: true
   createdAt?: true
@@ -221,9 +233,11 @@ export type ItemGroupByOutputType = {
   editionId: string | null
   branchId: string
   collectionId: string | null
+  shelfLocationId: string | null
   barcode: string
   status: $Enums.ItemStatus
-  materialType: string
+  materialTypeId: string | null
+  legacyMaterialType: string | null
   condition: string | null
   price: runtime.Decimal | null
   createdAt: Date
@@ -258,16 +272,20 @@ export type ItemWhereInput = {
   editionId?: Prisma.StringNullableFilter<"Item"> | string | null
   branchId?: Prisma.StringFilter<"Item"> | string
   collectionId?: Prisma.StringNullableFilter<"Item"> | string | null
+  shelfLocationId?: Prisma.StringNullableFilter<"Item"> | string | null
   barcode?: Prisma.StringFilter<"Item"> | string
   status?: Prisma.EnumItemStatusFilter<"Item"> | $Enums.ItemStatus
-  materialType?: Prisma.StringFilter<"Item"> | string
+  materialTypeId?: Prisma.StringNullableFilter<"Item"> | string | null
+  legacyMaterialType?: Prisma.StringNullableFilter<"Item"> | string | null
   condition?: Prisma.StringNullableFilter<"Item"> | string | null
   price?: Prisma.DecimalNullableFilter<"Item"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Item"> | Date | string
+  materialType?: Prisma.XOR<Prisma.MaterialTypeNullableScalarRelationFilter, Prisma.MaterialTypeWhereInput> | null
   holding?: Prisma.XOR<Prisma.HoldingScalarRelationFilter, Prisma.HoldingWhereInput>
   edition?: Prisma.XOR<Prisma.EditionNullableScalarRelationFilter, Prisma.EditionWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  shelfLocation?: Prisma.XOR<Prisma.ShelfLocationNullableScalarRelationFilter, Prisma.ShelfLocationWhereInput> | null
   loans?: Prisma.LoanListRelationFilter
   holds?: Prisma.HoldListRelationFilter
   statusHistory?: Prisma.ItemStatusHistoryListRelationFilter
@@ -279,16 +297,20 @@ export type ItemOrderByWithRelationInput = {
   editionId?: Prisma.SortOrderInput | Prisma.SortOrder
   branchId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shelfLocationId?: Prisma.SortOrderInput | Prisma.SortOrder
   barcode?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  materialType?: Prisma.SortOrder
+  materialTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyMaterialType?: Prisma.SortOrderInput | Prisma.SortOrder
   condition?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  materialType?: Prisma.MaterialTypeOrderByWithRelationInput
   holding?: Prisma.HoldingOrderByWithRelationInput
   edition?: Prisma.EditionOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
   collection?: Prisma.CollectionOrderByWithRelationInput
+  shelfLocation?: Prisma.ShelfLocationOrderByWithRelationInput
   loans?: Prisma.LoanOrderByRelationAggregateInput
   holds?: Prisma.HoldOrderByRelationAggregateInput
   statusHistory?: Prisma.ItemStatusHistoryOrderByRelationAggregateInput
@@ -304,15 +326,19 @@ export type ItemWhereUniqueInput = Prisma.AtLeast<{
   editionId?: Prisma.StringNullableFilter<"Item"> | string | null
   branchId?: Prisma.StringFilter<"Item"> | string
   collectionId?: Prisma.StringNullableFilter<"Item"> | string | null
+  shelfLocationId?: Prisma.StringNullableFilter<"Item"> | string | null
   status?: Prisma.EnumItemStatusFilter<"Item"> | $Enums.ItemStatus
-  materialType?: Prisma.StringFilter<"Item"> | string
+  materialTypeId?: Prisma.StringNullableFilter<"Item"> | string | null
+  legacyMaterialType?: Prisma.StringNullableFilter<"Item"> | string | null
   condition?: Prisma.StringNullableFilter<"Item"> | string | null
   price?: Prisma.DecimalNullableFilter<"Item"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Item"> | Date | string
+  materialType?: Prisma.XOR<Prisma.MaterialTypeNullableScalarRelationFilter, Prisma.MaterialTypeWhereInput> | null
   holding?: Prisma.XOR<Prisma.HoldingScalarRelationFilter, Prisma.HoldingWhereInput>
   edition?: Prisma.XOR<Prisma.EditionNullableScalarRelationFilter, Prisma.EditionWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   collection?: Prisma.XOR<Prisma.CollectionNullableScalarRelationFilter, Prisma.CollectionWhereInput> | null
+  shelfLocation?: Prisma.XOR<Prisma.ShelfLocationNullableScalarRelationFilter, Prisma.ShelfLocationWhereInput> | null
   loans?: Prisma.LoanListRelationFilter
   holds?: Prisma.HoldListRelationFilter
   statusHistory?: Prisma.ItemStatusHistoryListRelationFilter
@@ -324,9 +350,11 @@ export type ItemOrderByWithAggregationInput = {
   editionId?: Prisma.SortOrderInput | Prisma.SortOrder
   branchId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shelfLocationId?: Prisma.SortOrderInput | Prisma.SortOrder
   barcode?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  materialType?: Prisma.SortOrder
+  materialTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyMaterialType?: Prisma.SortOrderInput | Prisma.SortOrder
   condition?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -346,9 +374,11 @@ export type ItemScalarWhereWithAggregatesInput = {
   editionId?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
   branchId?: Prisma.StringWithAggregatesFilter<"Item"> | string
   collectionId?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
+  shelfLocationId?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
   barcode?: Prisma.StringWithAggregatesFilter<"Item"> | string
   status?: Prisma.EnumItemStatusWithAggregatesFilter<"Item"> | $Enums.ItemStatus
-  materialType?: Prisma.StringWithAggregatesFilter<"Item"> | string
+  materialTypeId?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
+  legacyMaterialType?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
   condition?: Prisma.StringNullableWithAggregatesFilter<"Item"> | string | null
   price?: Prisma.DecimalNullableWithAggregatesFilter<"Item"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Item"> | Date | string
@@ -358,14 +388,16 @@ export type ItemCreateInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
@@ -377,9 +409,11 @@ export type ItemUncheckedCreateInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -392,14 +426,16 @@ export type ItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
@@ -411,9 +447,11 @@ export type ItemUncheckedUpdateInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -428,9 +466,11 @@ export type ItemCreateManyInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -440,7 +480,7 @@ export type ItemUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -452,9 +492,11 @@ export type ItemUncheckedUpdateManyInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -476,9 +518,11 @@ export type ItemCountOrderByAggregateInput = {
   editionId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  shelfLocationId?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  materialType?: Prisma.SortOrder
+  materialTypeId?: Prisma.SortOrder
+  legacyMaterialType?: Prisma.SortOrder
   condition?: Prisma.SortOrder
   price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -494,9 +538,11 @@ export type ItemMaxOrderByAggregateInput = {
   editionId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  shelfLocationId?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  materialType?: Prisma.SortOrder
+  materialTypeId?: Prisma.SortOrder
+  legacyMaterialType?: Prisma.SortOrder
   condition?: Prisma.SortOrder
   price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -508,9 +554,11 @@ export type ItemMinOrderByAggregateInput = {
   editionId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   collectionId?: Prisma.SortOrder
+  shelfLocationId?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  materialType?: Prisma.SortOrder
+  materialTypeId?: Prisma.SortOrder
+  legacyMaterialType?: Prisma.SortOrder
   condition?: Prisma.SortOrder
   price?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -611,6 +659,90 @@ export type ItemUncheckedUpdateManyWithoutCollectionNestedInput = {
   connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
   update?: Prisma.ItemUpdateWithWhereUniqueWithoutCollectionInput | Prisma.ItemUpdateWithWhereUniqueWithoutCollectionInput[]
   updateMany?: Prisma.ItemUpdateManyWithWhereWithoutCollectionInput | Prisma.ItemUpdateManyWithWhereWithoutCollectionInput[]
+  deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
+}
+
+export type ItemCreateNestedManyWithoutMaterialTypeInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput> | Prisma.ItemCreateWithoutMaterialTypeInput[] | Prisma.ItemUncheckedCreateWithoutMaterialTypeInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutMaterialTypeInput | Prisma.ItemCreateOrConnectWithoutMaterialTypeInput[]
+  createMany?: Prisma.ItemCreateManyMaterialTypeInputEnvelope
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+}
+
+export type ItemUncheckedCreateNestedManyWithoutMaterialTypeInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput> | Prisma.ItemCreateWithoutMaterialTypeInput[] | Prisma.ItemUncheckedCreateWithoutMaterialTypeInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutMaterialTypeInput | Prisma.ItemCreateOrConnectWithoutMaterialTypeInput[]
+  createMany?: Prisma.ItemCreateManyMaterialTypeInputEnvelope
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+}
+
+export type ItemUpdateManyWithoutMaterialTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput> | Prisma.ItemCreateWithoutMaterialTypeInput[] | Prisma.ItemUncheckedCreateWithoutMaterialTypeInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutMaterialTypeInput | Prisma.ItemCreateOrConnectWithoutMaterialTypeInput[]
+  upsert?: Prisma.ItemUpsertWithWhereUniqueWithoutMaterialTypeInput | Prisma.ItemUpsertWithWhereUniqueWithoutMaterialTypeInput[]
+  createMany?: Prisma.ItemCreateManyMaterialTypeInputEnvelope
+  set?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  disconnect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  delete?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  update?: Prisma.ItemUpdateWithWhereUniqueWithoutMaterialTypeInput | Prisma.ItemUpdateWithWhereUniqueWithoutMaterialTypeInput[]
+  updateMany?: Prisma.ItemUpdateManyWithWhereWithoutMaterialTypeInput | Prisma.ItemUpdateManyWithWhereWithoutMaterialTypeInput[]
+  deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
+}
+
+export type ItemUncheckedUpdateManyWithoutMaterialTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput> | Prisma.ItemCreateWithoutMaterialTypeInput[] | Prisma.ItemUncheckedCreateWithoutMaterialTypeInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutMaterialTypeInput | Prisma.ItemCreateOrConnectWithoutMaterialTypeInput[]
+  upsert?: Prisma.ItemUpsertWithWhereUniqueWithoutMaterialTypeInput | Prisma.ItemUpsertWithWhereUniqueWithoutMaterialTypeInput[]
+  createMany?: Prisma.ItemCreateManyMaterialTypeInputEnvelope
+  set?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  disconnect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  delete?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  update?: Prisma.ItemUpdateWithWhereUniqueWithoutMaterialTypeInput | Prisma.ItemUpdateWithWhereUniqueWithoutMaterialTypeInput[]
+  updateMany?: Prisma.ItemUpdateManyWithWhereWithoutMaterialTypeInput | Prisma.ItemUpdateManyWithWhereWithoutMaterialTypeInput[]
+  deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
+}
+
+export type ItemCreateNestedManyWithoutShelfLocationInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput> | Prisma.ItemCreateWithoutShelfLocationInput[] | Prisma.ItemUncheckedCreateWithoutShelfLocationInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutShelfLocationInput | Prisma.ItemCreateOrConnectWithoutShelfLocationInput[]
+  createMany?: Prisma.ItemCreateManyShelfLocationInputEnvelope
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+}
+
+export type ItemUncheckedCreateNestedManyWithoutShelfLocationInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput> | Prisma.ItemCreateWithoutShelfLocationInput[] | Prisma.ItemUncheckedCreateWithoutShelfLocationInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutShelfLocationInput | Prisma.ItemCreateOrConnectWithoutShelfLocationInput[]
+  createMany?: Prisma.ItemCreateManyShelfLocationInputEnvelope
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+}
+
+export type ItemUpdateManyWithoutShelfLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput> | Prisma.ItemCreateWithoutShelfLocationInput[] | Prisma.ItemUncheckedCreateWithoutShelfLocationInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutShelfLocationInput | Prisma.ItemCreateOrConnectWithoutShelfLocationInput[]
+  upsert?: Prisma.ItemUpsertWithWhereUniqueWithoutShelfLocationInput | Prisma.ItemUpsertWithWhereUniqueWithoutShelfLocationInput[]
+  createMany?: Prisma.ItemCreateManyShelfLocationInputEnvelope
+  set?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  disconnect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  delete?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  update?: Prisma.ItemUpdateWithWhereUniqueWithoutShelfLocationInput | Prisma.ItemUpdateWithWhereUniqueWithoutShelfLocationInput[]
+  updateMany?: Prisma.ItemUpdateManyWithWhereWithoutShelfLocationInput | Prisma.ItemUpdateManyWithWhereWithoutShelfLocationInput[]
+  deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
+}
+
+export type ItemUncheckedUpdateManyWithoutShelfLocationNestedInput = {
+  create?: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput> | Prisma.ItemCreateWithoutShelfLocationInput[] | Prisma.ItemUncheckedCreateWithoutShelfLocationInput[]
+  connectOrCreate?: Prisma.ItemCreateOrConnectWithoutShelfLocationInput | Prisma.ItemCreateOrConnectWithoutShelfLocationInput[]
+  upsert?: Prisma.ItemUpsertWithWhereUniqueWithoutShelfLocationInput | Prisma.ItemUpsertWithWhereUniqueWithoutShelfLocationInput[]
+  createMany?: Prisma.ItemCreateManyShelfLocationInputEnvelope
+  set?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  disconnect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  delete?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  connect?: Prisma.ItemWhereUniqueInput | Prisma.ItemWhereUniqueInput[]
+  update?: Prisma.ItemUpdateWithWhereUniqueWithoutShelfLocationInput | Prisma.ItemUpdateWithWhereUniqueWithoutShelfLocationInput[]
+  updateMany?: Prisma.ItemUpdateManyWithWhereWithoutShelfLocationInput | Prisma.ItemUpdateManyWithWhereWithoutShelfLocationInput[]
   deleteMany?: Prisma.ItemScalarWhereInput | Prisma.ItemScalarWhereInput[]
 }
 
@@ -758,13 +890,15 @@ export type ItemCreateWithoutBranchInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
@@ -775,9 +909,11 @@ export type ItemUncheckedCreateWithoutBranchInput = {
   holdingId: string
   editionId?: string | null
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -821,9 +957,11 @@ export type ItemScalarWhereInput = {
   editionId?: Prisma.StringNullableFilter<"Item"> | string | null
   branchId?: Prisma.StringFilter<"Item"> | string
   collectionId?: Prisma.StringNullableFilter<"Item"> | string | null
+  shelfLocationId?: Prisma.StringNullableFilter<"Item"> | string | null
   barcode?: Prisma.StringFilter<"Item"> | string
   status?: Prisma.EnumItemStatusFilter<"Item"> | $Enums.ItemStatus
-  materialType?: Prisma.StringFilter<"Item"> | string
+  materialTypeId?: Prisma.StringNullableFilter<"Item"> | string | null
+  legacyMaterialType?: Prisma.StringNullableFilter<"Item"> | string | null
   condition?: Prisma.StringNullableFilter<"Item"> | string | null
   price?: Prisma.DecimalNullableFilter<"Item"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Item"> | Date | string
@@ -833,13 +971,15 @@ export type ItemCreateWithoutCollectionInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
@@ -850,9 +990,11 @@ export type ItemUncheckedCreateWithoutCollectionInput = {
   holdingId: string
   editionId?: string | null
   branchId: string
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -887,17 +1029,143 @@ export type ItemUpdateManyWithWhereWithoutCollectionInput = {
   data: Prisma.XOR<Prisma.ItemUpdateManyMutationInput, Prisma.ItemUncheckedUpdateManyWithoutCollectionInput>
 }
 
-export type ItemCreateWithoutEditionInput = {
+export type ItemCreateWithoutMaterialTypeInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
+  edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
+  loans?: Prisma.LoanCreateNestedManyWithoutItemInput
+  holds?: Prisma.HoldCreateNestedManyWithoutItemInput
+  statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
+}
+
+export type ItemUncheckedCreateWithoutMaterialTypeInput = {
+  id?: string
+  holdingId: string
+  editionId?: string | null
+  branchId: string
+  collectionId?: string | null
+  shelfLocationId?: string | null
+  barcode: string
+  status?: $Enums.ItemStatus
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutItemInput
+  holds?: Prisma.HoldUncheckedCreateNestedManyWithoutItemInput
+  statusHistory?: Prisma.ItemStatusHistoryUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type ItemCreateOrConnectWithoutMaterialTypeInput = {
+  where: Prisma.ItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput>
+}
+
+export type ItemCreateManyMaterialTypeInputEnvelope = {
+  data: Prisma.ItemCreateManyMaterialTypeInput | Prisma.ItemCreateManyMaterialTypeInput[]
+  skipDuplicates?: boolean
+}
+
+export type ItemUpsertWithWhereUniqueWithoutMaterialTypeInput = {
+  where: Prisma.ItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.ItemUpdateWithoutMaterialTypeInput, Prisma.ItemUncheckedUpdateWithoutMaterialTypeInput>
+  create: Prisma.XOR<Prisma.ItemCreateWithoutMaterialTypeInput, Prisma.ItemUncheckedCreateWithoutMaterialTypeInput>
+}
+
+export type ItemUpdateWithWhereUniqueWithoutMaterialTypeInput = {
+  where: Prisma.ItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.ItemUpdateWithoutMaterialTypeInput, Prisma.ItemUncheckedUpdateWithoutMaterialTypeInput>
+}
+
+export type ItemUpdateManyWithWhereWithoutMaterialTypeInput = {
+  where: Prisma.ItemScalarWhereInput
+  data: Prisma.XOR<Prisma.ItemUpdateManyMutationInput, Prisma.ItemUncheckedUpdateManyWithoutMaterialTypeInput>
+}
+
+export type ItemCreateWithoutShelfLocationInput = {
+  id?: string
+  barcode: string
+  status?: $Enums.ItemStatus
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
+  holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
+  edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
+  branch: Prisma.BranchCreateNestedOneWithoutItemsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  loans?: Prisma.LoanCreateNestedManyWithoutItemInput
+  holds?: Prisma.HoldCreateNestedManyWithoutItemInput
+  statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
+}
+
+export type ItemUncheckedCreateWithoutShelfLocationInput = {
+  id?: string
+  holdingId: string
+  editionId?: string | null
+  branchId: string
+  collectionId?: string | null
+  barcode: string
+  status?: $Enums.ItemStatus
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutItemInput
+  holds?: Prisma.HoldUncheckedCreateNestedManyWithoutItemInput
+  statusHistory?: Prisma.ItemStatusHistoryUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type ItemCreateOrConnectWithoutShelfLocationInput = {
+  where: Prisma.ItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput>
+}
+
+export type ItemCreateManyShelfLocationInputEnvelope = {
+  data: Prisma.ItemCreateManyShelfLocationInput | Prisma.ItemCreateManyShelfLocationInput[]
+  skipDuplicates?: boolean
+}
+
+export type ItemUpsertWithWhereUniqueWithoutShelfLocationInput = {
+  where: Prisma.ItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.ItemUpdateWithoutShelfLocationInput, Prisma.ItemUncheckedUpdateWithoutShelfLocationInput>
+  create: Prisma.XOR<Prisma.ItemCreateWithoutShelfLocationInput, Prisma.ItemUncheckedCreateWithoutShelfLocationInput>
+}
+
+export type ItemUpdateWithWhereUniqueWithoutShelfLocationInput = {
+  where: Prisma.ItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.ItemUpdateWithoutShelfLocationInput, Prisma.ItemUncheckedUpdateWithoutShelfLocationInput>
+}
+
+export type ItemUpdateManyWithWhereWithoutShelfLocationInput = {
+  where: Prisma.ItemScalarWhereInput
+  data: Prisma.XOR<Prisma.ItemUpdateManyMutationInput, Prisma.ItemUncheckedUpdateManyWithoutShelfLocationInput>
+}
+
+export type ItemCreateWithoutEditionInput = {
+  id?: string
+  barcode: string
+  status?: $Enums.ItemStatus
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
+  holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
+  branch: Prisma.BranchCreateNestedOneWithoutItemsInput
+  collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
@@ -908,9 +1176,11 @@ export type ItemUncheckedCreateWithoutEditionInput = {
   holdingId: string
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -949,13 +1219,15 @@ export type ItemCreateWithoutHoldingInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
@@ -966,9 +1238,11 @@ export type ItemUncheckedCreateWithoutHoldingInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1007,14 +1281,16 @@ export type ItemCreateWithoutLoansInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
 }
@@ -1025,9 +1301,11 @@ export type ItemUncheckedCreateWithoutLoansInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1055,14 +1333,16 @@ export type ItemUpdateWithoutLoansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
 }
@@ -1073,9 +1353,11 @@ export type ItemUncheckedUpdateWithoutLoansInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1087,14 +1369,16 @@ export type ItemCreateWithoutHoldsInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   statusHistory?: Prisma.ItemStatusHistoryCreateNestedManyWithoutItemInput
 }
@@ -1105,9 +1389,11 @@ export type ItemUncheckedCreateWithoutHoldsInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1135,14 +1421,16 @@ export type ItemUpdateWithoutHoldsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
 }
@@ -1153,9 +1441,11 @@ export type ItemUncheckedUpdateWithoutHoldsInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1167,14 +1457,16 @@ export type ItemCreateWithoutStatusHistoryInput = {
   id?: string
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  materialType?: Prisma.MaterialTypeCreateNestedOneWithoutItemsInput
   holding: Prisma.HoldingCreateNestedOneWithoutItemsInput
   edition?: Prisma.EditionCreateNestedOneWithoutItemsInput
   branch: Prisma.BranchCreateNestedOneWithoutItemsInput
   collection?: Prisma.CollectionCreateNestedOneWithoutItemsInput
+  shelfLocation?: Prisma.ShelfLocationCreateNestedOneWithoutItemsInput
   loans?: Prisma.LoanCreateNestedManyWithoutItemInput
   holds?: Prisma.HoldCreateNestedManyWithoutItemInput
 }
@@ -1185,9 +1477,11 @@ export type ItemUncheckedCreateWithoutStatusHistoryInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1215,14 +1509,16 @@ export type ItemUpdateWithoutStatusHistoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
 }
@@ -1233,9 +1529,11 @@ export type ItemUncheckedUpdateWithoutStatusHistoryInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1248,9 +1546,11 @@ export type ItemCreateManyBranchInput = {
   holdingId: string
   editionId?: string | null
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1260,13 +1560,15 @@ export type ItemUpdateWithoutBranchInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
@@ -1277,9 +1579,11 @@ export type ItemUncheckedUpdateWithoutBranchInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1293,9 +1597,11 @@ export type ItemUncheckedUpdateManyWithoutBranchInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1306,9 +1612,11 @@ export type ItemCreateManyCollectionInput = {
   holdingId: string
   editionId?: string | null
   branchId: string
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1318,13 +1626,15 @@ export type ItemUpdateWithoutCollectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
@@ -1335,9 +1645,11 @@ export type ItemUncheckedUpdateWithoutCollectionInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1351,9 +1663,143 @@ export type ItemUncheckedUpdateManyWithoutCollectionInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ItemCreateManyMaterialTypeInput = {
+  id?: string
+  holdingId: string
+  editionId?: string | null
+  branchId: string
+  collectionId?: string | null
+  shelfLocationId?: string | null
+  barcode: string
+  status?: $Enums.ItemStatus
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+}
+
+export type ItemUpdateWithoutMaterialTypeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
+  edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
+  branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
+  holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
+  statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateWithoutMaterialTypeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  holdingId?: Prisma.StringFieldUpdateOperationsInput | string
+  editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutItemNestedInput
+  holds?: Prisma.HoldUncheckedUpdateManyWithoutItemNestedInput
+  statusHistory?: Prisma.ItemStatusHistoryUncheckedUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateManyWithoutMaterialTypeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  holdingId?: Prisma.StringFieldUpdateOperationsInput | string
+  editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ItemCreateManyShelfLocationInput = {
+  id?: string
+  holdingId: string
+  editionId?: string | null
+  branchId: string
+  collectionId?: string | null
+  barcode: string
+  status?: $Enums.ItemStatus
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
+  condition?: string | null
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+}
+
+export type ItemUpdateWithoutShelfLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
+  holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
+  edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
+  branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
+  collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
+  holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
+  statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateWithoutShelfLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  holdingId?: Prisma.StringFieldUpdateOperationsInput | string
+  editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutItemNestedInput
+  holds?: Prisma.HoldUncheckedUpdateManyWithoutItemNestedInput
+  statusHistory?: Prisma.ItemStatusHistoryUncheckedUpdateManyWithoutItemNestedInput
+}
+
+export type ItemUncheckedUpdateManyWithoutShelfLocationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  holdingId?: Prisma.StringFieldUpdateOperationsInput | string
+  editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barcode?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1364,9 +1810,11 @@ export type ItemCreateManyEditionInput = {
   holdingId: string
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1376,13 +1824,15 @@ export type ItemUpdateWithoutEditionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   holding?: Prisma.HoldingUpdateOneRequiredWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
@@ -1393,9 +1843,11 @@ export type ItemUncheckedUpdateWithoutEditionInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1409,9 +1861,11 @@ export type ItemUncheckedUpdateManyWithoutEditionInput = {
   holdingId?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1422,9 +1876,11 @@ export type ItemCreateManyHoldingInput = {
   editionId?: string | null
   branchId: string
   collectionId?: string | null
+  shelfLocationId?: string | null
   barcode: string
   status?: $Enums.ItemStatus
-  materialType?: string
+  materialTypeId?: string | null
+  legacyMaterialType?: string | null
   condition?: string | null
   price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
@@ -1434,13 +1890,15 @@ export type ItemUpdateWithoutHoldingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  materialType?: Prisma.MaterialTypeUpdateOneWithoutItemsNestedInput
   edition?: Prisma.EditionUpdateOneWithoutItemsNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutItemsNestedInput
   collection?: Prisma.CollectionUpdateOneWithoutItemsNestedInput
+  shelfLocation?: Prisma.ShelfLocationUpdateOneWithoutItemsNestedInput
   loans?: Prisma.LoanUpdateManyWithoutItemNestedInput
   holds?: Prisma.HoldUpdateManyWithoutItemNestedInput
   statusHistory?: Prisma.ItemStatusHistoryUpdateManyWithoutItemNestedInput
@@ -1451,9 +1909,11 @@ export type ItemUncheckedUpdateWithoutHoldingInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1467,9 +1927,11 @@ export type ItemUncheckedUpdateManyWithoutHoldingInput = {
   editionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shelfLocationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   barcode?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumItemStatusFieldUpdateOperationsInput | $Enums.ItemStatus
-  materialType?: Prisma.StringFieldUpdateOperationsInput | string
+  materialTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyMaterialType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   condition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1530,16 +1992,20 @@ export type ItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   editionId?: boolean
   branchId?: boolean
   collectionId?: boolean
+  shelfLocationId?: boolean
   barcode?: boolean
   status?: boolean
-  materialType?: boolean
+  materialTypeId?: boolean
+  legacyMaterialType?: boolean
   condition?: boolean
   price?: boolean
   createdAt?: boolean
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
   loans?: boolean | Prisma.Item$loansArgs<ExtArgs>
   holds?: boolean | Prisma.Item$holdsArgs<ExtArgs>
   statusHistory?: boolean | Prisma.Item$statusHistoryArgs<ExtArgs>
@@ -1552,16 +2018,20 @@ export type ItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   editionId?: boolean
   branchId?: boolean
   collectionId?: boolean
+  shelfLocationId?: boolean
   barcode?: boolean
   status?: boolean
-  materialType?: boolean
+  materialTypeId?: boolean
+  legacyMaterialType?: boolean
   condition?: boolean
   price?: boolean
   createdAt?: boolean
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
 export type ItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1570,16 +2040,20 @@ export type ItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   editionId?: boolean
   branchId?: boolean
   collectionId?: boolean
+  shelfLocationId?: boolean
   barcode?: boolean
   status?: boolean
-  materialType?: boolean
+  materialTypeId?: boolean
+  legacyMaterialType?: boolean
   condition?: boolean
   price?: boolean
   createdAt?: boolean
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
 }, ExtArgs["result"]["item"]>
 
 export type ItemSelectScalar = {
@@ -1588,45 +2062,55 @@ export type ItemSelectScalar = {
   editionId?: boolean
   branchId?: boolean
   collectionId?: boolean
+  shelfLocationId?: boolean
   barcode?: boolean
   status?: boolean
-  materialType?: boolean
+  materialTypeId?: boolean
+  legacyMaterialType?: boolean
   condition?: boolean
   price?: boolean
   createdAt?: boolean
 }
 
-export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "holdingId" | "editionId" | "branchId" | "collectionId" | "barcode" | "status" | "materialType" | "condition" | "price" | "createdAt", ExtArgs["result"]["item"]>
+export type ItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "holdingId" | "editionId" | "branchId" | "collectionId" | "shelfLocationId" | "barcode" | "status" | "materialTypeId" | "legacyMaterialType" | "condition" | "price" | "createdAt", ExtArgs["result"]["item"]>
 export type ItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
   loans?: boolean | Prisma.Item$loansArgs<ExtArgs>
   holds?: boolean | Prisma.Item$holdsArgs<ExtArgs>
   statusHistory?: boolean | Prisma.Item$statusHistoryArgs<ExtArgs>
   _count?: boolean | Prisma.ItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
 }
 export type ItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  materialType?: boolean | Prisma.Item$materialTypeArgs<ExtArgs>
   holding?: boolean | Prisma.HoldingDefaultArgs<ExtArgs>
   edition?: boolean | Prisma.Item$editionArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   collection?: boolean | Prisma.Item$collectionArgs<ExtArgs>
+  shelfLocation?: boolean | Prisma.Item$shelfLocationArgs<ExtArgs>
 }
 
 export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Item"
   objects: {
+    materialType: Prisma.$MaterialTypePayload<ExtArgs> | null
     holding: Prisma.$HoldingPayload<ExtArgs>
     edition: Prisma.$EditionPayload<ExtArgs> | null
     branch: Prisma.$BranchPayload<ExtArgs>
     collection: Prisma.$CollectionPayload<ExtArgs> | null
+    shelfLocation: Prisma.$ShelfLocationPayload<ExtArgs> | null
     loans: Prisma.$LoanPayload<ExtArgs>[]
     holds: Prisma.$HoldPayload<ExtArgs>[]
     statusHistory: Prisma.$ItemStatusHistoryPayload<ExtArgs>[]
@@ -1637,9 +2121,11 @@ export type $ItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     editionId: string | null
     branchId: string
     collectionId: string | null
+    shelfLocationId: string | null
     barcode: string
     status: $Enums.ItemStatus
-    materialType: string
+    materialTypeId: string | null
+    legacyMaterialType: string | null
     condition: string | null
     price: runtime.Decimal | null
     createdAt: Date
@@ -2037,10 +2523,12 @@ readonly fields: ItemFieldRefs;
  */
 export interface Prisma__ItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  materialType<T extends Prisma.Item$materialTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$materialTypeArgs<ExtArgs>>): Prisma.Prisma__MaterialTypeClient<runtime.Types.Result.GetResult<Prisma.$MaterialTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   holding<T extends Prisma.HoldingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HoldingDefaultArgs<ExtArgs>>): Prisma.Prisma__HoldingClient<runtime.Types.Result.GetResult<Prisma.$HoldingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   edition<T extends Prisma.Item$editionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$editionArgs<ExtArgs>>): Prisma.Prisma__EditionClient<runtime.Types.Result.GetResult<Prisma.$EditionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   collection<T extends Prisma.Item$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$collectionArgs<ExtArgs>>): Prisma.Prisma__CollectionClient<runtime.Types.Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  shelfLocation<T extends Prisma.Item$shelfLocationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$shelfLocationArgs<ExtArgs>>): Prisma.Prisma__ShelfLocationClient<runtime.Types.Result.GetResult<Prisma.$ShelfLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   loans<T extends Prisma.Item$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   holds<T extends Prisma.Item$holdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$holdsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HoldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   statusHistory<T extends Prisma.Item$statusHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Item$statusHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2078,9 +2566,11 @@ export interface ItemFieldRefs {
   readonly editionId: Prisma.FieldRef<"Item", 'String'>
   readonly branchId: Prisma.FieldRef<"Item", 'String'>
   readonly collectionId: Prisma.FieldRef<"Item", 'String'>
+  readonly shelfLocationId: Prisma.FieldRef<"Item", 'String'>
   readonly barcode: Prisma.FieldRef<"Item", 'String'>
   readonly status: Prisma.FieldRef<"Item", 'ItemStatus'>
-  readonly materialType: Prisma.FieldRef<"Item", 'String'>
+  readonly materialTypeId: Prisma.FieldRef<"Item", 'String'>
+  readonly legacyMaterialType: Prisma.FieldRef<"Item", 'String'>
   readonly condition: Prisma.FieldRef<"Item", 'String'>
   readonly price: Prisma.FieldRef<"Item", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Item", 'DateTime'>
@@ -2485,6 +2975,25 @@ export type ItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Item.materialType
+ */
+export type Item$materialTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MaterialType
+   */
+  select?: Prisma.MaterialTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MaterialType
+   */
+  omit?: Prisma.MaterialTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialTypeInclude<ExtArgs> | null
+  where?: Prisma.MaterialTypeWhereInput
+}
+
+/**
  * Item.edition
  */
 export type Item$editionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2520,6 +3029,25 @@ export type Item$collectionArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.CollectionInclude<ExtArgs> | null
   where?: Prisma.CollectionWhereInput
+}
+
+/**
+ * Item.shelfLocation
+ */
+export type Item$shelfLocationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShelfLocation
+   */
+  select?: Prisma.ShelfLocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShelfLocation
+   */
+  omit?: Prisma.ShelfLocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShelfLocationInclude<ExtArgs> | null
+  where?: Prisma.ShelfLocationWhereInput
 }
 
 /**

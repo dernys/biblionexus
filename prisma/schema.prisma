@@ -55,6 +55,16 @@ enum TransactionType {
   ADJUSTMENT
 }
 
+enum CirculationPolicyStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum MemberCategoryStatus {
+  ACTIVE
+  INACTIVE
+}
+
 enum LoanStatus {
   ACTIVE
   RETURNED
@@ -118,8 +128,15 @@ model Library {
   createdAt        DateTime              @default(now())
   digitalResources DigitalResource[]
   librarySettings  LibrarySetting[]
+  circulationPolicies CirculationPolicy[]
+  memberCategories MemberCategory[]
+  materialTypes MaterialType[]
+  classifications Classification[]
+  shelfLocations ShelfLocation[]
+  subjects Subject[]
   libraryEvents    LibraryEvent[]
   serialTitles     SerialTitle[]
+  userRoles UserRole[] @relation("UserRoleLibrary")
 
   @@unique([tenantId, slug])
   @@index([tenantId])
@@ -135,6 +152,8 @@ model Branch {
   items     Item[]
   members   Member[]
   loans     Loan[]
+  shelfLocations ShelfLocation[]
+  roleAssignments UserRole[] @relation("UserRoleBranch")
 
   @@unique([libraryId, code])
 }
@@ -182,12 +201,18 @@ model Permission {
 }
 
 model UserRole {
+  id String @id @default(cuid())
   userId String
   roleId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  libraryId String?
+  branchId String?
+  library Library? @relation("UserRoleLibrary", fields: [libraryId], references: [id], onDelete: Cascade)
+  branch Branch? @relation("UserRoleBranch", fields: [branchId], references: [id], onDelete: Cascade)
 
-  @@id([userId, roleId])
+  @@unique([userId, roleId, libraryId, branchId])
+  @@index([libraryId, branchId])
 }
 
 model RolePermission {
@@ -197,6 +222,84 @@ model RolePermission {
   permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
 
   @@id([roleId, permissionId])
+}
+
+model MemberCategory {
+  id String @id @default(cuid())
+  libraryId String
+  name String
+  status MemberCategoryStatus @default(ACTIVE)
+  maxLoans Int @default(5)
+  loanDays Int @default(21)
+  maxRenewals Int @default(3)
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  members Member[]
+  @@unique([libraryId, name])
+}
+
+model MaterialType {
+  id String @id @default(cuid())
+  libraryId String
+  code String
+  name String
+  loanable Boolean @default(true)
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  items Item[]
+  @@unique([libraryId, code])
+}
+
+model Subject {
+  id String @id @default(cuid())
+  libraryId String
+  term String
+  authorityUri String?
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  records BibliographicSubject[]
+  @@unique([libraryId, term])
+}
+
+model BibliographicSubject {
+  recordId String
+  subjectId String
+  record BibliographicRecord @relation(fields: [recordId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  @@id([recordId, subjectId])
+}
+
+model Classification {
+  id String @id @default(cuid())
+  libraryId String
+  scheme String
+  code String
+  label String?
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  records BibliographicRecord[]
+  @@unique([libraryId, scheme, code])
+}
+
+model ShelfLocation {
+  id String @id @default(cuid())
+  libraryId String
+  branchId String
+  code String
+  label String
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  items Item[]
+  @@unique([branchId, code])
+}
+
+model CirculationPolicy {
+  id String @id @default(cuid())
+  libraryId String
+  name String
+  status CirculationPolicyStatus @default(ACTIVE)
+  loanDays Int @default(21)
+  maxRenewals Int @default(3)
+  dailyFine Decimal @default(0.50)
+  graceDays Int @default(0)
+  library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+  @@unique([libraryId, name])
 }
 
 model Member {
@@ -209,7 +312,9 @@ model Member {
   name               String
   email              String?
   phone              String?
-  category           String              @default("Community")
+  categoryId         String?
+  category           MemberCategory?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  legacyCategory     String? @map("category")
   status             MemberStatus        @default(ACTIVE)
   barcode            String?
   loans              Loan[]
@@ -259,7 +364,7 @@ model BibliographicRecord {
   description    String?
   year           Int?
   language       String                @default("en")
-  classification String?
+  legacyClassification String? @map("classification")
   status         RecordStatus          @default(PUBLISHED)
   coverUrl       String?
   authors        BibliographicAuthor[]
@@ -267,6 +372,9 @@ model BibliographicRecord {
   holdings       Holding[]
   identifiers    Identifier[]
   subjects       String[]
+  subjectLinks   BibliographicSubject[]
+  classificationId String?
+  classification Classification? @relation(fields: [classificationId], references: [id], onDelete: SetNull)
   createdAt      DateTime              @default(now())
   updatedAt      DateTime              @updatedAt
   holds          Hold[]
@@ -322,15 +430,19 @@ model Item {
   editionId    String?
   branchId     String
   collectionId String?
+  shelfLocationId String?
   barcode      String      @unique
   status       ItemStatus  @default(AVAILABLE)
-  materialType String      @default("BOOK")
+  materialTypeId String?
+  materialType   MaterialType? @relation(fields: [materialTypeId], references: [id], onDelete: SetNull)
+  legacyMaterialType String? @map("materialType")
   condition    String?
   price        Decimal?
   holding      Holding     @relation(fields: [holdingId], references: [id], onDelete: Cascade)
   edition      Edition?    @relation(fields: [editionId], references: [id], onDelete: SetNull)
   branch       Branch      @relation(fields: [branchId], references: [id])
   collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+  shelfLocation ShelfLocation? @relation(fields: [shelfLocationId], references: [id], onDelete: SetNull)
   loans        Loan[]
   createdAt    DateTime    @default(now())
   holds        Hold[]

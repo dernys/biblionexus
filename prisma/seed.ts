@@ -13,10 +13,16 @@ async function main() {
     create: { name: 'BiblioNexus Demo Network', slug: 'demo-network' },
   })
 
+  const network = await prisma.libraryNetwork.upsert({
+    where: { id: `${tenant.id}-network` },
+    update: {},
+    create: { id: `${tenant.id}-network`, tenantId: tenant.id, name: 'BiblioNexus Development Network' },
+  })
+
   const library = await prisma.library.upsert({
     where: { tenantId_slug: { tenantId: tenant.id, slug: 'central-library' } },
-    update: {},
-    create: { tenantId: tenant.id, name: 'Central Library', slug: 'central-library' },
+    update: { networkId: network.id },
+    create: { tenantId: tenant.id, networkId: network.id, name: 'Central Library', slug: 'central-library' },
   })
 
   const [central, riverside] = await Promise.all([
@@ -32,6 +38,24 @@ async function main() {
     }),
   ])
 
+  const [adultCategory, bookMaterial] = await Promise.all([
+    prisma.memberCategory.upsert({
+      where: { libraryId_name: { libraryId: library.id, name: 'Adult' } },
+      update: { loanDays: 21, maxLoans: 5, maxRenewals: 3 },
+      create: { libraryId: library.id, name: 'Adult', loanDays: 21, maxLoans: 5, maxRenewals: 3 },
+    }),
+    prisma.materialType.upsert({
+      where: { libraryId_code: { libraryId: library.id, code: 'BOOK' } },
+      update: {},
+      create: { libraryId: library.id, code: 'BOOK', name: 'Book', loanable: true },
+    }),
+  ])
+  await prisma.circulationPolicy.upsert({
+    where: { libraryId_name: { libraryId: library.id, name: 'Standard Adult' } },
+    update: { loanDays: 21, maxRenewals: 3 },
+    create: { libraryId: library.id, name: 'Standard Adult', loanDays: 21, maxRenewals: 3 },
+  })
+
   const collection = await prisma.collection.upsert({
     where: { id: `${library.id}-fiction` },
     update: {},
@@ -43,6 +67,7 @@ async function main() {
     prisma.author.upsert({ where: { id: `${library.id}-morrison` }, update: {}, create: { id: `${library.id}-morrison`, name: 'Toni Morrison' } }),
   ])
   const publisher = await prisma.publisher.upsert({ where: { name: 'BiblioNexus Press' }, update: {}, create: { name: 'BiblioNexus Press' } })
+  const classification = await prisma.classification.upsert({ where: { libraryId_scheme_code: { libraryId: library.id, scheme: 'LCC', code: 'FIC' } }, update: {}, create: { libraryId: library.id, scheme: 'LCC', code: 'FIC', label: 'Fiction' } })
 
   const records = [
     { id: `${library.id}-one-hundred-years`, title: 'One Hundred Years of Solitude', author: garcia, isbn: '9780060883287', year: 1967 },
@@ -61,10 +86,10 @@ async function main() {
         title: entry.title,
         year: entry.year,
         language: 'en',
-        classification: 'FIC',
+        classificationId: classification.id,
         subjects: ['Literature', 'Fiction'],
         authors: { create: { authorId: entry.author.id } },
-        editions: { create: { isbn: entry.isbn, year: entry.year, label: 'Library edition' } },
+        editions: { create: { id: `${entry.id}-edition`, isbn: entry.isbn, year: entry.year, label: 'Library edition' } },
       },
       include: { editions: true },
     })
@@ -76,15 +101,25 @@ async function main() {
         create: { recordId: record.id, branchId: branch.id, shelfmark: `FIC ${entry.title.slice(0, 3).toUpperCase()}` },
       })
       const barcode = `${branch.code}-${entry.isbn.slice(-6)}`
-      await prisma.item.upsert({ where: { barcode }, update: {}, create: { holdingId: holding.id, editionId: record.editions[0]?.id, branchId: branch.id, collectionId: collection.id, barcode, materialType: 'BOOK', condition: 'GOOD' } })
+      await prisma.item.upsert({ where: { barcode }, update: { materialTypeId: bookMaterial.id }, create: { holdingId: holding.id, editionId: `${entry.id}-edition`, branchId: branch.id, collectionId: collection.id, materialTypeId: bookMaterial.id, barcode, condition: 'GOOD' } })
     }
   }
 
   await prisma.member.upsert({
     where: { libraryId_memberNumber: { libraryId: library.id, memberNumber: 'M-10001' } },
     update: {},
-    create: { libraryId: library.id, branchId: central.id, memberNumber: 'M-10001', barcode: 'BNX-M-10001', name: 'Avery Morgan', email: 'avery.morgan@example.com', category: 'Adult' },
+    create: { libraryId: library.id, branchId: central.id, categoryId: adultCategory.id, memberNumber: 'M-10001', barcode: 'BNX-M-10001', name: 'Avery Morgan', email: 'avery.morgan@example.com' },
   })
+
+  const permissionKeys = ['catalog:read', 'catalog:write', 'members:read', 'members:write', 'circulation:read', 'circulation:write', 'reports:read', 'settings:write']
+  const permissions = await Promise.all(permissionKeys.map((key) => prisma.permission.upsert({ where: { key }, update: {}, create: { key, description: `DEVELOPMENT ONLY — ${key}` } })))
+  const roleNames = ['PLATFORM_ADMIN', 'TENANT_ADMIN', 'LIBRARY_ADMIN', 'LIBRARIAN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER']
+  for (const roleName of roleNames) {
+    const role = await prisma.role.upsert({ where: { name: roleName }, update: {}, create: { name: roleName, description: `DEVELOPMENT ONLY — ${roleName}` } })
+    await Promise.all(permissions.map((permission) => prisma.rolePermission.upsert({ where: { roleId_permissionId: { roleId: role.id, permissionId: permission.id } }, update: {}, create: { roleId: role.id, permissionId: permission.id } })))
+    const user = await prisma.user.upsert({ where: { tenantId_email: { tenantId: tenant.id, email: `${roleName.toLowerCase()}@dev.biblionexus.local` } }, update: {}, create: { tenantId: tenant.id, email: `${roleName.toLowerCase()}@dev.biblionexus.local`, name: `DEVELOPMENT ONLY ${roleName}` } })
+    await prisma.userRole.create({ data: { userId: user.id, roleId: role.id, libraryId: library.id, branchId: roleName === 'CIRCULATION_DESK' ? central.id : null } }).catch(() => undefined)
+  }
 
   console.log(`Seeded ${tenant.name} with ${library.name}, two branches, catalog records, items, and a demo member.`)
 }

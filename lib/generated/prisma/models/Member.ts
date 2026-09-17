@@ -32,7 +32,8 @@ export type MemberMinAggregateOutputType = {
   name: string | null
   email: string | null
   phone: string | null
-  category: string | null
+  categoryId: string | null
+  legacyCategory: string | null
   status: $Enums.MemberStatus | null
   barcode: string | null
   createdAt: Date | null
@@ -47,7 +48,8 @@ export type MemberMaxAggregateOutputType = {
   name: string | null
   email: string | null
   phone: string | null
-  category: string | null
+  categoryId: string | null
+  legacyCategory: string | null
   status: $Enums.MemberStatus | null
   barcode: string | null
   createdAt: Date | null
@@ -62,7 +64,8 @@ export type MemberCountAggregateOutputType = {
   name: number
   email: number
   phone: number
-  category: number
+  categoryId: number
+  legacyCategory: number
   status: number
   barcode: number
   createdAt: number
@@ -79,7 +82,8 @@ export type MemberMinAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  category?: true
+  categoryId?: true
+  legacyCategory?: true
   status?: true
   barcode?: true
   createdAt?: true
@@ -94,7 +98,8 @@ export type MemberMaxAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  category?: true
+  categoryId?: true
+  legacyCategory?: true
   status?: true
   barcode?: true
   createdAt?: true
@@ -109,7 +114,8 @@ export type MemberCountAggregateInputType = {
   name?: true
   email?: true
   phone?: true
-  category?: true
+  categoryId?: true
+  legacyCategory?: true
   status?: true
   barcode?: true
   createdAt?: true
@@ -197,7 +203,8 @@ export type MemberGroupByOutputType = {
   name: string
   email: string | null
   phone: string | null
-  category: string
+  categoryId: string | null
+  legacyCategory: string | null
   status: $Enums.MemberStatus
   barcode: string | null
   createdAt: Date
@@ -233,13 +240,15 @@ export type MemberWhereInput = {
   name?: Prisma.StringFilter<"Member"> | string
   email?: Prisma.StringNullableFilter<"Member"> | string | null
   phone?: Prisma.StringNullableFilter<"Member"> | string | null
-  category?: Prisma.StringFilter<"Member"> | string
+  categoryId?: Prisma.StringNullableFilter<"Member"> | string | null
+  legacyCategory?: Prisma.StringNullableFilter<"Member"> | string | null
   status?: Prisma.EnumMemberStatusFilter<"Member"> | $Enums.MemberStatus
   barcode?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   library?: Prisma.XOR<Prisma.LibraryScalarRelationFilter, Prisma.LibraryWhereInput>
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
+  category?: Prisma.XOR<Prisma.MemberCategoryNullableScalarRelationFilter, Prisma.MemberCategoryWhereInput> | null
   loans?: Prisma.LoanListRelationFilter
   holds?: Prisma.HoldListRelationFilter
   notes?: Prisma.MemberNoteListRelationFilter
@@ -256,13 +265,15 @@ export type MemberOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyCategory?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   barcode?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   library?: Prisma.LibraryOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
+  category?: Prisma.MemberCategoryOrderByWithRelationInput
   loans?: Prisma.LoanOrderByRelationAggregateInput
   holds?: Prisma.HoldOrderByRelationAggregateInput
   notes?: Prisma.MemberNoteOrderByRelationAggregateInput
@@ -283,13 +294,15 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Member"> | string
   email?: Prisma.StringNullableFilter<"Member"> | string | null
   phone?: Prisma.StringNullableFilter<"Member"> | string | null
-  category?: Prisma.StringFilter<"Member"> | string
+  categoryId?: Prisma.StringNullableFilter<"Member"> | string | null
+  legacyCategory?: Prisma.StringNullableFilter<"Member"> | string | null
   status?: Prisma.EnumMemberStatusFilter<"Member"> | $Enums.MemberStatus
   barcode?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Member"> | Date | string
   library?: Prisma.XOR<Prisma.LibraryScalarRelationFilter, Prisma.LibraryWhereInput>
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
+  category?: Prisma.XOR<Prisma.MemberCategoryNullableScalarRelationFilter, Prisma.MemberCategoryWhereInput> | null
   loans?: Prisma.LoanListRelationFilter
   holds?: Prisma.HoldListRelationFilter
   notes?: Prisma.MemberNoteListRelationFilter
@@ -306,7 +319,8 @@ export type MemberOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  legacyCategory?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   barcode?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -327,7 +341,8 @@ export type MemberScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Member"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
-  category?: Prisma.StringWithAggregatesFilter<"Member"> | string
+  categoryId?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
+  legacyCategory?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   status?: Prisma.EnumMemberStatusWithAggregatesFilter<"Member"> | $Enums.MemberStatus
   barcode?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Member"> | Date | string
@@ -340,13 +355,14 @@ export type MemberCreateInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -363,7 +379,8 @@ export type MemberUncheckedCreateInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -382,13 +399,14 @@ export type MemberUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -405,7 +423,8 @@ export type MemberUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,7 +445,8 @@ export type MemberCreateManyInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -439,7 +459,7 @@ export type MemberUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -454,7 +474,8 @@ export type MemberUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -484,7 +505,8 @@ export type MemberCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
+  legacyCategory?: Prisma.SortOrder
   status?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -499,7 +521,8 @@ export type MemberMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
+  legacyCategory?: Prisma.SortOrder
   status?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -514,7 +537,8 @@ export type MemberMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
+  legacyCategory?: Prisma.SortOrder
   status?: Prisma.SortOrder
   barcode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -607,6 +631,48 @@ export type MemberUncheckedUpdateManyWithoutBranchNestedInput = {
   connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
   update?: Prisma.MemberUpdateWithWhereUniqueWithoutBranchInput | Prisma.MemberUpdateWithWhereUniqueWithoutBranchInput[]
   updateMany?: Prisma.MemberUpdateManyWithWhereWithoutBranchInput | Prisma.MemberUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
+}
+
+export type MemberCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput> | Prisma.MemberCreateWithoutCategoryInput[] | Prisma.MemberUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCategoryInput | Prisma.MemberCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.MemberCreateManyCategoryInputEnvelope
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+}
+
+export type MemberUncheckedCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput> | Prisma.MemberCreateWithoutCategoryInput[] | Prisma.MemberUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCategoryInput | Prisma.MemberCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.MemberCreateManyCategoryInputEnvelope
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+}
+
+export type MemberUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput> | Prisma.MemberCreateWithoutCategoryInput[] | Prisma.MemberUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCategoryInput | Prisma.MemberCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutCategoryInput | Prisma.MemberUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.MemberCreateManyCategoryInputEnvelope
+  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  update?: Prisma.MemberUpdateWithWhereUniqueWithoutCategoryInput | Prisma.MemberUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutCategoryInput | Prisma.MemberUpdateManyWithWhereWithoutCategoryInput[]
+  deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
+}
+
+export type MemberUncheckedUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput> | Prisma.MemberCreateWithoutCategoryInput[] | Prisma.MemberUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutCategoryInput | Prisma.MemberCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.MemberUpsertWithWhereUniqueWithoutCategoryInput | Prisma.MemberUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.MemberCreateManyCategoryInputEnvelope
+  set?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  disconnect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  delete?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  connect?: Prisma.MemberWhereUniqueInput | Prisma.MemberWhereUniqueInput[]
+  update?: Prisma.MemberUpdateWithWhereUniqueWithoutCategoryInput | Prisma.MemberUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.MemberUpdateManyWithWhereWithoutCategoryInput | Prisma.MemberUpdateManyWithWhereWithoutCategoryInput[]
   deleteMany?: Prisma.MemberScalarWhereInput | Prisma.MemberScalarWhereInput[]
 }
 
@@ -704,12 +770,13 @@ export type MemberCreateWithoutLibraryInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -725,7 +792,8 @@ export type MemberUncheckedCreateWithoutLibraryInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -775,7 +843,8 @@ export type MemberScalarWhereInput = {
   name?: Prisma.StringFilter<"Member"> | string
   email?: Prisma.StringNullableFilter<"Member"> | string | null
   phone?: Prisma.StringNullableFilter<"Member"> | string | null
-  category?: Prisma.StringFilter<"Member"> | string
+  categoryId?: Prisma.StringNullableFilter<"Member"> | string | null
+  legacyCategory?: Prisma.StringNullableFilter<"Member"> | string | null
   status?: Prisma.EnumMemberStatusFilter<"Member"> | $Enums.MemberStatus
   barcode?: Prisma.StringNullableFilter<"Member"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Member"> | Date | string
@@ -788,12 +857,13 @@ export type MemberCreateWithoutBranchInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -809,7 +879,8 @@ export type MemberUncheckedCreateWithoutBranchInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -848,19 +919,88 @@ export type MemberUpdateManyWithWhereWithoutBranchInput = {
   data: Prisma.XOR<Prisma.MemberUpdateManyMutationInput, Prisma.MemberUncheckedUpdateManyWithoutBranchInput>
 }
 
-export type MemberCreateWithoutNotesInput = {
+export type MemberCreateWithoutCategoryInput = {
   id?: string
   memberNumber: string
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
+  holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
+  notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
+  fines?: Prisma.FineCreateNestedManyWithoutMemberInput
+  accountTransactions?: Prisma.MemberAccountTransactionCreateNestedManyWithoutMemberInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutMemberInput
+}
+
+export type MemberUncheckedCreateWithoutCategoryInput = {
+  id?: string
+  libraryId: string
+  branchId?: string | null
+  memberNumber: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  legacyCategory?: string | null
+  status?: $Enums.MemberStatus
+  barcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutMemberInput
+  holds?: Prisma.HoldUncheckedCreateNestedManyWithoutMemberInput
+  notes?: Prisma.MemberNoteUncheckedCreateNestedManyWithoutMemberInput
+  fines?: Prisma.FineUncheckedCreateNestedManyWithoutMemberInput
+  accountTransactions?: Prisma.MemberAccountTransactionUncheckedCreateNestedManyWithoutMemberInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutMemberInput
+}
+
+export type MemberCreateOrConnectWithoutCategoryInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput>
+}
+
+export type MemberCreateManyCategoryInputEnvelope = {
+  data: Prisma.MemberCreateManyCategoryInput | Prisma.MemberCreateManyCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type MemberUpsertWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.MemberWhereUniqueInput
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutCategoryInput, Prisma.MemberUncheckedUpdateWithoutCategoryInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutCategoryInput, Prisma.MemberUncheckedCreateWithoutCategoryInput>
+}
+
+export type MemberUpdateWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.MemberWhereUniqueInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutCategoryInput, Prisma.MemberUncheckedUpdateWithoutCategoryInput>
+}
+
+export type MemberUpdateManyWithWhereWithoutCategoryInput = {
+  where: Prisma.MemberScalarWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateManyMutationInput, Prisma.MemberUncheckedUpdateManyWithoutCategoryInput>
+}
+
+export type MemberCreateWithoutNotesInput = {
+  id?: string
+  memberNumber: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  legacyCategory?: string | null
+  status?: $Enums.MemberStatus
+  barcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  library: Prisma.LibraryCreateNestedOneWithoutMembersInput
+  branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   fines?: Prisma.FineCreateNestedManyWithoutMemberInput
@@ -876,7 +1016,8 @@ export type MemberUncheckedCreateWithoutNotesInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -910,13 +1051,14 @@ export type MemberUpdateWithoutNotesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   fines?: Prisma.FineUpdateManyWithoutMemberNestedInput
@@ -932,7 +1074,8 @@ export type MemberUncheckedUpdateWithoutNotesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -950,13 +1093,14 @@ export type MemberCreateWithoutLoansInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
   fines?: Prisma.FineCreateNestedManyWithoutMemberInput
@@ -972,7 +1116,8 @@ export type MemberUncheckedCreateWithoutLoansInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1006,13 +1151,14 @@ export type MemberUpdateWithoutLoansInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
   fines?: Prisma.FineUpdateManyWithoutMemberNestedInput
@@ -1028,7 +1174,8 @@ export type MemberUncheckedUpdateWithoutLoansInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1046,13 +1193,14 @@ export type MemberCreateWithoutHoldsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
   fines?: Prisma.FineCreateNestedManyWithoutMemberInput
@@ -1068,7 +1216,8 @@ export type MemberUncheckedCreateWithoutHoldsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1102,13 +1251,14 @@ export type MemberUpdateWithoutHoldsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
   fines?: Prisma.FineUpdateManyWithoutMemberNestedInput
@@ -1124,7 +1274,8 @@ export type MemberUncheckedUpdateWithoutHoldsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1142,13 +1293,14 @@ export type MemberCreateWithoutFinesInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -1164,7 +1316,8 @@ export type MemberUncheckedCreateWithoutFinesInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1198,13 +1351,14 @@ export type MemberUpdateWithoutFinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -1220,7 +1374,8 @@ export type MemberUncheckedUpdateWithoutFinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1238,13 +1393,14 @@ export type MemberCreateWithoutEventRegistrationsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -1260,7 +1416,8 @@ export type MemberUncheckedCreateWithoutEventRegistrationsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1294,13 +1451,14 @@ export type MemberUpdateWithoutEventRegistrationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -1316,7 +1474,8 @@ export type MemberUncheckedUpdateWithoutEventRegistrationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1334,13 +1493,14 @@ export type MemberCreateWithoutAccountTransactionsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   library: Prisma.LibraryCreateNestedOneWithoutMembersInput
   branch?: Prisma.BranchCreateNestedOneWithoutMembersInput
+  category?: Prisma.MemberCategoryCreateNestedOneWithoutMembersInput
   loans?: Prisma.LoanCreateNestedManyWithoutMemberInput
   holds?: Prisma.HoldCreateNestedManyWithoutMemberInput
   notes?: Prisma.MemberNoteCreateNestedManyWithoutMemberInput
@@ -1356,7 +1516,8 @@ export type MemberUncheckedCreateWithoutAccountTransactionsInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1390,13 +1551,14 @@ export type MemberUpdateWithoutAccountTransactionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -1412,7 +1574,8 @@ export type MemberUncheckedUpdateWithoutAccountTransactionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1431,7 +1594,8 @@ export type MemberCreateManyLibraryInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1444,12 +1608,13 @@ export type MemberUpdateWithoutLibraryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -1465,7 +1630,8 @@ export type MemberUncheckedUpdateWithoutLibraryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1485,7 +1651,8 @@ export type MemberUncheckedUpdateManyWithoutLibraryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1499,7 +1666,8 @@ export type MemberCreateManyBranchInput = {
   name: string
   email?: string | null
   phone?: string | null
-  category?: string
+  categoryId?: string | null
+  legacyCategory?: string | null
   status?: $Enums.MemberStatus
   barcode?: string | null
   createdAt?: Date | string
@@ -1512,12 +1680,13 @@ export type MemberUpdateWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
+  category?: Prisma.MemberCategoryUpdateOneWithoutMembersNestedInput
   loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
   holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
   notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
@@ -1533,7 +1702,8 @@ export type MemberUncheckedUpdateWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1553,7 +1723,80 @@ export type MemberUncheckedUpdateManyWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type MemberCreateManyCategoryInput = {
+  id?: string
+  libraryId: string
+  branchId?: string | null
+  memberNumber: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  legacyCategory?: string | null
+  status?: $Enums.MemberStatus
+  barcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MemberUpdateWithoutCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  memberNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  library?: Prisma.LibraryUpdateOneRequiredWithoutMembersNestedInput
+  branch?: Prisma.BranchUpdateOneWithoutMembersNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutMemberNestedInput
+  holds?: Prisma.HoldUpdateManyWithoutMemberNestedInput
+  notes?: Prisma.MemberNoteUpdateManyWithoutMemberNestedInput
+  fines?: Prisma.FineUpdateManyWithoutMemberNestedInput
+  accountTransactions?: Prisma.MemberAccountTransactionUpdateManyWithoutMemberNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  memberNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutMemberNestedInput
+  holds?: Prisma.HoldUncheckedUpdateManyWithoutMemberNestedInput
+  notes?: Prisma.MemberNoteUncheckedUpdateManyWithoutMemberNestedInput
+  fines?: Prisma.FineUncheckedUpdateManyWithoutMemberNestedInput
+  accountTransactions?: Prisma.MemberAccountTransactionUncheckedUpdateManyWithoutMemberNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutMemberNestedInput
+}
+
+export type MemberUncheckedUpdateManyWithoutCategoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  libraryId?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  memberNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  legacyCategory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMemberStatusFieldUpdateOperationsInput | $Enums.MemberStatus
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1644,13 +1887,15 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name?: boolean
   email?: boolean
   phone?: boolean
-  category?: boolean
+  categoryId?: boolean
+  legacyCategory?: boolean
   status?: boolean
   barcode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
   loans?: boolean | Prisma.Member$loansArgs<ExtArgs>
   holds?: boolean | Prisma.Member$holdsArgs<ExtArgs>
   notes?: boolean | Prisma.Member$notesArgs<ExtArgs>
@@ -1668,13 +1913,15 @@ export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   email?: boolean
   phone?: boolean
-  category?: boolean
+  categoryId?: boolean
+  legacyCategory?: boolean
   status?: boolean
   barcode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1685,13 +1932,15 @@ export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   email?: boolean
   phone?: boolean
-  category?: boolean
+  categoryId?: boolean
+  legacyCategory?: boolean
   status?: boolean
   barcode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectScalar = {
@@ -1702,17 +1951,19 @@ export type MemberSelectScalar = {
   name?: boolean
   email?: boolean
   phone?: boolean
-  category?: boolean
+  categoryId?: boolean
+  legacyCategory?: boolean
   status?: boolean
   barcode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "libraryId" | "branchId" | "memberNumber" | "name" | "email" | "phone" | "category" | "status" | "barcode" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "libraryId" | "branchId" | "memberNumber" | "name" | "email" | "phone" | "categoryId" | "legacyCategory" | "status" | "barcode" | "createdAt" | "updatedAt", ExtArgs["result"]["member"]>
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
   loans?: boolean | Prisma.Member$loansArgs<ExtArgs>
   holds?: boolean | Prisma.Member$holdsArgs<ExtArgs>
   notes?: boolean | Prisma.Member$notesArgs<ExtArgs>
@@ -1724,10 +1975,12 @@ export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
 }
 export type MemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   library?: boolean | Prisma.LibraryDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.Member$branchArgs<ExtArgs>
+  category?: boolean | Prisma.Member$categoryArgs<ExtArgs>
 }
 
 export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1735,6 +1988,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     library: Prisma.$LibraryPayload<ExtArgs>
     branch: Prisma.$BranchPayload<ExtArgs> | null
+    category: Prisma.$MemberCategoryPayload<ExtArgs> | null
     loans: Prisma.$LoanPayload<ExtArgs>[]
     holds: Prisma.$HoldPayload<ExtArgs>[]
     notes: Prisma.$MemberNotePayload<ExtArgs>[]
@@ -1750,7 +2004,8 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     name: string
     email: string | null
     phone: string | null
-    category: string
+    categoryId: string | null
+    legacyCategory: string | null
     status: $Enums.MemberStatus
     barcode: string | null
     createdAt: Date
@@ -2151,6 +2406,7 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   library<T extends Prisma.LibraryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LibraryDefaultArgs<ExtArgs>>): Prisma.Prisma__LibraryClient<runtime.Types.Result.GetResult<Prisma.$LibraryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.Member$branchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$branchArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  category<T extends Prisma.Member$categoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$categoryArgs<ExtArgs>>): Prisma.Prisma__MemberCategoryClient<runtime.Types.Result.GetResult<Prisma.$MemberCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   loans<T extends Prisma.Member$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   holds<T extends Prisma.Member$holdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$holdsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HoldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notes<T extends Prisma.Member$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2193,7 +2449,8 @@ export interface MemberFieldRefs {
   readonly name: Prisma.FieldRef<"Member", 'String'>
   readonly email: Prisma.FieldRef<"Member", 'String'>
   readonly phone: Prisma.FieldRef<"Member", 'String'>
-  readonly category: Prisma.FieldRef<"Member", 'String'>
+  readonly categoryId: Prisma.FieldRef<"Member", 'String'>
+  readonly legacyCategory: Prisma.FieldRef<"Member", 'String'>
   readonly status: Prisma.FieldRef<"Member", 'MemberStatus'>
   readonly barcode: Prisma.FieldRef<"Member", 'String'>
   readonly createdAt: Prisma.FieldRef<"Member", 'DateTime'>
@@ -2615,6 +2872,25 @@ export type Member$branchArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   include?: Prisma.BranchInclude<ExtArgs> | null
   where?: Prisma.BranchWhereInput
+}
+
+/**
+ * Member.category
+ */
+export type Member$categoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberCategory
+   */
+  select?: Prisma.MemberCategorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberCategory
+   */
+  omit?: Prisma.MemberCategoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberCategoryInclude<ExtArgs> | null
+  where?: Prisma.MemberCategoryWhereInput
 }
 
 /**

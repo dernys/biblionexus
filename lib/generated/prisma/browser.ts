@@ -68,6 +68,41 @@ export type UserRole = Prisma.UserRoleModel
  */
 export type RolePermission = Prisma.RolePermissionModel
 /**
+ * Model MemberCategory
+ * 
+ */
+export type MemberCategory = Prisma.MemberCategoryModel
+/**
+ * Model MaterialType
+ * 
+ */
+export type MaterialType = Prisma.MaterialTypeModel
+/**
+ * Model Subject
+ * 
+ */
+export type Subject = Prisma.SubjectModel
+/**
+ * Model BibliographicSubject
+ * 
+ */
+export type BibliographicSubject = Prisma.BibliographicSubjectModel
+/**
+ * Model Classification
+ * 
+ */
+export type Classification = Prisma.ClassificationModel
+/**
+ * Model ShelfLocation
+ * 
+ */
+export type ShelfLocation = Prisma.ShelfLocationModel
+/**
+ * Model CirculationPolicy
+ * 
+ */
+export type CirculationPolicy = Prisma.CirculationPolicyModel
+/**
  * Model Member
  * 
  */

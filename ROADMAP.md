@@ -49,7 +49,7 @@ Principios arquitectónicos:
 
 ### Avance ejecutivo
 
-**Progreso global estimado: 28% (NEEDS_REVIEW)**
+**Progreso global estimado: 34% (NEEDS_REVIEW)**
 
 - Fundación técnica: **78%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check, headers de seguridad y workspace modular de navegación incorporados.
 - Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
@@ -69,6 +69,16 @@ Principios arquitectónicos:
 - Tests unitarios de aislamiento/RBAC: **IMPLEMENTED**, pero tests de integración de circulación: **BLOCKED** por `BETTER_AUTH_SECRET` y entorno de base verificable.
 - No se declara `COMPLETE` ninguna capacidad de autorización o circulación en esta iteración.
 
+**Iteración P0 actual — resultado:**
+- Contratos P0/P1/P2 y matriz de estado documentados en `docs/architecture/p0-contracts.md`: **IMPLEMENTED**.
+- Normalización inicial del schema: `MemberCategory`, `MaterialType`, `Subject`, `Classification`, `ShelfLocation`, `CirculationPolicy` y scopes contextuales de `UserRole`: **IMPLEMENTED / VERIFIED** en Prisma y Neon.
+- Migración segura `20260917190000_ils_foundation_normalization`: **APPLIED**, con backfill preparado y columnas legacy preservadas mediante `@map` para evitar pérdida de datos.
+- Seed: tenant/network/library/two branches, políticas normalizadas, catálogo y usuarios/roles/permisos DEVELOPMENT ONLY: **IMPLEMENTED / VERIFIED**.
+- Auth real, contraseñas, login/logout y sesiones revocables: **BLOCKED** hasta integrar Better Auth y disponer de `BETTER_AUTH_SECRET`.
+- Pruebas de integración PostgreSQL/concurrencia y acciones HTTP: **NOT STARTED / NEXT**.
+
+**Validación de esta iteración:** `pnpm db:check` **PASS**, `pnpm db:seed` contra Neon **PASS**, `pnpm typecheck` **PASS**, `pnpm test` **PASS — 6/6**, `pnpm build` **PASS**. La suite actual cubre guards/RBAC/isolation; no se reporta como cobertura de auth real ni concurrencia hasta implementar esos escenarios.
+
 
 ### Ya existe
 
@@ -81,8 +91,8 @@ Principios arquitectónicos:
 ### Brechas críticas
 
 - Better Auth pendiente hasta configurar `BETTER_AUTH_SECRET`.
-- Prisma existe, pero faltan migraciones/seed productivo y servicios de dominio conectados a UI.
-- RBAC actual es fundacional; falta enforcement real en servidor y pruebas de autorización.
+- Prisma, migraciones fundacionales, seed de desarrollo y servicios de dominio existen; falta conectar todas las acciones UI a servicios persistidos.
+- RBAC tiene guards server-side y tests unitarios; falta sesión real y pruebas de integración de autorización.
 - Circulación es principalmente una experiencia de workspace; faltan comandos transaccionales persistidos.
 - Sin contrato API formal, validación centralizada, observabilidad, jobs, notificaciones ni sincronización offline real.
 - Faltan módulos completos de adquisiciones, seriales, digital, inventario avanzado, reportes e integraciones.

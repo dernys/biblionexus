@@ -611,14 +611,6 @@ export type EnumLoanStatusFieldUpdateOperationsInput = {
   set?: $Enums.LoanStatus
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type LoanCreateNestedOneWithoutStatusChangesInput = {
   create?: Prisma.XOR<Prisma.LoanCreateWithoutStatusChangesInput, Prisma.LoanUncheckedCreateWithoutStatusChangesInput>
   connectOrCreate?: Prisma.LoanCreateOrConnectWithoutStatusChangesInput

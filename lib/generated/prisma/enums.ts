@@ -75,6 +75,22 @@ export const TransactionType = {
 export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
 
 
+export const CirculationPolicyStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type CirculationPolicyStatus = (typeof CirculationPolicyStatus)[keyof typeof CirculationPolicyStatus]
+
+
+export const MemberCategoryStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type MemberCategoryStatus = (typeof MemberCategoryStatus)[keyof typeof MemberCategoryStatus]
+
+
 export const LoanStatus = {
   ACTIVE: 'ACTIVE',
   RETURNED: 'RETURNED',

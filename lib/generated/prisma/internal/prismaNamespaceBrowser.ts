@@ -61,6 +61,13 @@ export const ModelName = {
   Permission: 'Permission',
   UserRole: 'UserRole',
   RolePermission: 'RolePermission',
+  MemberCategory: 'MemberCategory',
+  MaterialType: 'MaterialType',
+  Subject: 'Subject',
+  BibliographicSubject: 'BibliographicSubject',
+  Classification: 'Classification',
+  ShelfLocation: 'ShelfLocation',
+  CirculationPolicy: 'CirculationPolicy',
   Member: 'Member',
   MemberNote: 'MemberNote',
   Author: 'Author',
@@ -196,8 +203,11 @@ export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof
 
 
 export const UserRoleScalarFieldEnum = {
+  id: 'id',
   userId: 'userId',
-  roleId: 'roleId'
+  roleId: 'roleId',
+  libraryId: 'libraryId',
+  branchId: 'branchId'
 } as const
 
 export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
@@ -211,6 +221,84 @@ export const RolePermissionScalarFieldEnum = {
 export type RolePermissionScalarFieldEnum = (typeof RolePermissionScalarFieldEnum)[keyof typeof RolePermissionScalarFieldEnum]
 
 
+export const MemberCategoryScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  name: 'name',
+  status: 'status',
+  maxLoans: 'maxLoans',
+  loanDays: 'loanDays',
+  maxRenewals: 'maxRenewals'
+} as const
+
+export type MemberCategoryScalarFieldEnum = (typeof MemberCategoryScalarFieldEnum)[keyof typeof MemberCategoryScalarFieldEnum]
+
+
+export const MaterialTypeScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  code: 'code',
+  name: 'name',
+  loanable: 'loanable'
+} as const
+
+export type MaterialTypeScalarFieldEnum = (typeof MaterialTypeScalarFieldEnum)[keyof typeof MaterialTypeScalarFieldEnum]
+
+
+export const SubjectScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  term: 'term',
+  authorityUri: 'authorityUri'
+} as const
+
+export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
+
+
+export const BibliographicSubjectScalarFieldEnum = {
+  recordId: 'recordId',
+  subjectId: 'subjectId'
+} as const
+
+export type BibliographicSubjectScalarFieldEnum = (typeof BibliographicSubjectScalarFieldEnum)[keyof typeof BibliographicSubjectScalarFieldEnum]
+
+
+export const ClassificationScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  scheme: 'scheme',
+  code: 'code',
+  label: 'label'
+} as const
+
+export type ClassificationScalarFieldEnum = (typeof ClassificationScalarFieldEnum)[keyof typeof ClassificationScalarFieldEnum]
+
+
+export const ShelfLocationScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  branchId: 'branchId',
+  code: 'code',
+  label: 'label'
+} as const
+
+export type ShelfLocationScalarFieldEnum = (typeof ShelfLocationScalarFieldEnum)[keyof typeof ShelfLocationScalarFieldEnum]
+
+
+export const CirculationPolicyScalarFieldEnum = {
+  id: 'id',
+  libraryId: 'libraryId',
+  name: 'name',
+  status: 'status',
+  loanDays: 'loanDays',
+  maxRenewals: 'maxRenewals',
+  dailyFine: 'dailyFine',
+  graceDays: 'graceDays'
+} as const
+
+export type CirculationPolicyScalarFieldEnum = (typeof CirculationPolicyScalarFieldEnum)[keyof typeof CirculationPolicyScalarFieldEnum]
+
+
 export const MemberScalarFieldEnum = {
   id: 'id',
   libraryId: 'libraryId',
@@ -219,7 +307,8 @@ export const MemberScalarFieldEnum = {
   name: 'name',
   email: 'email',
   phone: 'phone',
-  category: 'category',
+  categoryId: 'categoryId',
+  legacyCategory: 'legacyCategory',
   status: 'status',
   barcode: 'barcode',
   createdAt: 'createdAt',
@@ -266,10 +355,11 @@ export const BibliographicRecordScalarFieldEnum = {
   description: 'description',
   year: 'year',
   language: 'language',
-  classification: 'classification',
+  legacyClassification: 'legacyClassification',
   status: 'status',
   coverUrl: 'coverUrl',
   subjects: 'subjects',
+  classificationId: 'classificationId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -323,9 +413,11 @@ export const ItemScalarFieldEnum = {
   editionId: 'editionId',
   branchId: 'branchId',
   collectionId: 'collectionId',
+  shelfLocationId: 'shelfLocationId',
   barcode: 'barcode',
   status: 'status',
-  materialType: 'materialType',
+  materialTypeId: 'materialTypeId',
+  legacyMaterialType: 'legacyMaterialType',
   condition: 'condition',
   price: 'price',
   createdAt: 'createdAt'
