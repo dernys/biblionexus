@@ -49,7 +49,7 @@ Principios arquitectónicos:
 
 ### Avance ejecutivo
 
-**Progreso global estimado: 26%**
+**Progreso global estimado: 28% (NEEDS_REVIEW)**
 
 - Fundación técnica: **78%** — Prisma 7, adapter PostgreSQL, configuración de datasource, repositorio inicial, seed reproducible, validadores de plataforma, scripts de typecheck/db-check, headers de seguridad y workspace modular de navegación incorporados.
 - Identidad y autorización: **10%** — modelos RBAC preparados; Better Auth y enforcement server-side bloqueados hasta configurar `BETTER_AUTH_SECRET`.
@@ -60,7 +60,14 @@ Principios arquitectónicos:
 
 **Iteración activa:** Iteración 0 — Fundación técnica y control de alcance.
 **Último hito:** seed reproducible, capa de plataforma compartida, scripts de validación y headers de seguridad.
-**Siguiente hito:** validar la base contra Neon y conectar lecturas reales de catálogo/circulación; después iniciar Iteración 1 cuando exista `BETTER_AUTH_SECRET`.
+**Siguiente hito:** configurar `BETTER_AUTH_SECRET`, implementar el adaptador Better Auth y completar pruebas de integración con PostgreSQL/Neon.
+
+**Iteración de seguridad actual — estado: PARTIAL / BLOCKED**
+- `AuthorizationContext` fail-closed, guards server-side y repositorios con scope obligatorio: **PARTIAL**.
+- Circulación recibe contexto autorizado, valida jerarquía y audita transacciones: **PARTIAL**; falta sesión real y verificación contra Neon.
+- Índice único parcial para impedir préstamos activos concurrentes: **NEEDS_REVIEW** hasta aplicar la migración en PostgreSQL.
+- Tests unitarios de aislamiento/RBAC: **IMPLEMENTED**, pero tests de integración de circulación: **BLOCKED** por `BETTER_AUTH_SECRET` y entorno de base verificable.
+- No se declara `COMPLETE` ninguna capacidad de autorización o circulación en esta iteración.
 
 
 ### Ya existe

@@ -1,3 +1,5 @@
+import { headers } from 'next/headers'
+
 export const PLATFORM_ROLES = ['PLATFORM_ADMIN', 'TENANT_ADMIN'] as const
 export const LIBRARY_ROLES = ['LIBRARY_ADMIN', 'LIBRARIAN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER'] as const
 
@@ -7,50 +9,72 @@ export type LibraryRole = (typeof LIBRARY_ROLES)[number]
 export interface AuthorizationContext {
   userId: string
   tenantId: string
-  libraryIds: string[]
-  branchIds: string[]
+  libraryIds: readonly string[]
+  branchIds: readonly string[]
+  roles: readonly string[]
+  permissions: readonly string[]
   platformRole?: PlatformRole
-  libraryRoles: LibraryRole[]
+  libraryRoles: readonly LibraryRole[]
 }
 
-export function assertTenantAccess(context: AuthorizationContext, tenantId: string) {
-  if (context.tenantId !== tenantId) throw new Error('Tenant access denied')
-}
-
-export function assertLibraryAccess(context: AuthorizationContext, libraryId: string) {
-  if (context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN') return
-  if (!context.libraryIds.includes(libraryId)) throw new Error('Library access denied')
-}
-
-export function assertBranchAccess(context: AuthorizationContext, branchId: string) {
-  if (context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN') return
-  if (!context.branchIds.includes(branchId)) throw new Error('Branch access denied')
-}
-
-export function requireRole(context: AuthorizationContext, roles: readonly string[]) {
-  const isAdmin = context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN'
-  if (!isAdmin && !context.libraryRoles.some((role) => roles.includes(role))) {
-    throw new Error('Permission denied')
+export class AuthorizationError extends Error {
+  constructor(message = 'Authorization denied') {
+    super(message)
+    this.name = 'AuthorizationError'
   }
 }
 
+export async function requireSession(): Promise<AuthorizationContext> {
+  if (!process.env.BETTER_AUTH_SECRET) {
+    throw new AuthorizationError('Authentication is not configured')
+  }
+  throw new AuthorizationError('Authentication adapter is not configured')
+}
+
+export function requirePermission(context: AuthorizationContext, permission: string) {
+  if (context.platformRole === 'PLATFORM_ADMIN' || context.permissions.includes('*') || context.permissions.includes(permission)) return context
+  throw new AuthorizationError(`Missing permission: ${permission}`)
+}
+
+export function requireTenantScope(context: AuthorizationContext, tenantId: string) {
+  if (context.tenantId !== tenantId) throw new AuthorizationError('Tenant scope denied')
+  return context
+}
+
+export function requireLibraryScope(context: AuthorizationContext, libraryId: string) {
+  requireTenantScope(context, context.tenantId)
+  if (context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN') return context
+  if (!context.libraryIds.includes(libraryId)) throw new AuthorizationError('Library scope denied')
+  return context
+}
+
+export function requireBranchScope(context: AuthorizationContext, branchId: string) {
+  if (context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN') return context
+  if (!context.branchIds.includes(branchId)) throw new AuthorizationError('Branch scope denied')
+  return context
+}
+
+export function requireRole(context: AuthorizationContext, roles: readonly string[]) {
+  if (context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN') return context
+  if (roles.some((role) => context.roles.includes(role) || context.libraryRoles.includes(role as LibraryRole))) return context
+  throw new AuthorizationError('Role denied')
+}
+
 export function requireCirculationAccess(context: AuthorizationContext) {
-  requireRole(context, ['LIBRARY_ADMIN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK'])
+  return requirePermission(context, 'circulation:write')
 }
 
-export function requireCatalogAccess(context: AuthorizationContext) {
-  requireRole(context, ['LIBRARY_ADMIN', 'CATALOGER'])
-}
-
-export function requireReportsAccess(context: AuthorizationContext) {
-  requireRole(context, ['LIBRARY_ADMIN', 'REPORTS_VIEWER'])
-}
-
-export function scopedWhere(context: AuthorizationContext, scope: { tenantId?: string; libraryId?: string; branchId?: string }) {
-  if (scope.tenantId) assertTenantAccess(context, scope.tenantId)
-  if (scope.libraryId) assertLibraryAccess(context, scope.libraryId)
-  if (scope.branchId) assertBranchAccess(context, scope.branchId)
+export function scopedWhere(context: AuthorizationContext, scope: { tenantId: string; libraryId?: string; branchId?: string }) {
+  requireTenantScope(context, scope.tenantId)
+  if (scope.libraryId) requireLibraryScope(context, scope.libraryId)
+  if (scope.branchId) requireBranchScope(context, scope.branchId)
   return scope
 }
-// Authentication/session resolution is intentionally kept separate until BETTER_AUTH_SECRET is configured.
-// Callers must resolve AuthorizationContext server-side before invoking domain services.
+
+export async function requestHeaders() {
+  return headers()
+}
+
+export function assertTenantAccess(context: AuthorizationContext, tenantId: string) { return requireTenantScope(context, tenantId) }
+export function assertLibraryAccess(context: AuthorizationContext, libraryId: string) { return requireLibraryScope(context, libraryId) }
+export function assertBranchAccess(context: AuthorizationContext, branchId: string) { return requireBranchScope(context, branchId) }
