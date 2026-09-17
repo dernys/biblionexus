@@ -3,6 +3,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Bell, BookOpen, ChevronRight, Command, Library, Menu, Moon, Search, Settings2, Sun, Users, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { signOut, useSession } from '@/lib/auth-client'
 import { currentUser, navItems, routeTitle } from '@/lib/biblio-data'
 
 export function AppShell({ children }: { children: React.ReactNode }) {
