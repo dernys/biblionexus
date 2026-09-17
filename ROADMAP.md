@@ -344,6 +344,13 @@ Cada módulo está terminado cuando cumple:
 7. Completar OPAC con disponibilidad real.
 8. Continuar con adquisiciones, inventario y reportes.
 
+## 8. Estado de ejecución — Iteración actual
+
+- **Avance estimado del roadmap:** 31% (actualizado en esta iteración).
+- **Completado:** migración Prisma reproducible `20260917164555_foundation` aplicada en Neon; seed demo ejecutado correctamente; servicio transaccional inicial para checkout, return y renew; límites de autorización tenant/library/branch y roles definidos.
+- **Siguiente foco:** sustituir el tenant demo por resolución de sesión real, aplicar scopes en cada repository, integrar Better Auth cuando exista `BETTER_AUTH_SECRET`, y añadir pruebas de aislamiento e idempotencia.
+- **Criterio de salida:** ninguna operación de circulación podrá ejecutarse sin contexto autorizado, tenant scope, transacción, auditoría y request idempotente.
+
 ## 8. Riesgos ejecutivos
 
 - **Auth retrasada:** impide validar seguridad y multiusuario; es el primer bloqueo.
