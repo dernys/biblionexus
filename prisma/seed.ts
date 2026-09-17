@@ -1,3 +1,4 @@
+import { hashPassword } from 'better-auth/crypto'
 import { PrismaClient } from '../lib/generated/prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { Pool } from 'pg'
@@ -121,7 +122,41 @@ async function main() {
     await prisma.userRole.create({ data: { userId: user.id, roleId: role.id, libraryId: library.id, branchId: roleName === 'CIRCULATION_DESK' ? central.id : null } }).catch(() => undefined)
   }
 
+  const superadminEmail = 'superadmin@dev.biblionexus.local'
+  const superadminPassword = 'BiblioNexus.Dev.2026!'
+  const superadmin = await prisma.user.upsert({
+    where: { tenantId_email: { tenantId: tenant.id, email: superadminEmail } },
+    update: { name: 'DEVELOPMENT ONLY Superadmin', status: 'ACTIVE', emailVerified: true },
+    create: {
+      tenantId: tenant.id,
+      email: superadminEmail,
+      name: 'DEVELOPMENT ONLY Superadmin',
+      status: 'ACTIVE',
+      emailVerified: true,
+    },
+  })
+  const superadminRole = await prisma.role.findUniqueOrThrow({ where: { name: 'PLATFORM_ADMIN' } })
+  const existingSuperadminRole = await prisma.userRole.findFirst({
+    where: { userId: superadmin.id, roleId: superadminRole.id, libraryId: null, branchId: null },
+  })
+  if (!existingSuperadminRole) {
+    await prisma.userRole.create({ data: { userId: superadmin.id, roleId: superadminRole.id } })
+  }
+  const superadminAccount = await prisma.account.findFirst({ where: { userId: superadmin.id, providerId: 'credential' } })
+  if (!superadminAccount) {
+    await prisma.account.create({
+      data: {
+        id: `${superadmin.id}-credential`,
+        userId: superadmin.id,
+        accountId: superadmin.id,
+        providerId: 'credential',
+        password: await hashPassword(superadminPassword),
+      },
+    })
+  }
+
   console.log(`Seeded ${tenant.name} with ${library.name}, two branches, catalog records, items, and a demo member.`)
+  console.log(`DEVELOPMENT ONLY superadmin: ${superadminEmail} / ${superadminPassword}`)
 }
 
 main().catch((error) => { console.error(error); process.exitCode = 1 }).finally(async () => { await prisma.$disconnect(); await pool.end() })
