@@ -60,7 +60,7 @@ A capability may only move to DONE when it has: real Better Auth session; tenant
 **Blocked**: OPAC public flow and browser validation require the corresponding route/runtime verification.
 **Next**: add PostgreSQL integration tests and complete composite integrity constraints before expanding circulation UI.
 
-**Latest delivery (2026-09-17)**: Added `tests/circulation-contracts.test.ts` and exported the typed `buildRequestHash` contract. The suite now verifies deterministic idempotency hashes, changed-request differentiation, tenant context presence and server-side circulation permission denial. Added `tests/postgres-integrity.test.ts` and `test:integration` scripts. The connected database passed migration reachability and active-loan/hold index checks (2 passed, 1 skipped); the Tenant A/B fixture test is intentionally skipped because the connected database currently contains only `demo-network`, not the independent seed fixture. These gates do not yet claim mutation concurrency coverage.
+**Latest delivery (2026-09-17)**: Added `tests/circulation-contracts.test.ts` and exported the typed `buildRequestHash` contract. The suite now verifies deterministic idempotency hashes, changed-request differentiation, tenant context presence and server-side circulation permission denial. Added `tests/postgres-integrity.test.ts` and `test:integration` scripts. The connected database passed migration reachability, active-loan/hold index checks, and reproducible Tenant A/B fixture isolation (3 passed, 0 skipped). `pnpm db:seed` now loads the independent fixture safely through upserts. These gates do not yet claim mutation concurrency or rollback coverage.
 
 **Iteration follow-up (2026-09-17)**: Added PostgreSQL partial unique indexes preventing duplicate active holds per member/record and member/item, plus queue lookup indexes. Migration `20260917193000_hold_integrity` was applied successfully to the connected PostgreSQL database; `prisma migrate status` reports the database is up to date. This is a database backstop; integration tests and cross-entity composite constraints remain PARTIAL.
 
@@ -977,7 +977,7 @@ Complete integration test suite for all workflows.
 | P1.3 | Fines/ledger | PARTIAL | Overdue charge exists; payment, waiver, adjustment workflows remain |
 | P2.1 | OPAC | MISSING | Public real-data search and availability remain |
 | P2.2 | Audit/reporting | MISSING | Operational viewer and reports remain |
-| P2.3 | Integration tests | PARTIAL | 10 contract tests plus 2 PostgreSQL integrity tests pass; Tenant A/B fixture isolation is explicitly skipped until the reproducible second-tenant fixture is loaded |
+| P2.3 | Integration tests | PARTIAL | 10 contract tests plus 3 PostgreSQL integrity tests pass, including reproducible Tenant A/B fixture isolation; mutation concurrency and rollback suite remains |
 
 ---
 
