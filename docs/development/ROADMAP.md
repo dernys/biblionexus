@@ -24,6 +24,8 @@
 **Blocked**: OPAC public flow and browser validation require the corresponding route/runtime verification.
 **Next**: add PostgreSQL integration tests and complete composite integrity constraints before expanding circulation UI.
 
+**Iteration follow-up (2026-09-17)**: Added PostgreSQL partial unique indexes preventing duplicate active holds per member/record and member/item, plus queue lookup indexes. This is a database backstop; integration tests and cross-entity composite constraints remain PARTIAL.
+
 > This roadmap is a delivery plan, not proof of implementation. Each item must be classified REAL, PARTIAL, DEMO, MOCK, or MISSING using the matrix in `DEVELOPMENT.md`. Do not mark a capability COMPLETE until the Definition of Done is satisfied.
 
 ---
