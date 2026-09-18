@@ -7,8 +7,8 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
 const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-dm-mono' })
 
 export const metadata: Metadata = {
-  title: 'BiblioNexus — Library Intelligence Platform',
-  description: 'The operating system of a modern library.',
+  title: 'BiblioNexus — The modern library OS',
+  description: 'A premium operating system for libraries that want less friction, deeper insight, and more room for the work that matters.',
   generator: 'v0.app',
 }
 
