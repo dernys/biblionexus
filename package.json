@@ -11,7 +11,9 @@
     "db:seed": "tsx prisma/seed.ts",
     "typecheck": "tsc --noEmit",
     "db:check": "prisma validate && prisma generate",
-    "test": "node --import tsx --test tests/*.test.ts"
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:integration": "RUN_DB_INTEGRATION=1 node --import tsx --test tests/postgres-integrity.test.ts",
+    "test:integration:fixtures": "RUN_DB_INTEGRATION=1 RUN_DB_FIXTURES=1 node --import tsx --test tests/postgres-integrity.test.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
