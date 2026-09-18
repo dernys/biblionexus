@@ -4,6 +4,41 @@
 **Target**: Enterprise-ready multi-tenant ILS with verified UI, services, persistence, authorization, audit and tests  
 **Canonical progress**: Not calculated; no percentage is published without complete evidence  
 **Last Updated**: 2026-09-17
+**Owner**: CTO / Principal Architecture
+**Canonical rule**: this file is the delivery source of truth; statuses are evidence-based and override historical cycle labels below.
+
+## CTO Audit — Current Reality and Target Completion Plan
+
+### Executive assessment
+BiblioNexus has a credible ILS domain model, PostgreSQL migrations, Prisma 7, a service/repository direction, bilingual dashboard/catalog surfaces, and partial circulation transactions. It is not production-ready yet. The critical remaining work is not additional screens: it is real Better Auth session integration, database-enforced scope integrity, complete service boundaries, PostgreSQL integration/concurrency tests, and connecting the operational UI to those services.
+
+### Evidence-based status vocabulary
+- **DONE**: real flow connected end-to-end, authorization enforced server-side, persistence transactional, audit/idempotency covered, tests and build pass.
+- **PARTIAL**: meaningful implementation exists but one or more acceptance gates are missing.
+- **NEEDS_REVIEW**: implementation exists but schema/security correctness requires explicit review.
+- **BLOCKED**: cannot be completed safely because a prerequisite or environment is missing.
+- **MOCK/STATIC**: UI or data is illustrative and must not be treated as operational capability.
+
+### Architecture decisions to preserve
+1. Keep the pipeline `UI → Server Action/Route Handler → AuthorizationContext → Application Service → Repository → Prisma/PostgreSQL`.
+2. Components must never import Prisma or perform authorization decisions.
+3. Every repository method receives explicit tenant scope and optional library/branch scope; there are no unscoped `getAll*` methods.
+4. All circulation mutations use a transaction, idempotency key, audit event, and database concurrency backstop.
+5. English is the canonical domain/API language; all user-facing interfaces must support English and Spanish through a shared translation namespace, not duplicated ad-hoc strings.
+6. Design direction remains premium operational software: warm amber accent, deep navy shell, restrained surfaces, dense but readable tables, keyboard-accessible actions, responsive layouts, and visible empty/loading/error states.
+
+### Schema audit findings
+- **Verified**: PostgreSQL datasource, tenant → library → branch hierarchy, scoped Member/Record models, unique library member numbers, unique item barcodes, active-loan partial index, active-hold partial indexes, idempotency model, audit model, renewal events.
+- **NEEDS_REVIEW**: `Holding.branchId` has no Prisma `Branch` relation or foreign key. This prevents the database from proving that a holding belongs to the branch represented by its items.
+- **NEEDS_REVIEW**: `Item.branchId` and `Item.holdingId` are independently constrained; a composite compatibility constraint is required so an item cannot point to a holding from another branch.
+- **NEEDS_REVIEW**: `Member.libraryId` and nullable `Member.branchId` do not have a composite FK proving branch/library compatibility.
+- **NEEDS_REVIEW**: `Loan.memberId`, `Loan.itemId`, and `Loan.branchId` are separate relations; composite scope constraints are required for member/library, item/branch, and loan branch consistency.
+- **NEEDS_REVIEW**: `Library.networkId` is nullable and does not prove the network belongs to the same tenant.
+- **NEEDS_REVIEW**: global `Author` and `Publisher` ownership must be an explicit ADR decision; records are library-scoped while these authority entities are currently global.
+- **SECURITY REVIEW**: `Account` contains credential/token fields; Better Auth adapter behavior, encryption/redaction, session revocation, and production secret handling must be verified before Auth can be DONE.
+
+### Definition of Done for the P0 operational core
+A capability may only move to DONE when it has: real Better Auth session; tenant/library/branch authorization; input validation; repository-scoped queries; Prisma transaction; idempotency where retryable; audit log; PostgreSQL integration/concurrency test; bilingual connected UI where applicable; and passing `db:check`, typecheck, lint, tests, and build.
 
 ## P0 Reality Check — Prisma, PostgreSQL, Security, Circulation
 
@@ -191,7 +226,7 @@ Implement bibliographic record management with authors, publishers, subjects, an
 - **Validation**: Library scope enforced
 - **RBAC**: READ for CATALOGER+, no write yet
 - **Search**: Should query BibliographicRecord fields + Author names
-- **Status**: NOT STARTED
+- **Status**: PARTIAL — list/search surface exists; detail, pagination, filters, mutations and integration tests remain.
 
 #### 4.2 Bibliographic Records - Detail & View
 **Scope**: Anyone with READ permission
@@ -903,22 +938,24 @@ Complete integration test suite for all workflows.
 
 ## Implementation Priority Matrix
 
-### High Priority (Core functionality)
-1. ✅ Cycle 1: Auth (DONE)
-2. ✅ Cycle 2: RBAC (DONE)
-3. **Cycle 3**: Organization (Tenant/Library/Branch)
-4. **Cycle 4**: Catalog basics (Records, Authors, Publishers)
-5. **Cycle 7**: Circulation core (Checkout/Return/Renew)
+### High Priority (P0 gates — do not bypass)
+1. **P0.1 Auth/session adapter**: integrate and verify Better Auth session lifecycle.
+2. **P0.2 Scope integrity**: add reviewed composite constraints/migrations for tenant/library/branch compatibility.
+3. **P0.3 Integration test harness**: PostgreSQL isolation, concurrency, idempotency and RBAC tests.
+4. **P0.4 Circulation hardening**: checkout, return, renew, hold with policy, ledger, audit and real authorization.
+5. **P0.5 Repository boundary**: remove direct Prisma access from UI/routes and document context contracts.
 
-### Medium Priority (Essential admin)
-6. **Cycle 5**: Items & Holdings
-7. **Cycle 6**: Members
-8. **Cycle 8**: Policies & Fines
+### Medium Priority (P1 operational surfaces)
+6. **P1.1 Catalog + inventory**: detail, CRUD, editions, holdings, items, status history.
+7. **P1.2 Members**: scoped CRUD, notes, account view and bilingual workflows.
+8. **P1.3 Circulation Desk UI**: connected checkout/return/renew/hold actions and error states.
+9. **P1.4 Fines and ledger**: payment, waiver, adjustment with immutable audit trail.
+10. **P1.5 Organization/admin**: tenant, network, library, branch, policies and settings.
 
-### Lower Priority (Public + enhancements)
-9. **Cycle 9**: OPAC
-10. **Cycle 10**: Settings & Audit
-11. **Cycle 11**: Integration tests
+### Lower Priority (P2 public and platform expansion)
+11. **P2.1 OPAC**: real search, record detail and availability by branch.
+12. **P2.2 Audit/reporting**: filtered audit viewer, operational reports and exports.
+13. **P2.3 Integrations**: MARC21 import/export, notifications, digital resources, serials and migration tooling.
 
 ---
 
@@ -926,17 +963,18 @@ Complete integration test suite for all workflows.
 
 | Cycle | Component | Status | Notes |
 |-------|-----------|--------|-------|
-| 1 | Authentication | ✅ DONE | Better Auth configured, seed has users |
-| 2 | RBAC | ✅ DONE | Roles, permissions, authorization context |
-| 3 | Organization | 🟡 PARTIAL | Schema ready, seed has data, UI missing |
-| 4 | Catalog | ❌ NOT STARTED | Schema ready, seed has data |
-| 5 | Items/Holdings | ❌ NOT STARTED | Schema ready, seed has data |
-| 6 | Members | ❌ NOT STARTED | Schema ready, seed has data |
-| 7 | Circulation | ❌ NOT STARTED | Schema ready, operations defined |
-| 8 | Policies | 🟡 PARTIAL | Schema ready, seed has data |
-| 9 | OPAC | ❌ NOT STARTED | Schema ready |
-| 10 | Settings/Audit | ❌ NOT STARTED | Schema ready |
-| 11 | Integration Tests | ❌ NOT STARTED | Framework exists, tests sparse |
+| P0.1 | Authentication/session | BLOCKED | Auth context/guards exist, but real Better Auth session lifecycle and production verification are not complete |
+| P0.2 | Tenant/RBAC/scopes | PARTIAL | Server-side guards and authorization tests exist; DB composite integrity and full role matrix remain |
+| P0.3 | Prisma/PostgreSQL | PARTIAL | Schema, migrations and indexes verified; cross-entity FK integrity needs review |
+| P0.4 | Catalog | PARTIAL | Scoped list/search exists; detail, CRUD, pagination and integration tests remain |
+| P0.5 | Circulation | PARTIAL | Transactional service paths exist; policy selection, concurrency tests and connected UI remain |
+| P0.6 | Audit/idempotency | PARTIAL | Core circulation events and idempotency exist; complete mutation taxonomy and replay tests remain |
+| P1.1 | Items/Holdings | MISSING | Models and seed exist; operational repository/UI flows are not complete |
+| P1.2 | Members | PARTIAL | Scoped lookup exists; CRUD, notes, account and UI remain |
+| P1.3 | Fines/ledger | PARTIAL | Overdue charge exists; payment, waiver, adjustment workflows remain |
+| P2.1 | OPAC | MISSING | Public real-data search and availability remain |
+| P2.2 | Audit/reporting | MISSING | Operational viewer and reports remain |
+| P2.3 | Integration tests | PARTIAL | Authorization unit tests pass; PostgreSQL isolation/concurrency suite remains |
 
 ---
 
@@ -969,20 +1007,26 @@ Complete integration test suite for all workflows.
 
 ---
 
-## Next Steps
+## Next Steps — Sequenced Delivery
 
-1. **Immediately** (after this roadmap):
-   - Fix sidebar toggle in AppShell
-   - Begin Cycle 3 (Organization UI)
+1. **Now / P0 blocker removal**
+   - Verify Better Auth route, session creation, expiry, revocation and `BETTER_AUTH_SECRET` in the running environment.
+   - Add PostgreSQL integration test harness with isolated fixtures for Tenant A/B and branch-scoped actors.
+   - Review and migrate composite scope constraints for Holding/Branch, Item/Holding, Member/Branch and Loan context.
 
-2. **This sprint**:
-   - Complete Cycle 3 (Tenant/Library/Branch UI)
-   - Begin Cycle 4 (Catalog UI)
+2. **After P0 gates pass**
+   - Connect Circulation Desk UI to server actions for checkout, return, renew and hold.
+   - Add policy resolution from the selected library and complete FinePayment/WAIVER/ADJUSTMENT ledger services.
+   - Add negative-path UX in English and Spanish: permission denied, out of scope, unavailable, conflict, retry and validation states.
 
-3. **Next sprint**:
-   - Complete Cycle 4 & 5 (Catalog + Items)
-   - Begin Cycle 6 (Members)
+3. **P1 operational completion**
+   - Complete catalog detail/CRUD, holdings/items and member management through repositories and services.
+   - Add organization context selector with URL state and server-validated scope; do not use client storage as authorization.
+   - Add audit viewer and operational reporting only from real PostgreSQL aggregates.
 
-4. **Following**:
-   - Complete Cycle 6 & 7 (Members + Circulation)
-   - Begin Cycle 9 (OPAC)
+4. **P2 public surface**
+   - Implement real OPAC search/detail/availability routes with public-safe queries and no administrative data leakage.
+   - Add MARC21, notifications, digital, serials and migration workflows only after P0/P1 acceptance gates are green.
+
+### Release gate
+No production readiness claim until all P0 items are DONE, PostgreSQL integration tests pass, `pnpm db:check`, `pnpm typecheck`, `pnpm test`, `pnpm build` pass, and the critical flows are verified in the browser at desktop and mobile widths.
