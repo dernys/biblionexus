@@ -4,6 +4,7 @@ import { Prisma } from '@/lib/generated/prisma/client'
 import { prisma } from '@/lib/prisma'
 import { activeHoldsForItem, availableItemInBranch, loanInTenant, memberInTenant } from '@/lib/repositories/circulation'
 import { AuthorizationContext, requireBranchScope, requireCirculationAccess, requireLibraryScope, requirePermission, requireTenantScope } from '@/lib/authorization'
+import { buildRequestHash } from '@/lib/idempotency'
 
 const addDays = (date: Date, days: number) => new Date(date.getTime() + days * 86_400_000)
 const admin = (context: AuthorizationContext) => context.platformRole === 'PLATFORM_ADMIN' || context.platformRole === 'TENANT_ADMIN'
@@ -13,7 +14,6 @@ export interface ReturnParams { context: AuthorizationContext; loanId: string; b
 export interface RenewParams { context: AuthorizationContext; loanId: string; memberId: string; idempotencyKey: string }
 export interface HoldParams { context: AuthorizationContext; memberId: string; recordId?: string; itemId?: string; idempotencyKey: string }
 
-export const buildRequestHash = (...parts: string[]) => parts.join(':')
 const requestHash = buildRequestHash
 async function readIdempotency(tx: Prisma.TransactionClient, context: AuthorizationContext, key: string, operation: string, hash: string) {
   const existing = await tx.idempotencyKey.findUnique({ where: { tenantId_key: { tenantId: context.tenantId, key } } })

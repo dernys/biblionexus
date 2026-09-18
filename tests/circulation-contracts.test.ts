@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { buildRequestHash } from '../lib/services/circulation'
+import { buildRequestHash } from '../lib/idempotency'
 import { AuthorizationError, requirePermission, type AuthorizationContext } from '../lib/authorization'
 
 const circulationContext: AuthorizationContext = {
