@@ -55,10 +55,12 @@ A capability may only move to DONE when it has: real Better Auth session; tenant
 
 **Implemented**: `lib/repositories/circulation.ts` scoped repository functions, checkout/return/renew/hold transaction paths, active-loan partial unique index migration, idempotency request-hash validation for checkout/return/renew/hold, overdue ledger CHARGE creation, and independent Tenant B seed data.
 **Verified**: `prisma validate`, `prisma generate`, `prisma migrate status`, `typecheck`, existing tests, production build; protected admin routing now requires both an authenticated Better Auth session and a resolved tenant authorization context; sign-in UI supports English and Spanish.
-**Current iteration**: server route `/[...slug]` now rejects sessions without a valid tenant context before loading admin data; `AuthForm` exposes bilingual labels and language selection without weakening server authorization.
+**Current iteration**: server route `/[...slug]` now rejects sessions without a valid tenant context before loading admin data; `AuthForm` exposes bilingual labels and language selection without weakening server authorization. Added `tests/circulation-contracts.test.ts` for stable/different idempotency hashes and server-side circulation permission denial; this contract layer does not replace PostgreSQL integration tests.
 **Needs Review**: composite database constraints for cross-entity library/branch compatibility, full seed scenario, payment/waiver operations, integration tests against PostgreSQL.
 **Blocked**: OPAC public flow and browser validation require the corresponding route/runtime verification.
 **Next**: add PostgreSQL integration tests and complete composite integrity constraints before expanding circulation UI.
+
+**Latest delivery (2026-09-17)**: Added `tests/circulation-contracts.test.ts` and exported the typed `buildRequestHash` contract. The suite now verifies deterministic idempotency hashes, changed-request differentiation, tenant context presence and server-side circulation permission denial. These are unit/contract gates only; they do not claim database isolation or concurrency coverage.
 
 **Iteration follow-up (2026-09-17)**: Added PostgreSQL partial unique indexes preventing duplicate active holds per member/record and member/item, plus queue lookup indexes. Migration `20260917193000_hold_integrity` was applied successfully to the connected PostgreSQL database; `prisma migrate status` reports the database is up to date. This is a database backstop; integration tests and cross-entity composite constraints remain PARTIAL.
 
@@ -975,7 +977,7 @@ Complete integration test suite for all workflows.
 | P1.3 | Fines/ledger | PARTIAL | Overdue charge exists; payment, waiver, adjustment workflows remain |
 | P2.1 | OPAC | MISSING | Public real-data search and availability remain |
 | P2.2 | Audit/reporting | MISSING | Operational viewer and reports remain |
-| P2.3 | Integration tests | PARTIAL | Authorization unit tests pass; PostgreSQL isolation/concurrency suite remains |
+| P2.3 | Integration tests | PARTIAL | Authorization and circulation contract tests pass: 10/10; PostgreSQL isolation, transaction rollback and concurrency suite remains |
 
 ---
 

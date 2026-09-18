@@ -13,7 +13,8 @@ export interface ReturnParams { context: AuthorizationContext; loanId: string; b
 export interface RenewParams { context: AuthorizationContext; loanId: string; memberId: string; idempotencyKey: string }
 export interface HoldParams { context: AuthorizationContext; memberId: string; recordId?: string; itemId?: string; idempotencyKey: string }
 
-const requestHash = (...parts: string[]) => parts.join(':')
+export const buildRequestHash = (...parts: string[]) => parts.join(':')
+const requestHash = buildRequestHash
 async function readIdempotency(tx: Prisma.TransactionClient, context: AuthorizationContext, key: string, operation: string, hash: string) {
   const existing = await tx.idempotencyKey.findUnique({ where: { tenantId_key: { tenantId: context.tenantId, key } } })
   if (!existing) return null
