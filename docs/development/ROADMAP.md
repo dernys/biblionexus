@@ -154,6 +154,9 @@ Implement bibliographic record management with authors, publishers, subjects, an
 
 #### 4.1 Bibliographic Records - List & Search
 **Scope**: CATALOGER, LIBRARIAN, PUBLIC (search only, no edit)
+**Status**: PARTIAL — scoped Prisma read service and bilingual responsive list/search UI implemented; detail, server-side filters, pagination and mutations remain.
+**Implementation**: `lib/services/catalog.ts`, `components/catalog-records.tsx`, `app/[...slug]/page.tsx`.
+**Prisma correspondence**: `BibliographicRecord` → `BibliographicAuthor`/`Author`, `Edition`, `Holding` → `Item`, scoped by `libraryId`; no mock records used by `/catalog`. Runtime verified by typecheck/build; browser verification was blocked because the local preview was not listening on port 3000.
 - **Route**: `/admin/catalog/records`
 - **Components**:
   - `RecordSearchBar`: Title, author, ISBN, subject filters
