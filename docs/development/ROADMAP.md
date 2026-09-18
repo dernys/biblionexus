@@ -54,7 +54,8 @@ A capability may only move to DONE when it has: real Better Auth session; tenant
 | Testing | PARTIAL | 6 authorization tests pass; integration database tests remain | PARTIAL |
 
 **Implemented**: `lib/repositories/circulation.ts` scoped repository functions, checkout/return/renew/hold transaction paths, active-loan partial unique index migration, idempotency request-hash validation for checkout/return/renew/hold, overdue ledger CHARGE creation, and independent Tenant B seed data.
-**Verified**: `prisma validate`, `prisma generate`, `prisma migrate status`, `typecheck`, existing tests.
+**Verified**: `prisma validate`, `prisma generate`, `prisma migrate status`, `typecheck`, existing tests, production build; protected admin routing now requires both an authenticated Better Auth session and a resolved tenant authorization context; sign-in UI supports English and Spanish.
+**Current iteration**: server route `/[...slug]` now rejects sessions without a valid tenant context before loading admin data; `AuthForm` exposes bilingual labels and language selection without weakening server authorization.
 **Needs Review**: composite database constraints for cross-entity library/branch compatibility, full seed scenario, payment/waiver operations, integration tests against PostgreSQL.
 **Blocked**: OPAC public flow and browser validation require the corresponding route/runtime verification.
 **Next**: add PostgreSQL integration tests and complete composite integrity constraints before expanding circulation UI.
@@ -963,7 +964,7 @@ Complete integration test suite for all workflows.
 
 | Cycle | Component | Status | Notes |
 |-------|-----------|--------|-------|
-| P0.1 | Authentication/session | BLOCKED | Auth context/guards exist, but real Better Auth session lifecycle and production verification are not complete |
+| P0.1 | Authentication/session | PARTIAL | Better Auth route, email/password client, server session lookup, protected route and tenant authorization context are wired; browser cookie lifecycle and production verification remain |
 | P0.2 | Tenant/RBAC/scopes | PARTIAL | Server-side guards and authorization tests exist; DB composite integrity and full role matrix remain |
 | P0.3 | Prisma/PostgreSQL | PARTIAL | Schema, migrations and indexes verified; cross-entity FK integrity needs review |
 | P0.4 | Catalog | PARTIAL | Scoped list/search exists; detail, CRUD, pagination and integration tests remain |
