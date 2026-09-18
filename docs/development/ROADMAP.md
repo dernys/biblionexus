@@ -5,6 +5,25 @@
 **Canonical progress**: Not calculated; no percentage is published without complete evidence  
 **Last Updated**: 2026-09-17
 
+## P0 Reality Check — Prisma, PostgreSQL, Security, Circulation
+
+| Area | Before | After | Status |
+|---|---|---|---|
+| Foundation | PARTIAL | Prisma/PostgreSQL migrations exist; runtime validation verified | PARTIAL |
+| Auth/RBAC | PARTIAL | Better Auth context and server-side permission guards verified by tests | PARTIAL |
+| Catalog | PARTIAL | Tenant/library-scoped repository-backed catalog list | PARTIAL |
+| Circulation | MOCK/PARTIAL | Transactional checkout, return, renew and hold service paths with idempotency and audit writes | PARTIAL |
+| Members | STATIC | Member lookup is used by circulation; member CRUD remains absent | PARTIAL |
+| OPAC | MISSING | Not implemented in this iteration | MISSING |
+| Audit | PARTIAL | Checkout/return/renew/hold audit writes exist; payment/waiver and mutation coverage remain | PARTIAL |
+| Testing | PARTIAL | 6 authorization tests pass; integration database tests remain | PARTIAL |
+
+**Implemented**: `lib/repositories/circulation.ts` scoped repository functions, checkout/return/renew/hold transaction paths, active-loan partial unique index migration, idempotency request-hash validation for checkout/return/renew/hold, overdue ledger CHARGE creation, and independent Tenant B seed data.
+**Verified**: `prisma validate`, `prisma generate`, `prisma migrate status`, `typecheck`, existing tests.
+**Needs Review**: composite database constraints for cross-entity library/branch compatibility, full seed scenario, payment/waiver operations, integration tests against PostgreSQL.
+**Blocked**: OPAC public flow and browser validation require the corresponding route/runtime verification.
+**Next**: add PostgreSQL integration tests and complete composite integrity constraints before expanding circulation UI.
+
 > This roadmap is a delivery plan, not proof of implementation. Each item must be classified REAL, PARTIAL, DEMO, MOCK, or MISSING using the matrix in `DEVELOPMENT.md`. Do not mark a capability COMPLETE until the Definition of Done is satisfied.
 
 ---
@@ -603,7 +622,7 @@ Implement checkout, return, renew, and hold workflows for circulation staff.
 - **Idempotency**: Same checkout attempt twice should be safe (idempotency key on barcode + member + timestamp)
 - **Audit**: Every checkout logged with member, item, branch, staff
 - **Error Handling**: Show clear reason why checkout failed
-- **Status**: NOT STARTED
+- **Status**: PARTIAL — service path exists in `lib/services/circulation.ts`; bilingual desk UI and integration tests remain.
 
 #### 7.3 Return Operation
 **Scope**: CIRCULATION_STAFF+
@@ -635,7 +654,7 @@ Implement checkout, return, renew, and hold workflows for circulation staff.
 - **RBAC**: CIRCULATION_STAFF+
 - **Audit**: Every return logged
 - **Fine Calculation**: Based on CirculationPolicy (daily fine amount, grace period)
-- **Status**: NOT STARTED
+- **Status**: PARTIAL — transactional return, overdue fine creation, account CHARGE ledger entry, audit and idempotency are implemented; UI and integration tests remain.
 
 #### 7.4 Renew Operation
 **Scope**: CIRCULATION_STAFF+, MEMBER (self-service in future)
@@ -663,7 +682,7 @@ Implement checkout, return, renew, and hold workflows for circulation staff.
   - Member is in good standing (no excessive fines)
 - **RBAC**: CIRCULATION_STAFF+
 - **Audit**: Every renewal logged
-- **Status**: NOT STARTED
+- **Status**: PARTIAL — renewal event, policy limit, hold blocking, audit and idempotency are implemented; UI and integration tests remain.
 
 #### 7.5 Hold Management - Circulation Desk
 **Scope**: CIRCULATION_STAFF+
@@ -677,7 +696,7 @@ Implement checkout, return, renew, and hold workflows for circulation staff.
   - `cancelHold`
   - `expireHold`
   - `fulfillHold` (when member picks up)
-- **Status**: NOT STARTED
+- **Status**: PARTIAL — member-to-record/item hold creation is transactional, scoped, duplicate-protected, audited and idempotent; desk management actions remain.
 
 ---
 

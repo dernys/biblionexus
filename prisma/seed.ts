@@ -155,7 +155,15 @@ async function main() {
     })
   }
 
+  const tenantB = await prisma.tenant.upsert({ where: { slug: 'independent-community' }, update: {}, create: { name: 'Independent Community Library', slug: 'independent-community' } })
+  const networkB = await prisma.libraryNetwork.upsert({ where: { id: `${tenantB.id}-network` }, update: {}, create: { id: `${tenantB.id}-network`, tenantId: tenantB.id, name: 'Independent Community Network' } })
+  const libraryB = await prisma.library.upsert({ where: { tenantId_slug: { tenantId: tenantB.id, slug: 'community-library' } }, update: { networkId: networkB.id }, create: { tenantId: tenantB.id, networkId: networkB.id, name: 'Community Library', slug: 'community-library' } })
+  const branchB = await prisma.branch.upsert({ where: { libraryId_code: { libraryId: libraryB.id, code: 'COM' } }, update: {}, create: { libraryId: libraryB.id, name: 'Community Branch', code: 'COM', address: '1 Community Way' } })
+  const categoryB = await prisma.memberCategory.upsert({ where: { libraryId_name: { libraryId: libraryB.id, name: 'Adult' } }, update: {}, create: { libraryId: libraryB.id, name: 'Adult' } })
+  await prisma.member.upsert({ where: { libraryId_memberNumber: { libraryId: libraryB.id, memberNumber: 'B-10001' } }, update: {}, create: { libraryId: libraryB.id, branchId: branchB.id, categoryId: categoryB.id, memberNumber: 'B-10001', name: 'Jordan Lee', email: 'jordan.lee@community.example' } })
+
   console.log(`Seeded ${tenant.name} with ${library.name}, two branches, catalog records, items, and a demo member.`)
+  console.log(`Seeded independent tenant ${tenantB.name} with library ${libraryB.name} and member B-10001.`)
   console.log(`DEVELOPMENT ONLY superadmin: ${superadminEmail} / ${superadminPassword}`)
 }
 
