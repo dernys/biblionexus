@@ -114,7 +114,7 @@ async function main() {
 
   const permissionKeys = ['catalog:read', 'catalog:write', 'members:read', 'members:write', 'circulation:read', 'circulation:write', 'reports:read', 'settings:write']
   const permissions = await Promise.all(permissionKeys.map((key) => prisma.permission.upsert({ where: { key }, update: {}, create: { key, description: `DEVELOPMENT ONLY — ${key}` } })))
-  const roleNames = ['PLATFORM_ADMIN', 'TENANT_ADMIN', 'LIBRARY_ADMIN', 'LIBRARIAN', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER']
+  const roleNames = ['PLATFORM_ADMIN', 'TENANT_ADMIN', 'LIBRARY_ADMIN', 'LIBRARIAN', 'NORMAL_USER', 'CIRCULATION_MANAGER', 'CIRCULATION_DESK', 'CATALOGER', 'ACQUISITIONS_MANAGER', 'REPORTS_VIEWER']
   for (const roleName of roleNames) {
     const role = await prisma.role.upsert({ where: { name: roleName }, update: {}, create: { name: roleName, description: `DEVELOPMENT ONLY — ${roleName}` } })
     await Promise.all(permissions.map((permission) => prisma.rolePermission.upsert({ where: { roleId_permissionId: { roleId: role.id, permissionId: permission.id } }, update: {}, create: { roleId: role.id, permissionId: permission.id } })))
@@ -153,6 +153,28 @@ async function main() {
         password: await hashPassword(superadminPassword),
       },
     })
+  }
+
+  const defaultUsers = [
+    { role: 'PLATFORM_ADMIN', email: 'superadmin@dev.biblionexus.local', name: 'DEVELOPMENT ONLY Superadmin', password: 'BiblioNexus.Dev.2026!' },
+    { role: 'TENANT_ADMIN', email: 'administrator@dev.biblionexus.local', name: 'DEVELOPMENT ONLY Administrator', password: 'BiblioNexus.Admin.2026!' },
+    { role: 'LIBRARIAN', email: 'librarian@dev.biblionexus.local', name: 'DEVELOPMENT ONLY Librarian', password: 'BiblioNexus.Librarian.2026!' },
+    { role: 'NORMAL_USER', email: 'user@dev.biblionexus.local', name: 'DEVELOPMENT ONLY Normal User', password: 'BiblioNexus.User.2026!' },
+  ] as const
+  for (const account of defaultUsers) {
+    const role = await prisma.role.findUniqueOrThrow({ where: { name: account.role } })
+    const user = await prisma.user.upsert({
+      where: { tenantId_email: { tenantId: tenant.id, email: account.email } },
+      update: { name: account.name, status: 'ACTIVE', emailVerified: true },
+      create: { tenantId: tenant.id, email: account.email, name: account.name, status: 'ACTIVE', emailVerified: true },
+    })
+    const assignment = await prisma.userRole.findFirst({ where: { userId: user.id, roleId: role.id, libraryId: library.id } })
+    if (!assignment) await prisma.userRole.create({ data: { userId: user.id, roleId: role.id, libraryId: library.id } })
+    const credential = await prisma.account.findFirst({ where: { userId: user.id, providerId: 'credential' } })
+    if (!credential) {
+      await prisma.account.create({ data: { id: `${user.id}-credential`, userId: user.id, accountId: user.id, providerId: 'credential', password: await hashPassword(account.password) } })
+    }
+    console.log(`DEVELOPMENT ONLY ${account.role}: ${account.email} / ${account.password}`)
   }
 
   const tenantB = await prisma.tenant.upsert({ where: { slug: 'independent-community' }, update: {}, create: { name: 'Independent Community Library', slug: 'independent-community' } })
